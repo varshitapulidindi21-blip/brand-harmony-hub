@@ -77,36 +77,36 @@ function HomePage() {
   return (
     <div className="min-h-screen">
       <TopBar />
-      <main className="mx-auto w-full max-w-[1400px] space-y-8 px-6 py-8">
+      <main className="mx-auto w-full max-w-[1400px] space-y-10 px-6 py-10">
         <GreetingHero name="Samarth Sachdeva" />
         <AnnouncementsBar />
 
-        <section className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div className="rounded-3xl border border-border bg-card p-6">
-            <SectionHeading
-              eyebrow="PERSONAL"
-              primary="Employee"
-              accent="Self-Service"
-            />
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <section className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+          <div className="surface animate-rise rounded-3xl p-7 md:p-8">
+            <SectionHeading eyebrow="PERSONAL" primary="Employee" accent="Self-Service" />
+            <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
               {selfService.map((m) => (
                 <ModuleTile key={m.title} {...m} />
               ))}
             </div>
           </div>
 
-          <div className="rounded-3xl border border-border bg-card p-6">
+          <div className="surface animate-rise rounded-3xl p-7 md:p-8">
             <SectionHeading
               eyebrow="WORKSPACES"
               primary="Business"
               accent="Modules"
               right={
-                <Link to="/modules" className="text-xs font-medium tracking-[0.18em] uppercase text-accent hover:underline">
-                  View all ↗
+                <Link
+                  to="/modules"
+                  className="group inline-flex items-center gap-1 text-[11px] font-medium uppercase tracking-[0.2em] text-accent transition-opacity hover:opacity-80"
+                >
+                  View all
+                  <span className="transition-transform duration-300 group-hover:translate-x-0.5">↗</span>
                 </Link>
               }
             />
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
               {business.slice(0, 8).map((m) => (
                 <ModuleTile key={m.title} {...m} />
               ))}
@@ -114,29 +114,31 @@ function HomePage() {
           </div>
         </section>
 
-        <section className="rounded-3xl border border-border bg-card p-6">
+        <section className="surface animate-rise rounded-3xl p-7 md:p-8">
           <SectionHeading
             eyebrow="SHAREPOINT"
             primary="Department"
             accent="Folders"
             right={<span className="text-xs font-light text-muted-foreground">16 departments</span>}
           />
-          <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-8 gap-3">
+          <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 lg:grid-cols-8">
             {departments.map((d) => (
               <div
                 key={d.label}
-                className="flex flex-col items-center gap-2 rounded-xl border border-border bg-background/40 p-3 transition-colors hover:border-primary/40"
+                className="module-card group flex flex-col items-center gap-2.5 p-3.5"
               >
-                <div className={`tile ${toneBg[d.tone]} h-10 w-10 rounded-lg`}>
-                  <d.icon className="h-5 w-5" />
+                <div className={`tile ${toneBg[d.tone]} h-10 w-10 rounded-xl group-hover:scale-[1.05]`}>
+                  <d.icon className="h-[1.05rem] w-[1.05rem]" strokeWidth={1.75} />
                 </div>
-                <div className="text-xs font-medium text-foreground text-center">{d.label}</div>
+                <div className="text-center text-[11.5px] font-medium leading-tight">
+                  {d.label}
+                </div>
               </div>
             ))}
           </div>
         </section>
 
-        <footer className="py-6 text-center text-xs font-light text-muted-foreground">
+        <footer className="py-8 text-center text-[11px] font-light tracking-wide text-muted-foreground">
           © 2026 Resolve In Action · Built with the Resolven Design System
         </footer>
       </main>

@@ -7,11 +7,7 @@
 /*
  * Resolven Design System
  * Locked palette — purple/green primary, lavender/light-green secondary, neutrals.
- * NEVER add colors outside this family (SAP's own logo blue is the only exception).
- *
- * Typography note: Verbatim Wide Bold Oblique (titles) + Verbatim Light/Medium (body)
- * are the licensed brand fonts. Until the user provides the .woff2 files we substitute
- * Big Shoulders Display 800 italic + Inter 300/500 (loaded in __root.tsx).
+ * NEVER add colors outside this family.
  */
 
 @theme inline {
@@ -55,19 +51,19 @@
 }
 
 :root {
-  --radius: 0.75rem;
+  --radius: 0.85rem;
 
   /* Brand palette (raw) */
-  --brand-purple: oklch(0.378 0.180 295);        /* #522B91 */
+  --brand-purple: oklch(0.378 0.180 295);
   --brand-purple-deep: oklch(0.298 0.160 295);
-  --brand-green: oklch(0.682 0.180 148);         /* #3DB769 */
-  --brand-lavender: oklch(0.825 0.060 305);      /* #C8B6D8 */
-  --brand-green-light: oklch(0.795 0.150 132);   /* #9BCD72 */
-  --brand-black: oklch(0.205 0 0);               /* #202020 */
-  --brand-grey: oklch(0.485 0.005 285);          /* #6C6D70 */
-  --brand-grey-light: oklch(0.755 0.005 285);    /* #B9BCBF */
+  --brand-green: oklch(0.682 0.180 148);
+  --brand-lavender: oklch(0.825 0.060 305);
+  --brand-green-light: oklch(0.795 0.150 132);
+  --brand-black: oklch(0.205 0 0);
+  --brand-grey: oklch(0.485 0.005 285);
+  --brand-grey-light: oklch(0.755 0.005 285);
 
-  /* Semantic mapping — light mode (lavender wash bg per brand guide page 2) */
+  /* Light mode */
   --background: oklch(0.945 0.025 305);
   --foreground: var(--brand-black);
   --card: oklch(1 0 0);
@@ -84,9 +80,19 @@
   --accent-foreground: oklch(1 0 0);
   --destructive: oklch(0.55 0.22 27);
   --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.88 0.020 305);
+  --border: oklch(0.88 0.018 305 / 0.7);
   --input: oklch(0.88 0.020 305);
   --ring: var(--brand-purple);
+
+  /* Elevation tokens */
+  --shadow-soft:
+    0 1px 2px -1px oklch(0.30 0.10 295 / 0.06),
+    0 4px 14px -8px oklch(0.30 0.10 295 / 0.10);
+  --shadow-elev:
+    0 2px 4px -2px oklch(0.30 0.10 295 / 0.08),
+    0 12px 32px -12px oklch(0.30 0.10 295 / 0.18);
+  --shadow-glow: 0 0 0 1px oklch(0.378 0.180 295 / 0.10),
+    0 18px 40px -18px oklch(0.378 0.180 295 / 0.30);
 
   --sidebar: oklch(0.97 0.015 305);
   --sidebar-foreground: var(--brand-black);
@@ -99,7 +105,7 @@
 }
 
 .dark {
-  --background: oklch(0.18 0.025 280);     /* near-black with violet hint */
+  --background: oklch(0.18 0.025 280);
   --foreground: oklch(0.97 0.005 305);
   --card: oklch(0.235 0.030 280);
   --card-foreground: oklch(0.97 0.005 305);
@@ -113,9 +119,18 @@
   --muted-foreground: oklch(0.72 0.020 285);
   --accent: var(--brand-green);
   --accent-foreground: oklch(1 0 0);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 14%);
+  --border: oklch(1 0 0 / 0.08);
+  --input: oklch(1 0 0 / 0.14);
   --ring: var(--brand-purple);
+
+  --shadow-soft:
+    0 1px 2px -1px oklch(0 0 0 / 0.4),
+    0 6px 20px -10px oklch(0 0 0 / 0.5);
+  --shadow-elev:
+    0 4px 8px -4px oklch(0 0 0 / 0.45),
+    0 18px 40px -16px oklch(0 0 0 / 0.55);
+  --shadow-glow: 0 0 0 1px oklch(0.682 0.180 148 / 0.18),
+    0 22px 50px -22px oklch(0.682 0.180 148 / 0.30);
 
   --sidebar: oklch(0.205 0.030 280);
   --sidebar-foreground: oklch(0.97 0.005 305);
@@ -123,7 +138,7 @@
   --sidebar-primary-foreground: oklch(1 0 0);
   --sidebar-accent: oklch(0.30 0.040 285);
   --sidebar-accent-foreground: oklch(0.97 0.005 305);
-  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-border: oklch(1 0 0 / 0.08);
   --sidebar-ring: var(--brand-purple);
 }
 
@@ -137,14 +152,44 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
     font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Layered, premium background — same colors, more depth */
+  body {
+    background-image:
+      radial-gradient(1100px 600px at 8% -10%,
+        oklch(0.378 0.180 295 / 0.10), transparent 60%),
+      radial-gradient(900px 600px at 100% 10%,
+        oklch(0.682 0.180 148 / 0.08), transparent 65%),
+      radial-gradient(1000px 700px at 50% 110%,
+        oklch(0.825 0.060 305 / 0.18), transparent 60%);
+    background-attachment: fixed;
+  }
+
+  .dark body {
+    background-image:
+      radial-gradient(1100px 600px at 8% -10%,
+        oklch(0.378 0.180 295 / 0.22), transparent 60%),
+      radial-gradient(900px 600px at 100% 10%,
+        oklch(0.682 0.180 148 / 0.10), transparent 65%),
+      radial-gradient(1000px 700px at 50% 110%,
+        oklch(0.378 0.180 295 / 0.18), transparent 60%);
   }
 
   h1, h2, h3, h4 {
     font-family: var(--font-display);
     font-weight: 800;
     font-style: italic;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.015em;
+    line-height: 1.05;
   }
+
+  p, li, span { line-height: 1.55; }
+
+  ::selection { background: oklch(0.682 0.180 148 / 0.30); }
 }
 
 @layer utilities {
@@ -152,21 +197,89 @@
   .font-light   { font-weight: 300; }
   .font-medium  { font-weight: 500; }
 
-  /* Flat tinted icon tile — brand-guide style */
-  .tile          { display:inline-flex; align-items:center; justify-content:center;
-                   width:3rem; height:3rem; border-radius:0.85rem; color:#fff; }
+  /* Surfaces */
+  .surface {
+    background: color-mix(in oklab, var(--color-card) 88%, transparent);
+    backdrop-filter: blur(14px) saturate(120%);
+    -webkit-backdrop-filter: blur(14px) saturate(120%);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .shadow-soft { box-shadow: var(--shadow-soft); }
+  .shadow-elev { box-shadow: var(--shadow-elev); }
+  .shadow-glow { box-shadow: var(--shadow-glow); }
+
+  /* Flat tinted icon tile */
+  .tile {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 3rem; height: 3rem; border-radius: 0.95rem; color: #fff;
+    transition: transform 350ms cubic-bezier(.2,.7,.2,1),
+                box-shadow 350ms ease, background-color 350ms ease, color 350ms ease;
+  }
   .tile-purple       { background: var(--brand-purple); }
   .tile-green        { background: var(--brand-green); }
   .tile-lavender     { background: var(--brand-lavender); color: var(--brand-purple); }
   .tile-green-light  { background: var(--brand-green-light); color:#1a3d20; }
   .tile-grey         { background: var(--brand-grey-light); color: var(--brand-black); }
 
+  /* Module card — premium hover that subtly inverts theme */
+  .module-card {
+    position: relative;
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 1.1rem;
+    transition:
+      transform 400ms cubic-bezier(.2,.7,.2,1),
+      box-shadow 400ms ease,
+      background-color 400ms ease,
+      border-color 400ms ease,
+      color 400ms ease;
+    will-change: transform;
+  }
+  .module-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-elev);
+    background-color: oklch(0.22 0.030 280);
+    color: oklch(0.97 0.005 305);
+    border-color: oklch(1 0 0 / 0.10);
+  }
+  .module-card:hover .mc-sub { color: oklch(0.78 0.020 285); }
+  .module-card:hover .tile { box-shadow: 0 8px 22px -10px oklch(0 0 0 / 0.5); }
+
+  .dark .module-card:hover {
+    background-color: oklch(1 0 0);
+    color: var(--brand-black);
+    border-color: oklch(0.88 0.020 305);
+  }
+  .dark .module-card:hover .mc-sub { color: var(--brand-grey); }
+
   /* Diagonal parallelogram clip from the Resolven "O" */
   .clip-diagonal { clip-path: polygon(14% 0, 100% 0, 86% 100%, 0 100%); }
 
   /* Logo color invert helper for dark mode */
   .logo-light { display: block; }
-  .logo-dark { display: none; }
+  .logo-dark  { display: none; }
   .dark .logo-light { display: none; }
-  .dark .logo-dark { display: block; }
+  .dark .logo-dark  { display: block; }
+
+  /* Marquee */
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  .marquee-track {
+    display: inline-flex;
+    gap: 4rem;
+    animation: marquee 38s linear infinite;
+    will-change: transform;
+  }
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+
+  /* Soft entrance */
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .animate-rise { animation: rise 600ms cubic-bezier(.2,.7,.2,1) both; }
 }

@@ -10,14 +10,15 @@ export function SectionHeading({
   right?: React.ReactNode;
 }) {
   return (
-    <div className="mb-5 flex items-end justify-between gap-4">
-      <div>
+    <div className="mb-6 flex items-end justify-between gap-4">
+      <div className="space-y-1.5">
         {eyebrow && (
-          <div className="mb-1 text-[11px] font-medium tracking-[0.18em] text-accent">
+          <div className="flex items-center gap-2 text-[10.5px] font-medium tracking-[0.22em] uppercase text-accent/90">
+            <span className="inline-block h-px w-6 bg-accent/60" />
             {eyebrow}
           </div>
         )}
-        <h2 className="font-display text-2xl md:text-3xl leading-none">
+        <h2 className="font-display text-[1.6rem] md:text-[1.95rem] leading-[1.05]">
           <span className="text-foreground">{primary}</span>{" "}
           <span className="text-accent">{accent}</span>
         </h2>

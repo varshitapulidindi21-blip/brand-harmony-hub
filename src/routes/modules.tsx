@@ -45,42 +45,45 @@ function ModulesPage() {
   return (
     <div className="min-h-screen">
       <TopBar />
-      <main className="mx-auto w-full max-w-[1400px] space-y-10 px-6 py-8">
+      <main className="mx-auto w-full max-w-[1400px] space-y-10 px-6 py-10">
         <div className="flex items-start justify-between gap-6">
           <div className="flex items-center gap-4">
-            <Link to="/" className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-card hover:border-primary/40">
-              <ArrowLeft className="h-5 w-5" />
+            <Link
+              to="/"
+              className="flex h-10 w-10 items-center justify-center rounded-xl border border-border/60 bg-card/70 shadow-soft backdrop-blur transition-all duration-300 hover:border-primary/40 hover:shadow-elev"
+            >
+              <ArrowLeft className="h-[1.1rem] w-[1.1rem]" />
             </Link>
-            <h1 className="text-3xl md:text-4xl">
+            <h1 className="text-[2rem] md:text-[2.5rem]">
               <span className="text-foreground">All</span>{" "}
               <span className="text-accent">Modules</span>
             </h1>
           </div>
-          <p className="hidden md:block max-w-md text-right text-xs font-light text-muted-foreground">
+          <p className="hidden max-w-md text-right text-xs font-light leading-relaxed text-muted-foreground md:block">
             Pin tiles to anchor them on your home · unpinned tiles appear only when frequently used
           </p>
         </div>
 
-        <section className="rounded-3xl border border-border bg-card p-6">
+        <section className="surface animate-rise rounded-3xl p-7 md:p-8">
           <SectionHeading
             eyebrow="PERSONAL"
             primary="Employee"
             accent="Self-Service"
-            right={<span className="rounded-full bg-secondary px-3 py-1 text-xs font-medium text-secondary-foreground">8 modules</span>}
+            right={<span className="rounded-full bg-secondary/70 px-3 py-1 text-[11px] font-medium text-secondary-foreground">8 modules</span>}
           />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-4">
             {personal.map((m) => <ModuleTile key={m.title} {...m} large />)}
           </div>
         </section>
 
-        <section className="rounded-3xl border border-border bg-card p-6">
+        <section className="surface animate-rise rounded-3xl p-7 md:p-8">
           <SectionHeading
             eyebrow="WORKSPACES"
             primary="Business"
             accent="Modules"
-            right={<span className="rounded-full bg-secondary px-3 py-1 text-xs font-medium text-secondary-foreground">10 modules</span>}
+            right={<span className="rounded-full bg-secondary/70 px-3 py-1 text-[11px] font-medium text-secondary-foreground">10 modules</span>}
           />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+          <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-5">
             {workspaces.map((m) => <ModuleTile key={m.title} {...m} large />)}
           </div>
         </section>
