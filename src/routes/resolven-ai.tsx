@@ -23,7 +23,7 @@ function AIPage() {
   return (
     <div className="min-h-screen">
       {/* Slim top bar specific to AI page */}
-      <header className="sticky top-0 z-30 w-full border-b border-border/60 bg-background/85 backdrop-blur">
+      <header className="sticky top-0 z-30 w-full border-b border-border/50 bg-background/70 backdrop-blur-xl supports-[backdrop-filter]:bg-background/55">
         <div className="mx-auto flex h-16 w-full max-w-[1400px] items-center gap-4 px-6">
           <Link to="/" className="flex items-center gap-3">
             <img src={logo} alt="Resolven" className="logo-light h-12 w-auto" />
@@ -63,7 +63,7 @@ function AIPage() {
         </aside>
 
         {/* Chat panel */}
-        <section className="relative flex min-h-[calc(100vh-140px)] flex-col rounded-3xl border border-border bg-card p-8">
+        <section className="surface animate-rise relative flex min-h-[calc(100vh-140px)] flex-col rounded-3xl p-8 md:p-10">
           <div className="m-auto flex flex-col items-center text-center">
             <div
               className="relative flex h-24 w-24 items-center justify-center rounded-2xl text-white shadow-md"
@@ -83,7 +83,7 @@ function AIPage() {
             </p>
           </div>
 
-          <div className="mt-6 flex items-center gap-2 rounded-2xl border border-border bg-background px-4 py-3">
+          <div className="mt-6 flex items-center gap-2 rounded-2xl border border-border/70 bg-background/80 px-4 py-3 shadow-soft backdrop-blur transition-all duration-300 focus-within:border-primary/40 focus-within:shadow-elev">
             <button className="flex h-9 w-9 items-center justify-center rounded-full text-primary hover:bg-secondary">
               <Globe className="h-5 w-5" />
             </button>
