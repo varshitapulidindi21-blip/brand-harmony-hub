@@ -165,6 +165,8 @@
   .clip-diagonal { clip-path: polygon(14% 0, 100% 0, 86% 100%, 0 100%); }
 
   /* Logo color invert helper for dark mode */
-  .logo-img { transition: filter 0.2s; }
-  .dark .logo-img { filter: brightness(0) invert(1); }
+  .logo-light { display: block; }
+  .logo-dark { display: none; }
+  .dark .logo-light { display: none; }
+  .dark .logo-dark { display: block; }
 }
