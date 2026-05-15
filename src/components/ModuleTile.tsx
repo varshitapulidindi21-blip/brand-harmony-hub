@@ -30,25 +30,29 @@ export function ModuleTile({
   return (
     <div
       className={cn(
-        "relative flex gap-4 rounded-2xl border border-border bg-card p-4 transition-all hover:border-primary/40 hover:shadow-sm",
+        "module-card group flex gap-4 p-4 md:p-5",
         large ? "flex-col items-start" : "items-center",
       )}
     >
-      <div className={cn("tile shrink-0", toneClass[tone])}>
-        <Icon className="h-6 w-6" strokeWidth={2} />
+      <div className={cn("tile shrink-0 group-hover:scale-[1.04]", toneClass[tone])}>
+        <Icon className="h-[1.35rem] w-[1.35rem]" strokeWidth={1.75} />
       </div>
-      <div className="min-w-0">
-        <div className="font-medium text-sm md:text-base text-foreground truncate">{title}</div>
+      <div className="min-w-0 flex-1">
+        <div className="font-medium text-[0.95rem] leading-tight tracking-tight truncate">
+          {title}
+        </div>
         {subtitle && (
-          <div className="mt-0.5 text-xs font-light text-muted-foreground line-clamp-2">
+          <div className="mc-sub mt-1 text-xs font-light leading-relaxed text-muted-foreground line-clamp-2">
             {subtitle}
           </div>
         )}
       </div>
       <span
         className={cn(
-          "absolute right-2.5 top-2.5 flex h-5 w-5 items-center justify-center rounded-full",
-          pinned ? "bg-accent text-white" : "bg-secondary text-muted-foreground",
+          "absolute right-3 top-3 flex h-5 w-5 items-center justify-center rounded-full transition-colors",
+          pinned
+            ? "bg-accent/15 text-accent"
+            : "bg-transparent text-transparent group-hover:bg-white/10 group-hover:text-current/60",
         )}
       >
         <Pin className="h-3 w-3" />
