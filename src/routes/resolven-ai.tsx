@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Plus, Bot, Globe, Send, Home, MessageSquare } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import logo from "@/assets/resolven-logo.png";
+import logoWhite from "@/assets/resolven-logo-white.png";
 
 export const Route = createFileRoute("/resolven-ai")({
   head: () => ({
@@ -25,7 +26,8 @@ function AIPage() {
       <header className="sticky top-0 z-30 w-full border-b border-border/60 bg-background/85 backdrop-blur">
         <div className="mx-auto flex h-16 w-full max-w-[1400px] items-center gap-4 px-6">
           <Link to="/" className="flex items-center gap-3">
-            <img src={logo} alt="Resolven" className="logo-img h-8 w-auto" />
+            <img src={logo} alt="Resolven" className="logo-light h-8 w-auto" />
+            <img src={logoWhite} alt="Resolven" className="logo-dark h-8 w-auto" />
             <span className="hidden md:inline text-sm font-medium text-foreground">Resolven AI</span>
           </Link>
           <div className="ml-auto flex items-center gap-1">

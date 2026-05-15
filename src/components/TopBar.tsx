@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Bell, Search, Settings, ChevronDown } from "lucide-react";
 import logo from "@/assets/resolven-logo.png";
+import logoWhite from "@/assets/resolven-logo-white.png";
 import { ThemeToggle } from "./ThemeToggle";
 
 export function TopBar({ showSearch = true }: { showSearch?: boolean }) {
@@ -8,7 +9,8 @@ export function TopBar({ showSearch = true }: { showSearch?: boolean }) {
     <header className="sticky top-0 z-30 w-full border-b border-border/60 bg-background/85 backdrop-blur">
       <div className="mx-auto flex h-16 w-full max-w-[1400px] items-center gap-4 px-6">
         <Link to="/" className="flex items-center shrink-0">
-          <img src={logo} alt="Resolven" className="logo-img h-9 w-auto" />
+          <img src={logo} alt="Resolven" className="logo-light h-9 w-auto" />
+          <img src={logoWhite} alt="Resolven" className="logo-dark h-9 w-auto" />
         </Link>
 
         {showSearch && (
