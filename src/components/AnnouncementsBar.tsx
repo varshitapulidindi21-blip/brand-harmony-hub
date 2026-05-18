@@ -11,7 +11,7 @@ export function AnnouncementsBar() {
   return (
     <section className="space-y-2">
       {/* Eyebrow label sits above the strip */}
-      <div className="px-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-accent dark:text-primary">
+      <div className="px-1 text-[11px] font-bold uppercase tracking-[0.28em] text-primary dark:text-foreground/80">
         Announcements
       </div>
 
