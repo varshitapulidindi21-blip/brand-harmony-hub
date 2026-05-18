@@ -1,5 +1,3 @@
-import { Megaphone } from "lucide-react";
-
 const items = [
   "Corporate announcement: Planned release window on Friday 10 PM IST.",
   "HR: Open enrollment for medical benefits closes May 30.",
@@ -11,33 +9,45 @@ const items = [
 export function AnnouncementsBar() {
   const loop = [...items, ...items];
   return (
-    <div className="relative flex items-stretch overflow-hidden rounded-2xl border border-border bg-accent/95 text-white shadow-soft dark:bg-primary/95">
-      {/* Fixed label zone */}
-      <div className="relative z-20 flex shrink-0 items-center gap-2 bg-black/25 px-5 py-3 text-[11px] font-medium uppercase tracking-[0.18em] shadow-[4px_0_12px_-4px_rgba(0,0,0,0.25)] backdrop-blur-sm dark:bg-white/15">
-        <Megaphone className="h-4 w-4" />
-        <span>Announcements</span>
-        <span className="pointer-events-none absolute inset-y-0 -right-3 w-3 bg-gradient-to-r from-black/25 to-transparent dark:from-white/15" />
+    <section className="space-y-2">
+      {/* Eyebrow label sits above the strip */}
+      <div className="px-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-accent dark:text-primary">
+        Announcements
       </div>
 
-      {/* Marquee viewport */}
-      <div
-        className="marquee relative flex-1 overflow-hidden py-3"
-        style={{
-          WebkitMaskImage:
-            "linear-gradient(to right, transparent 0, black 32px, black calc(100% - 48px), transparent 100%)",
-          maskImage:
-            "linear-gradient(to right, transparent 0, black 32px, black calc(100% - 48px), transparent 100%)",
-        }}
-      >
-        <div className="marquee-track flex whitespace-nowrap pl-8 text-sm font-light">
-          {loop.map((text, i) => (
-            <span key={i} className="inline-flex items-center gap-3 pr-12">
-              <span className="inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-white/80" />
-              <span className="opacity-95">{text}</span>
-            </span>
-          ))}
+      {/* Full-width branded strip */}
+      <div className="relative flex h-11 items-center overflow-hidden rounded-md bg-accent text-white shadow-soft dark:bg-primary">
+        {/* Marquee viewport */}
+        <div
+          className="marquee relative h-full flex-1"
+          style={{
+            WebkitMaskImage:
+              "linear-gradient(to right, transparent 0, black 24px, black calc(100% - 32px), transparent 100%)",
+            maskImage:
+              "linear-gradient(to right, transparent 0, black 24px, black calc(100% - 32px), transparent 100%)",
+          }}
+        >
+          <div className="marquee-track flex h-full items-center whitespace-nowrap pl-6 text-[13px] font-light">
+            {loop.map((text, i) => (
+              <span key={i} className="inline-flex items-center gap-3">
+                <span className="inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-white" />
+                <span className="opacity-95">
+                  <span className="font-semibold">{text.split(":")[0]}:</span>
+                  <span className="opacity-90">{text.includes(":") ? text.slice(text.indexOf(":") + 1) : ""}</span>
+                </span>
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Right-side branded parallelogram accents */}
+        <div className="pointer-events-none relative z-10 ml-2 flex h-full shrink-0 items-center gap-1.5 pr-4">
+          <span className="h-5 w-2.5 skew-x-[-20deg] bg-white/15" />
+          <span className="h-5 w-2.5 skew-x-[-20deg] bg-white/25" />
+          <span className="h-5 w-2.5 skew-x-[-20deg] bg-white/35" />
+          <span className="h-5 w-2.5 skew-x-[-20deg] bg-white/50" />
         </div>
       </div>
-    </div>
+    </section>
   );
 }
