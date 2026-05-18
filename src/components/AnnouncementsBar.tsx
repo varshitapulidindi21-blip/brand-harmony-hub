@@ -30,7 +30,7 @@ export function AnnouncementsBar() {
       >
         <div className="marquee-track flex whitespace-nowrap text-sm font-light">
           {loop.map((text, i) => (
-            <span key={i} className="inline-flex items-center gap-3 pr-12">
+            <span key={i} className="inline-flex items-center gap-3">
               <span className="inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-white/80" />
               <span className="opacity-95">{text}</span>
             </span>
