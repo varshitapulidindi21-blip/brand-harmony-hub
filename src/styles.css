@@ -217,11 +217,8 @@
     transition: transform 350ms cubic-bezier(.2,.7,.2,1),
                 box-shadow 350ms ease, background-color 350ms ease, color 350ms ease;
   }
-  .tile > svg {
-    transform: rotate(-6deg);
-    transition: transform 350ms cubic-bezier(.2,.7,.2,1);
-  }
-  .module-card:hover .tile > svg { transform: rotate(0deg); }
+  .tile { transform: rotate(-5deg); }
+  .module-card:hover .tile { transform: rotate(0deg) scale(1.04); }
   .tile-purple       { background: var(--brand-purple); }
   .tile-green        { background: var(--brand-green); }
   .tile-lavender     { background: var(--brand-lavender); color: var(--brand-purple); }
