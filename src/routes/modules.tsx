@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft,
-  CheckSquare, LifeBuoy, FilePlus, FileText, HeartPulse, Plane, Receipt, Lightbulb,
-  Cloud, Database, Sheet, Users, FileSignature, Cog, Shield, Megaphone, Brain, Settings2,
+  CheckSquare, Settings2, FilePlus, FileText, HeartPulse, Plane, Receipt, Sparkles,
+  Cloud, Database, Sheet, Users, FileSignature, Cog, Shield, Megaphone, Brain, Handshake,
 } from "lucide-react";
 import { TopBar } from "@/components/TopBar";
 import { SectionHeading } from "@/components/SectionHeading";
@@ -19,26 +19,26 @@ export const Route = createFileRoute("/modules")({
 
 const personal = [
   { icon: CheckSquare, title: "My Tasks", subtitle: "Every pending action across modules", tone: "purple" as const },
-  { icon: LifeBuoy, title: "IT Support", subtitle: "Raise a ticket · Service Desk", tone: "green" as const },
+  { icon: Settings2, title: "IT Support", subtitle: "Raise a ticket · Service Desk", tone: "green" as const },
   { icon: FilePlus, title: "Raise IT Ticket", subtitle: "Report issue, request service or view history", tone: "lavender" as const },
   { icon: FileText, title: "Policies", subtitle: "Browse all published policies across departments", tone: "green-light" as const },
-  { icon: HeartPulse, title: "Medical & Benefits", subtitle: "Insurance, wellness, reimbursement claims", tone: "purple" as const },
-  { icon: Plane, title: "Travel Request", subtitle: "Raise domestic + international travel requests", tone: "grey" as const },
+  { icon: HeartPulse, title: "Medical & Benefits", subtitle: "Insurance, wellness, reimbursement claims", tone: "grey" as const },
+  { icon: Plane, title: "Travel Request", subtitle: "Raise domestic + international travel requests", tone: "purple" as const },
   { icon: Receipt, title: "Expense Claims", subtitle: "Submit + track reimbursement claims", tone: "green" as const },
-  { icon: Lightbulb, title: "Idea", subtitle: "Share ideas, track reviews + outcomes", tone: "lavender" as const },
+  { icon: Sparkles, title: "Idea", subtitle: "Share ideas, track reviews + outcomes", tone: "lavender" as const },
 ];
 
 const workspaces = [
   { icon: Cloud, title: "Zelestra SharePoint", subtitle: "Intranet docs, team sites, shared drives", tone: "green" as const, pinned: true },
   { icon: Database, title: "Zelestra SAP", subtitle: "Enterprise resource planning (Hana cloud)", tone: "purple" as const, pinned: true },
-  { icon: Sheet, title: "Smartsheets", subtitle: "Project plans, trackers, team workspaces", tone: "green-light" as const },
-  { icon: Users, title: "Taxcon HRMS", subtitle: "Payroll, attendance, HR letters (India)", tone: "purple" as const, pinned: true },
-  { icon: FileSignature, title: "DocuSign", subtitle: "e-Signature for contracts + approvals", tone: "lavender" as const },
+  { icon: Sheet, title: "Smartsheets", subtitle: "Project plans, trackers, team workspaces", tone: "lavender" as const },
+  { icon: Users, title: "Taxcon HRMS", subtitle: "Payroll, attendance, HR letters (India)", tone: "green-light" as const, pinned: true },
+  { icon: FileSignature, title: "DocuSign", subtitle: "e-Signature for contracts + approvals", tone: "purple" as const },
   { icon: Cog, title: "HOTO", subtitle: "Handover, takeover and maintenance operations", tone: "grey" as const },
-  { icon: Shield, title: "Permit System", subtitle: "Permit to Work — S1, S2, S3 workflow management", tone: "lavender" as const },
-  { icon: Megaphone, title: "Announcements", subtitle: "Corporate updates and visibility windows", tone: "purple" as const },
+  { icon: Shield, title: "Permit System", subtitle: "Permit to Work — S1, S2, S3 workflow management", tone: "green" as const },
+  { icon: Megaphone, title: "Announcements", subtitle: "Corporate updates and visibility windows", tone: "lavender" as const },
   { icon: Brain, title: "Resolven AI", subtitle: "Contextual insights and copilot actions", tone: "green" as const, pinned: true },
-  { icon: Settings2, title: "Admin Hub", subtitle: "Global masters, RBAC, module config and platform admin", tone: "grey" as const },
+  { icon: Handshake, title: "Admin Hub", subtitle: "Global masters, RBAC, module config and platform admin", tone: "purple" as const },
 ];
 
 function ModulesPage() {
