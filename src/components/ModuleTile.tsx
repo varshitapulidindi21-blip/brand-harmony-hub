@@ -1,4 +1,4 @@
-import type { LucideIcon } from "lucide-react";
+import type { ComponentType, SVGProps } from "react";
 import { Pin } from "lucide-react";
 import { cn } from "@/lib/utils";
 
