@@ -14,7 +14,7 @@ export function GreetingHero({ name }: { name: string }) {
       <div className="relative grid grid-cols-1 gap-6 p-8 md:grid-cols-[1fr_auto] md:p-10">
         <div>
           <h1 className="text-[2.1rem] md:text-[2.6rem]">
-            <span className="text-foreground">Good Morning,</span>{" "}
+            <span className="text-primary">Good Morning,</span>{" "}
             <span className="text-accent">{name}</span>
           </h1>
           <div className="mt-3 text-sm font-medium tracking-wide text-primary/90">
