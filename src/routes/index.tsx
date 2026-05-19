@@ -1,10 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   CheckSquare, Settings2, FilePlus, FileText, HeartPulse, Plane, Receipt, Sparkles,
-  Cloud, Database, Sheet, Users, FileSignature, Shield, Megaphone, Brain, Cog, Handshake,
+  Sheet, Users, FileSignature, Shield, Megaphone, Brain, Cog, Handshake,
   Briefcase, DraftingCompass, Atom, Calculator, PackageSearch, Megaphone as MegIcon,
   Scale, Cpu, BadgeCheck, HardHat, Truck, BarChart3, Building2, Headphones, GraduationCap,
 } from "lucide-react";
+import { SharePointBrandIcon, SapBrandIcon } from "@/components/brand-icons";
 import { TopBar } from "@/components/TopBar";
 import { GreetingHero } from "@/components/GreetingHero";
 import { AnnouncementsBar } from "@/components/AnnouncementsBar";
@@ -34,8 +35,8 @@ const selfService = [
 ];
 
 const business = [
-  { icon: Cloud, title: "Zelestra SharePoint", subtitle: "Intranet docs, team sites, shared drives", tone: "green" as const, pinned: true },
-  { icon: Database, title: "Zelestra SAP", subtitle: "Enterprise resource planning (Hana cloud)", tone: "purple" as const, pinned: true },
+  { icon: SharePointBrandIcon, title: "Zelestra SharePoint", subtitle: "Intranet docs, team sites, shared drives", tone: "green" as const, pinned: true, brand: true },
+  { icon: SapBrandIcon, title: "Zelestra SAP", subtitle: "Enterprise resource planning (Hana cloud)", tone: "purple" as const, pinned: true, brand: true },
   { icon: Sheet, title: "Smartsheets", subtitle: "Project plans, trackers, team workspaces", tone: "lavender" as const },
   { icon: Users, title: "Taxcon HRMS", subtitle: "Payroll, attendance, HR letters (India)", tone: "green-light" as const, pinned: true },
   { icon: FileSignature, title: "DocuSign", subtitle: "e-Signature for contracts + approvals", tone: "purple" as const },
@@ -127,7 +128,7 @@ function HomePage() {
                 key={d.label}
                 className="module-card group flex flex-col items-center gap-2.5 p-3.5"
               >
-                <div className={`tile ${toneBg[d.tone]} h-10 w-10 rounded-xl group-hover:scale-[1.05]`}>
+                <div className={`tile ${toneBg[d.tone]} h-10 w-10 rounded-xl`}>
                   <d.icon className="h-[1.05rem] w-[1.05rem]" strokeWidth={1.75} />
                 </div>
                 <div className="text-center text-[11.5px] font-medium leading-tight">
