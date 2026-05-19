@@ -20,7 +20,7 @@ export function ModuleTile({
   pinned,
   large,
 }: {
-  icon: LucideIcon;
+  icon: ComponentType<SVGProps<SVGSVGElement> & { strokeWidth?: number | string }>;
   title: string;
   subtitle?: string;
   tone?: Tone;
