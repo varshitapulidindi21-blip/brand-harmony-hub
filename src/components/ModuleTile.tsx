@@ -19,6 +19,7 @@ export function ModuleTile({
   tone = "purple",
   pinned,
   large,
+  brand,
 }: {
   icon: ComponentType<SVGProps<SVGSVGElement> & { strokeWidth?: number | string }>;
   title: string;
@@ -26,6 +27,7 @@ export function ModuleTile({
   tone?: Tone;
   pinned?: boolean;
   large?: boolean;
+  brand?: boolean;
 }) {
   return (
     <div
@@ -34,9 +36,15 @@ export function ModuleTile({
         large ? "flex-col items-start" : "items-center",
       )}
     >
-      <div className={cn("tile shrink-0", toneClass[tone])}>
-        <Icon className="h-[1.35rem] w-[1.35rem]" strokeWidth={1.75} />
-      </div>
+      {brand ? (
+        <div className="brand-tile shrink-0">
+          <Icon className="h-9 w-9" />
+        </div>
+      ) : (
+        <div className={cn("tile shrink-0", toneClass[tone])}>
+          <Icon className="h-[1.35rem] w-[1.35rem]" strokeWidth={1.75} />
+        </div>
+      )}
       <div className="min-w-0 flex-1">
         <div className="font-medium text-[0.95rem] leading-tight tracking-tight truncate">
           {title}
