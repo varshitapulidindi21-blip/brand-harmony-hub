@@ -34,7 +34,7 @@ export function ModuleTile({
         large ? "flex-col items-start" : "items-center",
       )}
     >
-      <div className={cn("tile shrink-0 group-hover:scale-[1.04]", toneClass[tone])}>
+      <div className={cn("tile shrink-0", toneClass[tone])}>
         <Icon className="h-[1.35rem] w-[1.35rem]" strokeWidth={1.75} />
       </div>
       <div className="min-w-0 flex-1">
