@@ -1,10 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   CheckSquare, Settings2, FilePlus, FileText, HeartPulse, Plane, Receipt, Sparkles,
-  Cloud, Database, Sheet, Users, FileSignature, Shield, Megaphone, Brain, Cog, Handshake,
+  Sheet, Users, FileSignature, Shield, Megaphone, Brain, Cog, Handshake,
   Briefcase, DraftingCompass, Atom, Calculator, PackageSearch, Megaphone as MegIcon,
   Scale, Cpu, BadgeCheck, HardHat, Truck, BarChart3, Building2, Headphones, GraduationCap,
 } from "lucide-react";
+import { SharePointBrandIcon, SapBrandIcon } from "@/components/brand-icons";
 import { TopBar } from "@/components/TopBar";
 import { GreetingHero } from "@/components/GreetingHero";
 import { AnnouncementsBar } from "@/components/AnnouncementsBar";
