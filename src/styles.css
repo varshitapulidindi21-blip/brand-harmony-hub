@@ -219,6 +219,17 @@
   }
   .tile { transform: rotate(-5deg); }
   .module-card:hover .tile { transform: rotate(0deg) scale(1.04); }
+  .brand-tile {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 3rem; height: 3rem; border-radius: 0.95rem;
+    background: #fff;
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-soft);
+    transform: rotate(-5deg);
+    transition: transform 350ms cubic-bezier(.2,.7,.2,1), box-shadow 350ms ease;
+    overflow: hidden;
+  }
+  .module-card:hover .brand-tile { transform: rotate(0deg) scale(1.04); }
   .tile-purple       { background: var(--brand-purple); }
   .tile-green        { background: var(--brand-green); }
   .tile-lavender     { background: var(--brand-lavender); color: var(--brand-purple); }
