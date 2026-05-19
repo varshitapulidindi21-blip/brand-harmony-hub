@@ -127,7 +127,7 @@ function HomePage() {
                 key={d.label}
                 className="module-card group flex flex-col items-center gap-2.5 p-3.5"
               >
-                <div className={`tile ${toneBg[d.tone]} h-10 w-10 rounded-xl group-hover:scale-[1.05]`}>
+                <div className={`tile ${toneBg[d.tone]} h-10 w-10 rounded-xl`}>
                   <d.icon className="h-[1.05rem] w-[1.05rem]" strokeWidth={1.75} />
                 </div>
                 <div className="text-center text-[11.5px] font-medium leading-tight">
