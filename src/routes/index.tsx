@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   CheckSquare, Settings2, FilePlus, FileText, HeartPulse, Plane, Receipt, Sparkles,
   Sheet, Users, FileSignature, Shield, Megaphone, Brain, Cog, Handshake,
-  Briefcase, DraftingCompass, Atom, Calculator, PackageSearch, Megaphone as MegIcon,
+  Briefcase, DraftingCompass, Atom, Calculator, ClipboardList, TrendingUp,
   Scale, Cpu, BadgeCheck, HardHat, Truck, BarChart3, Building2, Headphones, GraduationCap,
 } from "lucide-react";
 import { SharePointBrandIcon, SapBrandIcon } from "@/components/brand-icons";
@@ -51,18 +51,18 @@ const departments = [
   { icon: Users, label: "Human Resources", tone: "purple" as const },
   { icon: Calculator, label: "Finance", tone: "green" as const },
   { icon: DraftingCompass, label: "Engineering", tone: "lavender" as const },
-  { icon: PackageSearch, label: "Procurement", tone: "green-light" as const },
-  { icon: MegIcon, label: "Marketing", tone: "grey" as const },
-  { icon: Scale, label: "Legal", tone: "purple" as const },
-  { icon: Cpu, label: "IT", tone: "green" as const },
-  { icon: BadgeCheck, label: "Quality", tone: "lavender" as const },
-  { icon: HardHat, label: "HSE", tone: "green-light" as const },
-  { icon: Truck, label: "Supply Chain", tone: "grey" as const },
-  { icon: Atom, label: "R&D", tone: "purple" as const },
+  { icon: ClipboardList, label: "Procurement", tone: "green-light" as const },
+  { icon: TrendingUp, label: "Marketing", tone: "grey" as const },
+  { icon: Scale, label: "Legal", tone: "green" as const },
+  { icon: Cpu, label: "IT", tone: "purple" as const },
+  { icon: BadgeCheck, label: "Quality", tone: "green-light" as const },
+  { icon: HardHat, label: "HSE", tone: "lavender" as const },
+  { icon: Truck, label: "Supply Chain", tone: "purple" as const },
+  { icon: Atom, label: "R&D", tone: "grey" as const },
   { icon: Briefcase, label: "Operations", tone: "green" as const },
-  { icon: BarChart3, label: "Strategy", tone: "lavender" as const },
-  { icon: Building2, label: "Business Dev", tone: "green-light" as const },
-  { icon: Headphones, label: "Customer Care", tone: "grey" as const },
+  { icon: BarChart3, label: "Strategy", tone: "green-light" as const },
+  { icon: Building2, label: "Business Dev", tone: "lavender" as const },
+  { icon: Headphones, label: "Customer Care", tone: "green" as const },
   { icon: GraduationCap, label: "Learning", tone: "purple" as const },
 ];
 
