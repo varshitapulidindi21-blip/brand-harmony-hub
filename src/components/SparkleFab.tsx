@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Sparkles } from "lucide-react";
+import { BotMessageSquare } from "lucide-react";
 
 export function SparkleFab() {
   return (
@@ -19,7 +19,10 @@ export function SparkleFab() {
             "linear-gradient(135deg, var(--brand-purple) 0%, var(--brand-green) 100%)",
         }}
       />
-      <Sparkles className="relative h-6 w-6 transition-transform duration-500 group-hover:rotate-12" />
+      <BotMessageSquare
+        className="relative h-6 w-6 transition-transform duration-500 group-hover:scale-110"
+        strokeWidth={1.6}
+      />
     </Link>
   );
 }
