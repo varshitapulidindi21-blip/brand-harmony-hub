@@ -82,35 +82,43 @@ function HomePage() {
         <GreetingHero name="Samarth Sachdeva" />
         <AnnouncementsBar />
 
-        <section className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-          <div className="surface animate-rise rounded-3xl p-7 md:p-8">
-            <SectionHeading eyebrow="PERSONAL" primary="Employee" accent="Self-Service" />
-            <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
-              {selfService.map((m) => (
-                <ModuleTile key={m.title} {...m} />
-              ))}
+        <section className="space-y-5">
+          <div className="flex items-end justify-between gap-4 px-1">
+            <div>
+              <div className="text-[11px] font-medium uppercase tracking-[0.22em] text-muted-foreground">
+                Workspace
+              </div>
+              <h2 className="mt-1 text-xl md:text-2xl">
+                <span className="text-primary">All</span>{" "}
+                <span className="text-accent">Modules</span>
+              </h2>
             </div>
+            <Link
+              to="/modules"
+              className="group inline-flex items-center gap-1.5 rounded-full border border-border bg-card/80 px-4 py-2 text-[11px] font-medium uppercase tracking-[0.2em] text-accent shadow-soft backdrop-blur transition-all duration-300 hover:border-accent/40 hover:shadow-elev"
+            >
+              View all
+              <span className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5">↗</span>
+            </Link>
           </div>
 
-          <div className="surface animate-rise rounded-3xl p-7 md:p-8">
-            <SectionHeading
-              eyebrow="WORKSPACES"
-              primary="Business"
-              accent="Modules"
-              right={
-                <Link
-                  to="/modules"
-                  className="group inline-flex items-center gap-1 text-[11px] font-medium uppercase tracking-[0.2em] text-accent transition-opacity hover:opacity-80"
-                >
-                  View all
-                  <span className="transition-transform duration-300 group-hover:translate-x-0.5">↗</span>
-                </Link>
-              }
-            />
-            <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
-              {business.slice(0, 8).map((m) => (
-                <ModuleTile key={m.title} {...m} />
-              ))}
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+            <div className="surface animate-rise rounded-3xl p-7 md:p-8">
+              <SectionHeading eyebrow="PERSONAL" primary="Employee" accent="Self-Service" />
+              <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
+                {selfService.map((m) => (
+                  <ModuleTile key={m.title} {...m} />
+                ))}
+              </div>
+            </div>
+
+            <div className="surface animate-rise rounded-3xl p-7 md:p-8">
+              <SectionHeading eyebrow="WORKSPACES" primary="Business" accent="Modules" />
+              <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
+                {business.slice(0, 8).map((m) => (
+                  <ModuleTile key={m.title} {...m} />
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -126,7 +134,7 @@ function HomePage() {
             {departments.map((d) => (
               <div
                 key={d.label}
-                className="module-card group flex flex-col items-center gap-2.5 p-3.5"
+                className="dept-card module-card group flex flex-col items-center gap-2.5 rounded-2xl p-3.5"
               >
                 <div className={`tile ${toneBg[d.tone]} h-10 w-10 rounded-xl`}>
                   <d.icon className="h-[1.05rem] w-[1.05rem]" strokeWidth={1.75} />
