@@ -63,14 +63,23 @@ function AIPage() {
         </aside>
 
         {/* Chat panel */}
-        <section className="surface animate-rise relative flex min-h-[calc(100vh-140px)] flex-col rounded-3xl p-8 md:p-10">
-          <div className="m-auto flex flex-col items-center text-center">
+        <section className="surface animate-rise relative flex min-h-[calc(100vh-140px)] flex-col overflow-hidden rounded-3xl p-8 md:p-10">
+          {/* Ambient gradient */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 -z-0"
+            style={{
+              background:
+                "radial-gradient(700px 360px at 15% 0%, color-mix(in oklab, var(--brand-lavender) 55%, transparent), transparent 65%), radial-gradient(620px 340px at 85% 20%, color-mix(in oklab, var(--brand-purple) 18%, transparent), transparent 70%), radial-gradient(680px 380px at 50% 110%, color-mix(in oklab, var(--brand-green) 12%, transparent), transparent 70%)",
+            }}
+          />
+          <div className="relative m-auto flex flex-col items-center text-center">
             <div
-              className="relative flex h-24 w-24 items-center justify-center rounded-2xl text-white shadow-md"
+              className="relative flex h-20 w-20 items-center justify-center rounded-[1.4rem] text-white shadow-elev ring-1 ring-white/15"
               style={{ background: "linear-gradient(135deg, var(--brand-purple), var(--brand-purple-deep))" }}
             >
-              <Bot className="h-10 w-10" />
-              <span className="absolute -bottom-1.5 -right-1.5 flex h-7 w-7 items-center justify-center rounded-full bg-accent text-white">
+              <BotMessageSquare className="h-9 w-9" strokeWidth={1.5} />
+              <span className="absolute -bottom-1.5 -right-1.5 flex h-6 w-6 items-center justify-center rounded-full bg-accent text-[11px] text-white shadow-soft">
                 ✦
               </span>
             </div>
@@ -83,16 +92,20 @@ function AIPage() {
             </p>
           </div>
 
-          <div className="mt-6 flex items-center gap-2 rounded-2xl border border-border/70 bg-background/80 px-4 py-3 shadow-soft backdrop-blur transition-all duration-300 focus-within:border-primary/40 focus-within:shadow-elev">
-            <button className="flex h-9 w-9 items-center justify-center rounded-full text-primary hover:bg-secondary">
-              <Globe className="h-5 w-5" />
+          <div className="relative mt-6 flex items-center gap-2 rounded-full border border-border/70 bg-background/85 px-3 py-2.5 shadow-soft backdrop-blur-xl transition-all duration-300 focus-within:border-primary/40 focus-within:shadow-elev">
+            <button
+              aria-label="Attach files"
+              className="flex h-9 w-9 items-center justify-center rounded-full text-primary transition hover:bg-secondary"
+            >
+              <Paperclip className="h-5 w-5" strokeWidth={1.6} />
             </button>
             <input
-              className="flex-1 bg-transparent text-sm font-light text-foreground placeholder:text-muted-foreground focus:outline-none"
+              className="flex-1 bg-transparent px-1 text-sm font-light text-foreground placeholder:text-muted-foreground focus:outline-none"
               placeholder="Ask Resolven AI anything…"
             />
             <button
-              className="flex h-9 w-9 items-center justify-center rounded-full text-white"
+              aria-label="Send"
+              className="flex h-9 w-9 items-center justify-center rounded-full text-white shadow-soft"
               style={{ background: "linear-gradient(135deg, var(--brand-purple), var(--brand-green))" }}
             >
               <Send className="h-4 w-4" />
