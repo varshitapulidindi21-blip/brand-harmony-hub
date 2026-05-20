@@ -25,16 +25,16 @@ export function GreetingHero({ name }: { name: string }) {
           </div>
         </div>
 
-        <div className="hidden items-end gap-4 md:flex">
+        <div className="hidden items-end gap-5 md:flex">
           <div
-            className="clip-diagonal h-32 w-40 bg-cover bg-center shadow-soft transition-transform duration-700 hover:scale-[1.02]"
+            className="clip-diagonal-right h-48 w-40 bg-cover bg-center shadow-elev transition-transform duration-700 hover:scale-[1.02]"
             style={{
               backgroundImage:
                 "url(https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=600&q=80)",
             }}
           />
           <div
-            className="clip-diagonal h-32 w-40 bg-cover bg-center shadow-soft transition-transform duration-700 hover:scale-[1.02]"
+            className="clip-diagonal-right h-48 w-40 bg-cover bg-center shadow-elev transition-transform duration-700 hover:scale-[1.02]"
             style={{
               backgroundImage:
                 "url(https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&q=80)",

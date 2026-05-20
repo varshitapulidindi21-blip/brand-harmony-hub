@@ -269,6 +269,29 @@
 
   /* Diagonal parallelogram clip from the Resolven "O" */
   .clip-diagonal { clip-path: polygon(14% 0, 100% 0, 86% 100%, 0 100%); }
+  .clip-diagonal-right { clip-path: polygon(0 0, 86% 0, 100% 100%, 14% 100%); }
+
+  /* Department grid tiles — no tilt, perfectly upright */
+  .dept-card .tile { transform: none; }
+  .dept-card:hover .tile { transform: scale(1.06); }
+
+  /* Premium AI panel — glass + ambient depth */
+  .ai-panel {
+    background: color-mix(in oklab, var(--color-card) 78%, transparent);
+    backdrop-filter: blur(22px) saturate(140%);
+    -webkit-backdrop-filter: blur(22px) saturate(140%);
+    border: 1px solid color-mix(in oklab, var(--color-border) 80%, transparent);
+    box-shadow:
+      0 1px 0 oklch(1 0 0 / 0.5) inset,
+      0 30px 80px -30px oklch(0.378 0.180 295 / 0.30),
+      0 12px 40px -16px oklch(0.682 0.180 148 / 0.18);
+  }
+  .dark .ai-panel {
+    box-shadow:
+      0 1px 0 oklch(1 0 0 / 0.06) inset,
+      0 30px 80px -30px oklch(0 0 0 / 0.6),
+      0 12px 40px -16px oklch(0.378 0.180 295 / 0.35);
+  }
 
   /* Logo color invert helper for dark mode */
   .logo-light { display: block; }
