@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Plus, Bot, Globe, Send, Home, MessageSquare } from "lucide-react";
+import { Plus, BotMessageSquare, Paperclip, Send, Home, MessageSquare } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import logo from "@/assets/resolven-logo.png";
 import logoWhite from "@/assets/resolven-logo-white.png";
