@@ -19,7 +19,7 @@ export function SectionHeading({
           </div>
         )}
         <h2 className="font-display text-[1.6rem] md:text-[1.95rem] leading-[1.05]">
-          <span className="text-primary">{primary}</span>{" "}
+          <span className="text-primary dark:text-white">{primary}</span>{" "}
           <span className="text-accent">{accent}</span>
         </h2>
       </div>

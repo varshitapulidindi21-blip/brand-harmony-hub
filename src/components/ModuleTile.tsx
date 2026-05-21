@@ -45,8 +45,11 @@ export function ModuleTile({
           <Icon className="h-[1.35rem] w-[1.35rem]" strokeWidth={1.75} />
         </div>
       )}
-      <div className="min-w-0 flex-1">
-        <div className="font-medium text-[0.95rem] leading-tight tracking-tight truncate">
+      <div className={cn("min-w-0 flex-1", pinned && (large ? "pr-0" : "pr-6"))}>
+        <div className={cn(
+          "font-medium text-[0.95rem] leading-tight tracking-tight truncate",
+          large && pinned && "pr-7",
+        )}>
           {title}
         </div>
         {subtitle && (
@@ -55,16 +58,17 @@ export function ModuleTile({
           </div>
         )}
       </div>
-      <span
-        className={cn(
-          "absolute right-3 top-3 flex h-5 w-5 items-center justify-center rounded-full transition-colors",
-          pinned
-            ? "bg-accent/15 text-accent"
-            : "bg-transparent text-transparent group-hover:bg-white/10 group-hover:text-current/60",
-        )}
-      >
-        <Pin className="h-3 w-3" />
-      </span>
+      {pinned && (
+        <span
+          className={cn(
+            "absolute flex h-5 w-5 items-center justify-center rounded-full bg-accent/15 text-accent",
+            large ? "right-3 top-3" : "right-2.5 top-2.5",
+          )}
+          aria-label="Pinned"
+        >
+          <Pin className="h-3 w-3" />
+        </span>
+      )}
     </div>
   );
 }

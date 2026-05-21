@@ -89,7 +89,7 @@ function HomePage() {
                 Workspace
               </div>
               <h2 className="mt-1 text-xl md:text-2xl">
-                <span className="text-primary">All</span>{" "}
+                <span className="text-primary dark:text-white">All</span>{" "}
                 <span className="text-accent">Modules</span>
               </h2>
             </div>

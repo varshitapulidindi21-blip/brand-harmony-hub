@@ -1,8 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft,
   CheckSquare, Settings2, FilePlus, FileText, HeartPulse, Plane, Receipt, Sparkles,
-  Cloud, Database, Sheet, Users, FileSignature, Cog, Shield, Megaphone, Brain, Handshake,
+  Sheet, Users, FileSignature, Cog, Shield, Megaphone, Brain, Handshake,
 } from "lucide-react";
+import { SharePointBrandIcon, SapBrandIcon } from "@/components/brand-icons";
 import { TopBar } from "@/components/TopBar";
 import { SectionHeading } from "@/components/SectionHeading";
 import { ModuleTile } from "@/components/ModuleTile";
@@ -29,8 +30,8 @@ const personal = [
 ];
 
 const workspaces = [
-  { icon: Cloud, title: "Zelestra SharePoint", subtitle: "Intranet docs, team sites, shared drives", tone: "green" as const, pinned: true },
-  { icon: Database, title: "Zelestra SAP", subtitle: "Enterprise resource planning (Hana cloud)", tone: "purple" as const, pinned: true },
+  { icon: SharePointBrandIcon, title: "Zelestra SharePoint", subtitle: "Intranet docs, team sites, shared drives", tone: "green" as const, pinned: true, brand: true },
+  { icon: SapBrandIcon, title: "Zelestra SAP", subtitle: "Enterprise resource planning (Hana cloud)", tone: "purple" as const, pinned: true, brand: true },
   { icon: Sheet, title: "Smartsheets", subtitle: "Project plans, trackers, team workspaces", tone: "lavender" as const },
   { icon: Users, title: "Taxcon HRMS", subtitle: "Payroll, attendance, HR letters (India)", tone: "green-light" as const, pinned: true },
   { icon: FileSignature, title: "DocuSign", subtitle: "e-Signature for contracts + approvals", tone: "purple" as const },
@@ -55,7 +56,7 @@ function ModulesPage() {
               <ArrowLeft className="h-[1.1rem] w-[1.1rem]" />
             </Link>
             <h1 className="text-[2rem] md:text-[2.5rem]">
-              <span className="text-foreground">All</span>{" "}
+              <span className="text-primary dark:text-white">All</span>{" "}
               <span className="text-accent">Modules</span>
             </h1>
           </div>
