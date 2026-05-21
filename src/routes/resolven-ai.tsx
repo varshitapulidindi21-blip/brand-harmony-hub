@@ -1,5 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Plus, BotMessageSquare, Paperclip, Send, Home, MessageSquare } from "lucide-react";
+import { useState } from "react";
+import {
+  Plus, BotMessageSquare, Paperclip, Send, Home, MessageSquare,
+  Search, MoreHorizontal, Edit3, Trash2, Pin, Share2,
+} from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
 export const Route = createFileRoute("/resolven-ai")({
@@ -18,6 +22,8 @@ const conversations = [
 ];
 
 function AIPage() {
+  const [openMenu, setOpenMenu] = useState<number | null>(null);
+
   return (
     <div className="min-h-screen">
       <header className="sticky top-0 z-30 w-full border-b border-border/50 bg-background/70 backdrop-blur-xl supports-[backdrop-filter]:bg-background/55">
@@ -27,7 +33,7 @@ function AIPage() {
               className="text-2xl md:text-[1.65rem] font-display italic tracking-tight"
               style={{ fontFamily: "Montserrat, system-ui, sans-serif" }}
             >
-              <span className="text-primary">Resolven</span>{" "}
+              <span className="text-primary dark:text-white">Resolven</span>{" "}
               <span className="text-accent">AI</span>
             </span>
           </Link>
@@ -41,34 +47,85 @@ function AIPage() {
       </header>
 
       <div className="mx-auto grid w-full max-w-[1400px] grid-cols-1 md:grid-cols-[280px_1fr] gap-6 px-6 py-6">
-        <aside className="space-y-6">
-          <button className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 py-3 text-sm font-medium text-primary-foreground shadow-sm hover:bg-primary/90">
-            <Plus className="h-4 w-4" /> New chat
-          </button>
+        <aside className="space-y-4">
+          {/* ChatGPT-style action rows */}
+          <ul className="space-y-1">
+            <li>
+              <button className="flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-secondary">
+                <Edit3 className="h-4 w-4 text-muted-foreground" /> New chat
+              </button>
+            </li>
+            <li>
+              <button className="flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-secondary">
+                <Search className="h-4 w-4 text-muted-foreground" /> Search chats
+              </button>
+            </li>
+          </ul>
+
           <div>
-            <div className="mb-2 px-1 text-[11px] font-medium tracking-[0.18em] uppercase text-muted-foreground">
+            <div className="mb-2 px-3 text-[11px] font-medium tracking-[0.18em] uppercase text-muted-foreground">
               Conversations
             </div>
-            <ul className="space-y-1">
+            <ul className="space-y-0.5">
               {conversations.map((c, i) => (
-                <li key={i} className="flex items-center justify-between rounded-lg px-3 py-2 hover:bg-secondary cursor-pointer">
-                  <span className="flex items-center gap-2 text-sm font-light text-foreground">
-                    <MessageSquare className="h-4 w-4 text-muted-foreground" /> {c.title}
+                <li
+                  key={i}
+                  className="group relative flex items-center justify-between rounded-lg px-3 py-2 hover:bg-secondary"
+                >
+                  <button className="flex flex-1 items-center gap-2 truncate text-left text-sm font-light text-foreground">
+                    <MessageSquare className="h-4 w-4 shrink-0 text-muted-foreground" />
+                    <span className="truncate">{c.title}</span>
+                  </button>
+                  <span className="ml-2 text-[11px] font-light text-muted-foreground transition-opacity group-hover:opacity-0">
+                    {c.time}
                   </span>
-                  <span className="text-[11px] font-light text-muted-foreground">{c.time}</span>
+
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setOpenMenu(openMenu === i ? null : i);
+                    }}
+                    aria-label="Chat options"
+                    className="absolute right-2 flex h-7 w-7 items-center justify-center rounded-md text-muted-foreground opacity-0 transition-opacity hover:bg-background hover:text-foreground group-hover:opacity-100"
+                  >
+                    <MoreHorizontal className="h-4 w-4" />
+                  </button>
+
+                  {openMenu === i && (
+                    <div
+                      className="absolute right-2 top-9 z-20 w-40 overflow-hidden rounded-lg border border-border bg-popover shadow-elev"
+                      onMouseLeave={() => setOpenMenu(null)}
+                    >
+                      <MenuItem icon={Edit3} label="Rename" />
+                      <MenuItem icon={Pin} label="Pin" />
+                      <MenuItem icon={Share2} label="Share" />
+                      <MenuItem icon={Trash2} label="Delete" danger />
+                    </div>
+                  )}
                 </li>
               ))}
             </ul>
           </div>
         </aside>
 
-        <section className="ai-panel animate-rise relative flex min-h-[calc(100vh-140px)] flex-col overflow-hidden rounded-[2rem] p-8 md:p-12">
+        <section className="ai-panel animate-rise relative flex min-h-[calc(100vh-140px)] flex-col overflow-hidden rounded-[1.6rem] p-8 md:p-12">
+          {/* Light-mode ambient */}
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-0 -z-0"
+            className="pointer-events-none absolute inset-0 -z-0 dark:hidden"
             style={{
               background:
                 "radial-gradient(720px 420px at 12% -5%, color-mix(in oklab, var(--brand-lavender) 95%, transparent), transparent 65%), radial-gradient(640px 380px at 88% 15%, color-mix(in oklab, var(--brand-purple) 38%, transparent), transparent 70%), radial-gradient(720px 420px at 50% 115%, color-mix(in oklab, var(--brand-green) 28%, transparent), transparent 70%), radial-gradient(420px 260px at 70% 60%, color-mix(in oklab, var(--brand-lavender) 55%, transparent), transparent 75%)",
+            }}
+          />
+          {/* Dark-mode ambient — softer, more diffused, single cohesive wash */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 -z-0 hidden dark:block"
+            style={{
+              background:
+                "radial-gradient(1200px 800px at 30% 0%, color-mix(in oklab, var(--brand-purple) 22%, transparent), transparent 70%), radial-gradient(1000px 700px at 80% 100%, color-mix(in oklab, var(--brand-green) 10%, transparent), transparent 75%)",
+              filter: "blur(8px)",
             }}
           />
           <div
@@ -76,13 +133,13 @@ function AIPage() {
             className="pointer-events-none absolute inset-0 -z-0 opacity-60"
             style={{
               background:
-                "linear-gradient(180deg, color-mix(in oklab, white 12%, transparent), transparent 30%, transparent 70%, color-mix(in oklab, var(--brand-purple) 8%, transparent))",
+                "linear-gradient(180deg, color-mix(in oklab, white 10%, transparent), transparent 35%, transparent 70%, color-mix(in oklab, var(--brand-purple) 8%, transparent))",
             }}
           />
 
           <div className="relative m-auto flex flex-col items-center text-center">
             <div
-              className="relative flex h-24 w-24 items-center justify-center rounded-[1.6rem] text-white ring-1 ring-white/20"
+              className="relative flex h-24 w-24 items-center justify-center rounded-[1.4rem] text-white ring-1 ring-white/20"
               style={{
                 background:
                   "linear-gradient(140deg, var(--brand-purple) 0%, var(--brand-purple-deep) 55%, var(--brand-green) 130%)",
@@ -92,7 +149,7 @@ function AIPage() {
             >
               <span
                 aria-hidden
-                className="absolute -inset-3 -z-10 rounded-[2rem] opacity-70 blur-2xl"
+                className="absolute -inset-3 -z-10 rounded-[1.8rem] opacity-70 blur-2xl"
                 style={{
                   background:
                     "linear-gradient(135deg, var(--brand-purple), var(--brand-green))",
@@ -134,5 +191,26 @@ function AIPage() {
         </section>
       </div>
     </div>
+  );
+}
+
+function MenuItem({
+  icon: Icon,
+  label,
+  danger,
+}: {
+  icon: React.ComponentType<{ className?: string }>;
+  label: string;
+  danger?: boolean;
+}) {
+  return (
+    <button
+      className={`flex w-full items-center gap-2 px-3 py-2 text-left text-sm transition-colors hover:bg-secondary ${
+        danger ? "text-destructive" : "text-foreground"
+      }`}
+    >
+      <Icon className="h-4 w-4" />
+      {label}
+    </button>
   );
 }
