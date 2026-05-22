@@ -1,3 +1,6 @@
+import heroTurbine from "@/assets/hero-turbine.jpg";
+import heroSolar from "@/assets/hero-solar.jpg";
+
 export function GreetingHero({ name }: { name: string }) {
   return (
     <div className="animate-rise relative overflow-hidden rounded-2xl border border-border/60 bg-card/70 shadow-soft backdrop-blur-xl">
@@ -10,28 +13,22 @@ export function GreetingHero({ name }: { name: string }) {
         }}
       />
 
-      <div className="relative grid grid-cols-1 gap-5 px-7 py-6 md:grid-cols-[1fr_auto] md:px-9 md:py-7">
-        <div className="self-center">
-          <h1 className="text-[1.8rem] md:text-[2.25rem]">
+      <div className="relative grid grid-cols-[1fr_auto] gap-3 px-5 py-4 sm:gap-5 sm:px-7 sm:py-6 md:px-9 md:py-7">
+        <div className="self-center min-w-0">
+          <h1 className="text-[1.35rem] sm:text-[1.8rem] md:text-[2.25rem]">
             <span className="text-primary dark:text-white">Good Morning,</span>{" "}
             <span className="text-accent">{name}</span>
           </h1>
         </div>
 
-        <div className="hidden items-end gap-4 md:flex">
+        <div className="flex items-end gap-2 sm:gap-4">
           <div
-            className="clip-diagonal h-32 w-36 bg-cover bg-center shadow-elev transition-transform duration-700 hover:scale-[1.02]"
-            style={{
-              backgroundImage:
-                "url(https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=600&q=80)",
-            }}
+            className="clip-diagonal h-20 w-20 bg-cover bg-center shadow-elev transition-transform duration-700 hover:scale-[1.02] sm:h-28 sm:w-32 md:h-32 md:w-36"
+            style={{ backgroundImage: `url(${heroTurbine})` }}
           />
           <div
-            className="clip-diagonal h-32 w-36 bg-cover bg-center shadow-elev transition-transform duration-700 hover:scale-[1.02]"
-            style={{
-              backgroundImage:
-                "url(https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&q=80)",
-            }}
+            className="clip-diagonal h-20 w-20 bg-cover bg-center shadow-elev transition-transform duration-700 hover:scale-[1.02] sm:h-28 sm:w-32 md:h-32 md:w-36"
+            style={{ backgroundImage: `url(${heroSolar})` }}
           />
         </div>
       </div>

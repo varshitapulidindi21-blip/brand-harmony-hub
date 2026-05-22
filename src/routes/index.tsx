@@ -78,43 +78,43 @@ function HomePage() {
   return (
     <div className="min-h-screen">
       <TopBar />
-      <main className="mx-auto w-full max-w-[1400px] space-y-10 px-6 py-10">
+      <main className="mx-auto w-full max-w-[1400px] space-y-6 px-4 py-5 sm:space-y-8 sm:px-6 sm:py-8 md:space-y-10 md:py-10">
         <GreetingHero name="Samarth Sachdeva" />
         <AnnouncementsBar />
 
-        <section className="space-y-5">
+        <section className="space-y-4 sm:space-y-5">
           <div className="flex items-end justify-between gap-4 px-1">
             <div>
-              <div className="text-[11px] font-medium uppercase tracking-[0.22em] text-muted-foreground">
+              <div className="text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.22em] text-muted-foreground">
                 Workspace
               </div>
-              <h2 className="mt-1 text-xl md:text-2xl">
+              <h2 className="mt-1 text-lg sm:text-xl md:text-2xl">
                 <span className="text-primary dark:text-white">All</span>{" "}
                 <span className="text-accent">Modules</span>
               </h2>
             </div>
             <Link
               to="/modules"
-              className="group inline-flex items-center gap-1.5 rounded-full border border-border bg-card/80 px-4 py-2 text-[11px] font-medium uppercase tracking-[0.2em] text-accent shadow-soft backdrop-blur transition-all duration-300 hover:border-accent/40 hover:shadow-elev"
+              className="group inline-flex items-center gap-1.5 rounded-full border border-border bg-card/80 px-3 py-1.5 sm:px-4 sm:py-2 text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.2em] text-accent shadow-soft backdrop-blur transition-all duration-300 hover:border-accent/40 hover:shadow-elev"
             >
               View all
               <span className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5">↗</span>
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-            <div className="surface animate-rise rounded-3xl p-7 md:p-8">
+          <div className="grid grid-cols-1 gap-5 sm:gap-8 lg:grid-cols-2">
+            <div className="surface animate-rise rounded-2xl sm:rounded-3xl p-5 sm:p-7 md:p-8">
               <SectionHeading eyebrow="PERSONAL" primary="Employee" accent="Self-Service" />
-              <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
+              <div className="grid grid-cols-1 gap-3 sm:gap-3.5 sm:grid-cols-2">
                 {selfService.map((m) => (
                   <ModuleTile key={m.title} {...m} />
                 ))}
               </div>
             </div>
 
-            <div className="surface animate-rise rounded-3xl p-7 md:p-8">
+            <div className="surface animate-rise rounded-2xl sm:rounded-3xl p-5 sm:p-7 md:p-8">
               <SectionHeading eyebrow="WORKSPACES" primary="Business" accent="Modules" />
-              <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
+              <div className="grid grid-cols-1 gap-3 sm:gap-3.5 sm:grid-cols-2">
                 {business.slice(0, 8).map((m) => (
                   <ModuleTile key={m.title} {...m} />
                 ))}
@@ -123,23 +123,23 @@ function HomePage() {
           </div>
         </section>
 
-        <section className="surface animate-rise rounded-3xl p-7 md:p-8">
+        <section className="surface animate-rise rounded-2xl sm:rounded-3xl p-5 sm:p-7 md:p-8">
           <SectionHeading
             eyebrow="SHAREPOINT"
             primary="Department"
             accent="Folders"
             right={<span className="text-xs font-light text-muted-foreground">16 departments</span>}
           />
-          <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 lg:grid-cols-8">
+          <div className="grid grid-cols-3 gap-2.5 sm:gap-3 sm:grid-cols-4 lg:grid-cols-8">
             {departments.map((d) => (
               <div
                 key={d.label}
-                className="dept-card module-card group flex flex-col items-center gap-2.5 rounded-2xl p-3.5"
+                className="dept-card module-card group flex flex-col items-center gap-2 sm:gap-2.5 rounded-xl sm:rounded-2xl p-3 sm:p-3.5"
               >
-                <div className={`tile ${toneBg[d.tone]} h-10 w-10 rounded-xl`}>
-                  <d.icon className="h-[1.05rem] w-[1.05rem]" strokeWidth={1.75} />
+                <div className={`tile ${toneBg[d.tone]} h-9 w-9 sm:h-10 sm:w-10 rounded-lg sm:rounded-xl`}>
+                  <d.icon className="h-4 w-4 sm:h-[1.05rem] sm:w-[1.05rem]" strokeWidth={1.75} />
                 </div>
-                <div className="text-center text-[11.5px] font-medium leading-tight">
+                <div className="text-center text-[10.5px] sm:text-[11.5px] font-medium leading-tight">
                   {d.label}
                 </div>
               </div>
@@ -147,7 +147,7 @@ function HomePage() {
           </div>
         </section>
 
-        <footer className="py-8 text-center text-[11px] font-light tracking-wide text-muted-foreground">
+        <footer className="py-6 sm:py-8 text-center text-[10px] sm:text-[11px] font-light tracking-wide text-muted-foreground">
           © 2026 Resolve In Action · Built with the Resolven Design System
         </footer>
       </main>

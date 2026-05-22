@@ -27,10 +27,10 @@ function AIPage() {
   return (
     <div className="min-h-screen">
       <header className="sticky top-0 z-30 w-full border-b border-border/50 bg-background/70 backdrop-blur-xl supports-[backdrop-filter]:bg-background/55">
-        <div className="mx-auto flex h-16 w-full max-w-[1400px] items-center gap-4 px-6">
+        <div className="mx-auto flex h-14 sm:h-16 w-full max-w-[1400px] items-center gap-3 sm:gap-4 px-4 sm:px-6">
           <Link to="/" className="flex items-center gap-3">
             <span
-              className="text-2xl md:text-[1.65rem] font-display italic tracking-tight"
+              className="text-lg sm:text-2xl md:text-[1.65rem] font-display italic tracking-tight"
               style={{ fontFamily: "Montserrat, system-ui, sans-serif" }}
             >
               <span className="text-primary dark:text-white">Resolven</span>{" "}
@@ -39,14 +39,14 @@ function AIPage() {
           </Link>
           <div className="ml-auto flex items-center gap-1">
             <ThemeToggle />
-            <Link to="/" className="ml-2 flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-1.5 text-sm font-medium hover:border-primary/40">
-              <Home className="h-4 w-4" /> Home
+            <Link to="/" className="ml-1 sm:ml-2 flex items-center gap-1.5 sm:gap-2 rounded-lg border border-border bg-card px-2.5 sm:px-3 py-1.5 text-xs sm:text-sm font-medium hover:border-primary/40">
+              <Home className="h-4 w-4" /> <span className="hidden sm:inline">Home</span>
             </Link>
           </div>
         </div>
       </header>
 
-      <div className="mx-auto grid w-full max-w-[1400px] grid-cols-1 md:grid-cols-[280px_1fr] gap-6 px-6 py-6">
+      <div className="mx-auto grid w-full max-w-[1400px] grid-cols-1 md:grid-cols-[280px_1fr] gap-4 sm:gap-6 px-4 sm:px-6 py-4 sm:py-6">
         <aside className="space-y-4">
           {/* ChatGPT-style action rows */}
           <ul className="space-y-1">
@@ -108,7 +108,7 @@ function AIPage() {
           </div>
         </aside>
 
-        <section className="ai-panel animate-rise relative flex min-h-[calc(100vh-140px)] flex-col overflow-hidden rounded-[1.6rem] p-8 md:p-12">
+        <section className="ai-panel animate-rise relative flex min-h-[calc(100vh-140px)] flex-col overflow-hidden rounded-2xl sm:rounded-[1.6rem] p-5 sm:p-8 md:p-12">
           {/* Light-mode ambient */}
           <div
             aria-hidden
@@ -139,7 +139,7 @@ function AIPage() {
 
           <div className="relative m-auto flex flex-col items-center text-center">
             <div
-              className="relative flex h-24 w-24 items-center justify-center rounded-[1.4rem] text-white ring-1 ring-white/20"
+              className="relative flex h-20 w-20 sm:h-24 sm:w-24 items-center justify-center rounded-[1.2rem] sm:rounded-[1.4rem] text-white ring-1 ring-white/20"
               style={{
                 background:
                   "linear-gradient(140deg, var(--brand-purple) 0%, var(--brand-purple-deep) 55%, var(--brand-green) 130%)",
@@ -155,16 +155,16 @@ function AIPage() {
                     "linear-gradient(135deg, var(--brand-purple), var(--brand-green))",
                 }}
               />
-              <BotMessageSquare className="h-11 w-11" strokeWidth={1.4} />
-              <span className="absolute -bottom-1.5 -right-1.5 flex h-6 w-6 items-center justify-center rounded-full bg-accent text-[11px] text-white shadow-soft">
+              <BotMessageSquare className="h-9 w-9 sm:h-11 sm:w-11" strokeWidth={1.4} />
+              <span className="absolute -bottom-1.5 -right-1.5 flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full bg-accent text-[10px] sm:text-[11px] text-white shadow-soft">
                 ✦
               </span>
             </div>
-            <h1 className="mt-7 text-3xl md:text-4xl">
+            <h1 className="mt-5 sm:mt-7 text-2xl sm:text-3xl md:text-4xl">
               <span className="text-foreground">Hello,</span>{" "}
               <span className="text-accent">Samarth Sachdeva</span>
             </h1>
-            <p className="mt-3 max-w-md text-sm font-light text-muted-foreground">
+            <p className="mt-2 sm:mt-3 max-w-md text-xs sm:text-sm font-light text-muted-foreground px-2">
               I can search internal data, analyze documents, and browse the web for you.
             </p>
           </div>
