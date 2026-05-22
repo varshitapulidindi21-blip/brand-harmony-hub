@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   BotMessageSquare, Paperclip, Send, Home, MessageSquare,
-  Search, MoreHorizontal, Edit3, Trash2, Pin, Share2, Menu, X,
+  Search, MoreHorizontal, Edit3, Trash2, Pin, Share2, Menu, X, Clock,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
@@ -21,20 +21,34 @@ const conversations = [
   { title: "Vendor onboarding flow", time: "3d" },
 ];
 
+type PopupKind = "new" | "search" | "recents" | null;
+
 function AIPage() {
   const [openMenu, setOpenMenu] = useState<number | null>(null);
   const [sidebarExpanded, setSidebarExpanded] = useState(false);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
+  const [popup, setPopup] = useState<PopupKind>(null);
+  const popupRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    function onDown(e: MouseEvent) {
+      if (popupRef.current && !popupRef.current.contains(e.target as Node)) {
+        setPopup(null);
+      }
+    }
+    if (popup) document.addEventListener("mousedown", onDown);
+    return () => document.removeEventListener("mousedown", onDown);
+  }, [popup]);
 
   return (
     <div className="min-h-screen relative">
-      {/* Ambient background — light mode */}
+      {/* Ambient background — light mode (dreamy lavender/green) */}
       <div
         aria-hidden
         className="pointer-events-none fixed inset-0 -z-10 dark:hidden"
         style={{
           background:
-            "radial-gradient(900px 560px at 12% -5%, color-mix(in oklab, var(--brand-lavender) 95%, transparent), transparent 60%), radial-gradient(720px 480px at 88% 15%, color-mix(in oklab, var(--brand-purple) 38%, transparent), transparent 65%), radial-gradient(900px 520px at 50% 115%, color-mix(in oklab, var(--brand-green) 32%, transparent), transparent 65%)",
+            "radial-gradient(1100px 680px at 8% -10%, color-mix(in oklab, var(--brand-lavender) 100%, transparent), transparent 60%), radial-gradient(820px 540px at 92% 8%, color-mix(in oklab, var(--brand-purple) 55%, transparent), transparent 65%), radial-gradient(960px 620px at 95% 95%, color-mix(in oklab, var(--brand-green-light) 70%, transparent), transparent 65%), radial-gradient(820px 520px at 18% 100%, color-mix(in oklab, var(--brand-green) 45%, transparent), transparent 65%), radial-gradient(720px 460px at 50% 50%, color-mix(in oklab, var(--brand-lavender) 55%, transparent), transparent 70%)",
         }}
       />
       {/* Ambient background — dark mode */}
@@ -43,27 +57,21 @@ function AIPage() {
         className="pointer-events-none fixed inset-0 -z-10 hidden dark:block"
         style={{
           background:
-            "radial-gradient(1200px 800px at 30% 0%, color-mix(in oklab, var(--brand-purple) 20%, transparent), transparent 70%), radial-gradient(1000px 700px at 80% 100%, color-mix(in oklab, var(--brand-green) 10%, transparent), transparent 75%)",
+            "radial-gradient(1200px 800px at 30% 0%, color-mix(in oklab, var(--brand-purple) 22%, transparent), transparent 70%), radial-gradient(1000px 700px at 80% 100%, color-mix(in oklab, var(--brand-green) 12%, transparent), transparent 75%)",
         }}
       />
 
-      <header className="sticky top-0 z-30 w-full border-b border-border/50 bg-background/70 backdrop-blur-xl supports-[backdrop-filter]:bg-background/55">
+      <header className="sticky top-0 z-30 w-full border-b border-border/50 bg-background/60 backdrop-blur-xl supports-[backdrop-filter]:bg-background/45">
         <div className="mx-auto flex h-14 sm:h-16 w-full max-w-[1400px] items-center px-2 sm:px-4">
-          {/* Hamburger — aligned with sidebar icon column on desktop */}
+          {/* Mobile-only hamburger in header */}
           <button
-            onClick={() => {
-              if (typeof window !== "undefined" && window.innerWidth < 768) {
-                setMobileSidebarOpen(true);
-              } else {
-                setSidebarExpanded((v) => !v);
-              }
-            }}
-            aria-label="Toggle sidebar"
-            className="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-xl text-foreground/80 transition-all duration-200 hover:bg-secondary/70 hover:text-foreground hover:scale-[1.04] active:scale-95"
+            onClick={() => setMobileSidebarOpen(true)}
+            aria-label="Open menu"
+            className="md:hidden flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-foreground/80 transition-all duration-200 hover:bg-secondary/70 active:scale-95"
           >
             <Menu className="h-[1.15rem] w-[1.15rem]" strokeWidth={1.85} />
           </button>
-          <Link to="/" className="ml-3 sm:ml-5 flex items-center">
+          <Link to="/" className="ml-2 md:ml-1 flex items-center">
             <span
               className="text-lg sm:text-2xl md:text-[1.65rem] font-display italic tracking-tight"
               style={{ fontFamily: "Montserrat, system-ui, sans-serif" }}
@@ -89,13 +97,26 @@ function AIPage() {
         {/* Desktop collapsible sidebar */}
         <aside
           className={`relative hidden md:flex shrink-0 flex-col border-r border-border/50 transition-[width] duration-300 ease-out ${
-            sidebarExpanded ? "w-[260px]" : "w-[60px]"
+            sidebarExpanded ? "w-[260px]" : "w-[64px]"
           }`}
         >
-          <SidebarContent
+          {/* Hamburger at top of sidebar */}
+          <div className={`flex h-12 items-center ${sidebarExpanded ? "px-3 justify-between" : "justify-center"}`}>
+            <RailIconButton
+              label={sidebarExpanded ? "Collapse" : "Expand"}
+              onClick={() => { setSidebarExpanded((v) => !v); setPopup(null); }}
+            >
+              <Menu className="h-[1.1rem] w-[1.1rem]" strokeWidth={1.85} />
+            </RailIconButton>
+          </div>
+
+          <DesktopSidebar
             expanded={sidebarExpanded}
             openMenu={openMenu}
             setOpenMenu={setOpenMenu}
+            popup={popup}
+            setPopup={setPopup}
+            popupRef={popupRef}
           />
         </aside>
 
@@ -116,11 +137,7 @@ function AIPage() {
                   <X className="h-4 w-4" />
                 </button>
               </div>
-              <SidebarContent
-                expanded={true}
-                openMenu={openMenu}
-                setOpenMenu={setOpenMenu}
-              />
+              <ExpandedList openMenu={openMenu} setOpenMenu={setOpenMenu} />
             </aside>
           </>
         )}
@@ -164,14 +181,14 @@ function AIPage() {
                 </span>
               </div>
               <h1
-                className="mt-6 sm:mt-8 text-[2rem] sm:text-[2.6rem] md:text-[3rem] tracking-tight leading-[1.1]"
-                style={{ fontFamily: "Montserrat, system-ui, sans-serif", fontWeight: 700, fontStyle: "normal" }}
+                className="mt-6 sm:mt-8 text-[2rem] sm:text-[2.6rem] md:text-[3rem] tracking-tight leading-[1.05]"
+                style={{ fontFamily: "Montserrat, system-ui, sans-serif", fontWeight: 700, fontStyle: "italic" }}
               >
                 <span className="text-primary dark:text-white">Hi,</span>{" "}
                 <span className="text-accent">Samarth</span>
               </h1>
               <p
-                className="mt-3 text-base sm:text-lg font-light text-muted-foreground"
+                className="mt-4 text-base sm:text-lg font-light text-muted-foreground"
                 style={{ fontFamily: "Montserrat, system-ui, sans-serif" }}
               >
                 How can I help you today?
@@ -231,100 +248,177 @@ function AIPage() {
   );
 }
 
-function SidebarContent({
-  expanded,
-  openMenu,
-  setOpenMenu,
+function RailIconButton({
+  label, onClick, children,
+}: { label: string; onClick?: () => void; children: React.ReactNode }) {
+  return (
+    <div className="group/rail relative">
+      <button
+        onClick={onClick}
+        aria-label={label}
+        className="flex h-10 w-10 items-center justify-center rounded-xl text-foreground/80 transition-all duration-200 hover:bg-secondary/70 hover:text-foreground active:scale-95"
+      >
+        {children}
+      </button>
+      <span
+        role="tooltip"
+        className="pointer-events-none absolute left-full top-1/2 z-50 ml-2 -translate-y-1/2 translate-x-1 whitespace-nowrap rounded-md border border-border/60 bg-popover/95 px-2.5 py-1 text-[11px] font-medium text-popover-foreground opacity-0 shadow-elev backdrop-blur transition-all duration-200 group-hover/rail:translate-x-0 group-hover/rail:opacity-100"
+      >
+        {label}
+      </span>
+    </div>
+  );
+}
+
+function DesktopSidebar({
+  expanded, openMenu, setOpenMenu, popup, setPopup, popupRef,
 }: {
   expanded: boolean;
   openMenu: number | null;
   setOpenMenu: (v: number | null) => void;
+  popup: PopupKind;
+  setPopup: (p: PopupKind) => void;
+  popupRef: React.MutableRefObject<HTMLDivElement | null>;
 }) {
+  if (expanded) {
+    return <ExpandedList openMenu={openMenu} setOpenMenu={setOpenMenu} />;
+  }
   return (
-    <div className="flex-1 overflow-y-auto p-2 space-y-4">
-      <ul className="space-y-0.5">
-        <SidebarItem icon={Edit3} label="New chat" expanded={expanded} />
-        <SidebarItem icon={Search} label="Search chats" expanded={expanded} />
-      </ul>
+    <div className="relative flex flex-col items-center gap-1 py-2">
+      <RailIconButton label="New chat" onClick={() => setPopup(popup === "new" ? null : "new")}>
+        <Edit3 className="h-[1.05rem] w-[1.05rem]" strokeWidth={1.7} />
+      </RailIconButton>
+      <RailIconButton label="Search chats" onClick={() => setPopup(popup === "search" ? null : "search")}>
+        <Search className="h-[1.05rem] w-[1.05rem]" strokeWidth={1.7} />
+      </RailIconButton>
+      <RailIconButton label="Recents" onClick={() => setPopup(popup === "recents" ? null : "recents")}>
+        <Clock className="h-[1.05rem] w-[1.05rem]" strokeWidth={1.7} />
+      </RailIconButton>
 
-      {expanded && (
-        <div>
-          <div className="mb-2 px-3 text-[11px] font-medium tracking-[0.18em] uppercase text-muted-foreground">
-            Conversations
-          </div>
-          <ul className="space-y-0.5">
-            {conversations.map((c, i) => (
-              <li
-                key={i}
-                className="group relative flex items-center justify-between rounded-lg px-3 py-2 transition-colors duration-200 hover:bg-secondary/70"
+      {popup && (
+        <div
+          ref={popupRef}
+          className="absolute left-full top-2 z-40 ml-3 w-72 rounded-2xl border border-border/60 bg-popover/85 p-3 shadow-elev backdrop-blur-2xl animate-in fade-in slide-in-from-left-2 duration-200"
+        >
+          {popup === "new" && (
+            <div>
+              <div className="px-2 pb-2 text-[11px] font-medium tracking-[0.18em] uppercase text-muted-foreground">New chat</div>
+              <button
+                onClick={() => setPopup(null)}
+                className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-secondary/70"
               >
-                <button className="flex flex-1 items-center gap-2 truncate text-left text-sm font-light text-foreground">
-                  <MessageSquare className="h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-foreground" />
-                  <span className="truncate">{c.title}</span>
-                </button>
-                <span className="ml-2 text-[11px] font-light text-muted-foreground transition-opacity group-hover:opacity-0">
-                  {c.time}
-                </span>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setOpenMenu(openMenu === i ? null : i);
-                  }}
-                  aria-label="Chat options"
-                  className="absolute right-2 flex h-7 w-7 items-center justify-center rounded-md text-muted-foreground opacity-0 transition-opacity hover:bg-background hover:text-foreground group-hover:opacity-100"
-                >
-                  <MoreHorizontal className="h-4 w-4" />
-                </button>
-                {openMenu === i && (
-                  <div
-                    className="absolute right-2 top-9 z-20 w-40 overflow-hidden rounded-lg border border-border bg-popover shadow-elev"
-                    onMouseLeave={() => setOpenMenu(null)}
-                  >
-                    <MenuItem icon={Edit3} label="Rename" />
-                    <MenuItem icon={Pin} label="Pin" />
-                    <MenuItem icon={Share2} label="Share" />
-                    <MenuItem icon={Trash2} label="Delete" danger />
-                  </div>
-                )}
-              </li>
-            ))}
-          </ul>
+                <Edit3 className="h-4 w-4" /> Start a new conversation
+              </button>
+            </div>
+          )}
+          {popup === "search" && (
+            <div>
+              <div className="px-2 pb-2 text-[11px] font-medium tracking-[0.18em] uppercase text-muted-foreground">Search</div>
+              <div className="flex items-center gap-2 rounded-lg border border-border/60 bg-background/70 px-3 py-2">
+                <Search className="h-4 w-4 text-muted-foreground" />
+                <input
+                  autoFocus
+                  placeholder="Search chats…"
+                  className="flex-1 bg-transparent text-sm font-light placeholder:text-muted-foreground focus:outline-none"
+                />
+              </div>
+            </div>
+          )}
+          {popup === "recents" && (
+            <div>
+              <div className="px-2 pb-2 text-[11px] font-medium tracking-[0.18em] uppercase text-muted-foreground">Recents</div>
+              <ul className="space-y-0.5">
+                {conversations.map((c, i) => (
+                  <li key={i}>
+                    <button className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm font-light text-foreground hover:bg-secondary/70">
+                      <MessageSquare className="h-4 w-4 text-muted-foreground" />
+                      <span className="truncate">{c.title}</span>
+                      <span className="ml-auto text-[11px] text-muted-foreground">{c.time}</span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       )}
     </div>
   );
 }
 
-function SidebarItem({
-  icon: Icon,
-  label,
-  expanded,
+function ExpandedList({
+  openMenu, setOpenMenu,
 }: {
-  icon: React.ComponentType<{ className?: string }>;
-  label: string;
-  expanded: boolean;
+  openMenu: number | null;
+  setOpenMenu: (v: number | null) => void;
 }) {
   return (
+    <div className="flex-1 overflow-y-auto p-2 space-y-4">
+      <ul className="space-y-0.5">
+        <ExpandedItem icon={Edit3} label="New chat" />
+        <ExpandedItem icon={Search} label="Search chats" />
+      </ul>
+      <div>
+        <div className="mb-2 px-3 text-[11px] font-medium tracking-[0.18em] uppercase text-muted-foreground">
+          Conversations
+        </div>
+        <ul className="space-y-0.5">
+          {conversations.map((c, i) => (
+            <li
+              key={i}
+              className="group relative flex items-center justify-between rounded-lg px-3 py-2 transition-colors duration-200 hover:bg-secondary/70"
+            >
+              <button className="flex flex-1 items-center gap-2 truncate text-left text-sm font-light text-foreground">
+                <MessageSquare className="h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-foreground" />
+                <span className="truncate">{c.title}</span>
+              </button>
+              <span className="ml-2 text-[11px] font-light text-muted-foreground transition-opacity group-hover:opacity-0">
+                {c.time}
+              </span>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setOpenMenu(openMenu === i ? null : i);
+                }}
+                aria-label="Chat options"
+                className="absolute right-2 flex h-7 w-7 items-center justify-center rounded-md text-muted-foreground opacity-0 transition-opacity hover:bg-background hover:text-foreground group-hover:opacity-100"
+              >
+                <MoreHorizontal className="h-4 w-4" />
+              </button>
+              {openMenu === i && (
+                <div
+                  className="absolute right-2 top-9 z-20 w-40 overflow-hidden rounded-lg border border-border bg-popover shadow-elev"
+                  onMouseLeave={() => setOpenMenu(null)}
+                >
+                  <MenuItem icon={Edit3} label="Rename" />
+                  <MenuItem icon={Pin} label="Pin" />
+                  <MenuItem icon={Share2} label="Share" />
+                  <MenuItem icon={Trash2} label="Delete" danger />
+                </div>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+function ExpandedItem({
+  icon: Icon, label,
+}: { icon: React.ComponentType<{ className?: string }>; label: string }) {
+  return (
     <li>
-      <button
-        title={!expanded ? label : undefined}
-        className={`group relative flex w-full items-center gap-2.5 rounded-lg py-2 text-sm font-medium text-foreground transition-all duration-200 hover:bg-secondary/70 hover:text-foreground ${
-          expanded ? "px-3" : "px-0 justify-center h-10"
-        }`}
-      >
-        <span className={`flex items-center justify-center transition-transform duration-200 group-hover:scale-110 ${expanded ? "" : "h-10 w-10"}`}>
-          <Icon className="h-[1.05rem] w-[1.05rem] text-muted-foreground transition-colors group-hover:text-foreground" />
-        </span>
-        {expanded && <span>{label}</span>}
+      <button className="group flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-medium text-foreground transition-all duration-200 hover:bg-secondary/70">
+        <Icon className="h-[1.05rem] w-[1.05rem] text-muted-foreground transition-colors group-hover:text-foreground" />
+        <span>{label}</span>
       </button>
     </li>
   );
 }
 
 function MenuItem({
-  icon: Icon,
-  label,
-  danger,
+  icon: Icon, label, danger,
 }: {
   icon: React.ComponentType<{ className?: string }>;
   label: string;
