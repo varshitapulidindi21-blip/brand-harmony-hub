@@ -32,17 +32,17 @@ export function ModuleTile({
   return (
     <div
       className={cn(
-        "module-card group flex gap-2.5 sm:gap-4 p-3 sm:p-4 md:p-5",
+        "module-card group flex gap-2.5 sm:gap-4 p-2.5 sm:p-4 md:p-5",
         large ? "flex-col items-start" : "items-center",
       )}
     >
       {brand ? (
-        <div className="brand-tile shrink-0">
-          <Icon className="h-7 w-7 sm:h-9 sm:w-9" />
+        <div className="brand-tile shrink-0 h-8 w-8 sm:h-12 sm:w-12 rounded-[0.7rem] sm:rounded-[0.95rem]">
+          <Icon className="h-5 w-5 sm:h-9 sm:w-9" />
         </div>
       ) : (
-        <div className={cn("tile shrink-0 h-9 w-9 sm:h-12 sm:w-12 rounded-[0.75rem] sm:rounded-[0.95rem]", toneClass[tone])}>
-          <Icon className="h-[1.05rem] w-[1.05rem] sm:h-[1.35rem] sm:w-[1.35rem]" strokeWidth={1.75} />
+        <div className={cn("tile shrink-0 h-8 w-8 sm:h-12 sm:w-12 rounded-[0.7rem] sm:rounded-[0.95rem]", toneClass[tone])}>
+          <Icon className="h-[0.95rem] w-[0.95rem] sm:h-[1.35rem] sm:w-[1.35rem]" strokeWidth={1.75} />
         </div>
       )}
       <div className={cn("min-w-0 flex-1", pinned && (large ? "pr-0" : "pr-6"))}>
