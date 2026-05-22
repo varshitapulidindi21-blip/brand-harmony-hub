@@ -32,24 +32,25 @@ export function ModuleTile({
   return (
     <div
       className={cn(
-        "module-card group flex gap-3 sm:gap-4 p-3.5 sm:p-4 md:p-5",
+        "module-card group flex gap-2.5 sm:gap-4 p-3 sm:p-4 md:p-5",
         large ? "flex-col items-start" : "items-center",
       )}
     >
       {brand ? (
         <div className="brand-tile shrink-0">
-          <Icon className="h-8 w-8 sm:h-9 sm:w-9" />
+          <Icon className="h-7 w-7 sm:h-9 sm:w-9" />
         </div>
       ) : (
-        <div className={cn("tile shrink-0 h-11 w-11 sm:h-12 sm:w-12 rounded-[0.85rem] sm:rounded-[0.95rem]", toneClass[tone])}>
-          <Icon className="h-[1.2rem] w-[1.2rem] sm:h-[1.35rem] sm:w-[1.35rem]" strokeWidth={1.75} />
+        <div className={cn("tile shrink-0 h-9 w-9 sm:h-12 sm:w-12 rounded-[0.7rem] sm:rounded-[0.95rem]", toneClass[tone])}>
+          <Icon className="h-[1rem] w-[1rem] sm:h-[1.35rem] sm:w-[1.35rem]" strokeWidth={1.75} />
         </div>
       )}
       <div className={cn("min-w-0 flex-1", pinned && (large ? "pr-0" : "pr-6"))}>
         <div className={cn(
-          "font-medium text-[0.9rem] sm:text-[0.95rem] leading-tight tracking-tight truncate",
+          "font-medium text-[0.82rem] sm:text-[0.95rem] leading-tight tracking-tight truncate",
           large && pinned && "pr-7",
         )}>
+
           {title}
         </div>
         {subtitle && (
