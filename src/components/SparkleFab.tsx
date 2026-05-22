@@ -1,10 +1,29 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { BotMessageSquare, X, Minus, Maximize2, Paperclip, Send } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export function SparkleFab() {
   const [open, setOpen] = useState(false);
   const [minimized, setMinimized] = useState(false);
+  const isMobile = useIsMobile();
+
+  // On mobile: render a link directly to the full AI page
+  if (isMobile) {
+    return (
+      <Link
+        to="/resolven-ai"
+        aria-label="Open Resolven AI"
+        className="group fixed bottom-5 right-5 z-40 flex h-13 w-13 h-[3.25rem] w-[3.25rem] items-center justify-center rounded-2xl text-white shadow-glow transition-all duration-500 active:scale-95"
+        style={{
+          background:
+            "linear-gradient(135deg, var(--brand-purple) 0%, var(--brand-green) 100%)",
+        }}
+      >
+        <BotMessageSquare className="h-5 w-5" strokeWidth={1.6} />
+      </Link>
+    );
+  }
 
   return (
     <>
@@ -46,8 +65,7 @@ export function SparkleFab() {
       )}
 
       {open && !minimized && (
-        <div className="animate-rise fixed inset-x-3 bottom-3 z-40 flex h-[min(80vh,520px)] flex-col overflow-hidden rounded-2xl border border-border/70 bg-card/95 shadow-elev backdrop-blur-xl sm:inset-x-auto sm:bottom-6 sm:right-6 sm:h-[520px] sm:w-[360px]">
-          {/* Header */}
+        <div className="animate-rise fixed bottom-6 right-6 z-40 flex h-[520px] w-[360px] flex-col overflow-hidden rounded-2xl border border-border/70 bg-card/95 shadow-elev backdrop-blur-xl">
           <div
             className="flex items-center justify-between px-4 py-3 text-white"
             style={{
@@ -86,14 +104,15 @@ export function SparkleFab() {
             </div>
           </div>
 
-          {/* Body */}
-          <div className="flex-1 overflow-y-auto px-4 py-5">
-            <div className="rounded-2xl bg-secondary/60 px-4 py-4 text-[0.95rem] font-light leading-relaxed text-foreground">
-              Hi Samarth — how can I help you today? Explore ideas, find what you need, or get things moving across your workspace.
-            </div>
+          <div className="flex-1 overflow-y-auto px-5 py-6">
+            <h3 className="font-display text-lg font-medium tracking-tight text-foreground">
+              How can I help you today?
+            </h3>
+            <p className="mt-1.5 text-sm font-light text-muted-foreground">
+              Ask anything, or pick up where you left off.
+            </p>
           </div>
 
-          {/* Input */}
           <div className="border-t border-border/60 p-3">
             <div className="flex items-center gap-1.5 rounded-full border border-border/70 bg-background/80 px-2 py-1.5 shadow-soft focus-within:border-primary/40">
               <button
