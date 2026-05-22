@@ -26,13 +26,13 @@ export function GreetingHero({ name }: { name: string }) {
           <br />
           <span className="text-accent">{name}</span>
         </h1>
-        <div className="relative mt-1 flex gap-2 overflow-hidden">
+        <div className="relative mt-1 flex justify-center gap-2.5 overflow-hidden">
           <div
-            className="clip-diagonal h-20 flex-1 bg-cover bg-center shadow-elev"
+            className="clip-diagonal h-20 w-[42%] bg-cover bg-center shadow-elev"
             style={{ backgroundImage: `url(${heroTurbine})` }}
           />
           <div
-            className="clip-diagonal h-20 flex-1 bg-cover bg-center shadow-elev"
+            className="clip-diagonal h-20 w-[42%] bg-cover bg-center shadow-elev"
             style={{ backgroundImage: `url(${heroSolar})` }}
           />
         </div>

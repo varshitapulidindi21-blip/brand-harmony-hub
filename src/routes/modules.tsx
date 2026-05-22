@@ -46,16 +46,16 @@ function ModulesPage() {
   return (
     <div className="min-h-screen">
       <TopBar />
-      <main className="mx-auto w-full max-w-[1400px] space-y-10 px-6 py-10">
-        <div className="flex items-start justify-between gap-6">
-          <div className="flex items-center gap-4">
+      <main className="mx-auto w-full max-w-[1400px] space-y-6 sm:space-y-10 px-4 sm:px-6 py-6 sm:py-10">
+        <div className="flex items-start justify-between gap-4 sm:gap-6">
+          <div className="flex items-center gap-3 sm:gap-4">
             <Link
               to="/"
-              className="flex h-10 w-10 items-center justify-center rounded-xl border border-border/60 bg-card/70 shadow-soft backdrop-blur transition-all duration-300 hover:border-primary/40 hover:shadow-elev"
+              className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl border border-border/60 bg-card/70 shadow-soft backdrop-blur transition-all duration-300 hover:border-primary/40 hover:shadow-elev"
             >
-              <ArrowLeft className="h-[1.1rem] w-[1.1rem]" />
+              <ArrowLeft className="h-[1rem] w-[1rem] sm:h-[1.1rem] sm:w-[1.1rem]" />
             </Link>
-            <h1 className="text-[2rem] md:text-[2.5rem]">
+            <h1 className="text-[1.6rem] sm:text-[2rem] md:text-[2.5rem]">
               <span className="text-primary dark:text-white">All</span>{" "}
               <span className="text-accent">Modules</span>
             </h1>
@@ -65,26 +65,26 @@ function ModulesPage() {
           </p>
         </div>
 
-        <section className="surface animate-rise rounded-3xl p-7 md:p-8">
+        <section className="surface animate-rise rounded-2xl sm:rounded-3xl p-4 sm:p-7 md:p-8">
           <SectionHeading
             eyebrow="PERSONAL"
             primary="Employee"
             accent="Self-Service"
             right={<span className="rounded-full bg-secondary/70 px-3 py-1 text-[11px] font-medium text-secondary-foreground">8 modules</span>}
           />
-          <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-2.5 sm:gap-3.5 sm:grid-cols-2 lg:grid-cols-4">
             {personal.map((m) => <ModuleTile key={m.title} {...m} large />)}
           </div>
         </section>
 
-        <section className="surface animate-rise rounded-3xl p-7 md:p-8">
+        <section className="surface animate-rise rounded-2xl sm:rounded-3xl p-4 sm:p-7 md:p-8">
           <SectionHeading
             eyebrow="WORKSPACES"
             primary="Business"
             accent="Modules"
             right={<span className="rounded-full bg-secondary/70 px-3 py-1 text-[11px] font-medium text-secondary-foreground">10 modules</span>}
           />
-          <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="grid grid-cols-1 gap-2.5 sm:gap-3.5 sm:grid-cols-2 lg:grid-cols-5">
             {workspaces.map((m) => <ModuleTile key={m.title} {...m} large />)}
           </div>
         </section>
