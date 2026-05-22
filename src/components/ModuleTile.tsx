@@ -54,8 +54,9 @@ export function ModuleTile({
           {title}
         </div>
         {subtitle && (
-          <div className="mc-sub mt-1 text-xs font-light leading-relaxed text-muted-foreground line-clamp-2">
+          <div className="mc-sub mt-0.5 sm:mt-1 text-[10.5px] sm:text-xs font-light leading-snug text-muted-foreground line-clamp-2">
             {subtitle}
+
           </div>
         )}
       </div>
