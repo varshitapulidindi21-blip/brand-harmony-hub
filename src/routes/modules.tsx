@@ -82,7 +82,7 @@ function ModulesPage() {
             eyebrow="WORKSPACES"
             primary="Business"
             accent="Modules"
-            right={<span className="rounded-full bg-secondary/70 px-3 py-1 text-[11px] font-medium text-secondary-foreground">10 modules</span>}
+            right={<span className="hidden sm:inline-flex rounded-full bg-secondary/70 px-3 py-1 text-[11px] font-medium text-secondary-foreground">10 modules</span>}
           />
           <div className="grid grid-cols-1 gap-2.5 sm:gap-3.5 sm:grid-cols-2 lg:grid-cols-5">
             {workspaces.map((m) => <ModuleTile key={m.title} {...m} large />)}
