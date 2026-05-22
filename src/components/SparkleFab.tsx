@@ -88,8 +88,8 @@ export function SparkleFab() {
 
           {/* Body */}
           <div className="flex-1 overflow-y-auto px-4 py-5">
-            <div className="rounded-2xl bg-secondary/60 px-4 py-3 text-sm font-light text-foreground">
-              Hi Samarth — how can I help you today? Ask about modules, documents, or workflows.
+            <div className="rounded-2xl bg-secondary/60 px-4 py-4 text-[0.95rem] font-light leading-relaxed text-foreground">
+              Hi Samarth — how can I help you today? Explore ideas, find what you need, or get things moving across your workspace.
             </div>
           </div>
 

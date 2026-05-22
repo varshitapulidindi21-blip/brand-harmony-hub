@@ -39,15 +39,19 @@ function AIPage() {
           </Link>
           <div className="ml-auto flex items-center gap-1">
             <ThemeToggle />
-            <Link to="/" className="ml-1 sm:ml-2 flex items-center gap-1.5 sm:gap-2 rounded-lg border border-border bg-card px-2.5 sm:px-3 py-1.5 text-xs sm:text-sm font-medium hover:border-primary/40">
-              <Home className="h-4 w-4" /> <span className="hidden sm:inline">Home</span>
+            <Link
+              to="/"
+              aria-label="Home"
+              className="ml-1 flex h-9 w-9 items-center justify-center rounded-xl text-foreground/80 transition hover:bg-secondary/70 hover:text-foreground"
+            >
+              <Home className="h-[1.05rem] w-[1.05rem]" />
             </Link>
           </div>
         </div>
       </header>
 
       <div className="mx-auto grid w-full max-w-[1400px] grid-cols-1 md:grid-cols-[280px_1fr] gap-4 sm:gap-6 px-4 sm:px-6 py-4 sm:py-6">
-        <aside className="space-y-4">
+        <aside className="hidden md:block space-y-4">
           {/* ChatGPT-style action rows */}
           <ul className="space-y-1">
             <li>
@@ -160,12 +164,12 @@ function AIPage() {
                 ✦
               </span>
             </div>
-            <h1 className="mt-5 sm:mt-7 text-2xl sm:text-3xl md:text-4xl">
-              <span className="text-foreground">Hello,</span>{" "}
-              <span className="text-accent">Samarth Sachdeva</span>
+            <h1 className="font-display mt-6 sm:mt-8 text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight leading-[1.05]">
+              <span className="text-primary dark:text-white">Hi,</span>{" "}
+              <span className="text-accent">Samarth</span>
             </h1>
-            <p className="mt-2 sm:mt-3 max-w-md text-xs sm:text-sm font-light text-muted-foreground px-2">
-              I can search internal data, analyze documents, and browse the web for you.
+            <p className="font-display mt-3 sm:mt-4 max-w-xl text-base sm:text-lg font-light text-muted-foreground px-2">
+              How can I help you today? Explore ideas, find what you need, or get things moving across your workspace.
             </p>
           </div>
 
