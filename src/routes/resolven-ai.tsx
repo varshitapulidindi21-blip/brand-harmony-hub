@@ -164,12 +164,12 @@ function AIPage() {
                 ✦
               </span>
             </div>
-            <h1 className="mt-5 sm:mt-7 text-2xl sm:text-3xl md:text-4xl">
-              <span className="text-foreground">Hello,</span>{" "}
-              <span className="text-accent">Samarth Sachdeva</span>
+            <h1 className="font-display mt-6 sm:mt-8 text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight leading-[1.05]">
+              <span className="text-primary dark:text-white">Hi,</span>{" "}
+              <span className="text-accent">Samarth</span>
             </h1>
-            <p className="mt-2 sm:mt-3 max-w-md text-xs sm:text-sm font-light text-muted-foreground px-2">
-              I can search internal data, analyze documents, and browse the web for you.
+            <p className="font-display mt-3 sm:mt-4 max-w-xl text-base sm:text-lg font-light text-muted-foreground px-2">
+              How can I help you today? Explore ideas, find what you need, or get things moving across your workspace.
             </p>
           </div>
 
