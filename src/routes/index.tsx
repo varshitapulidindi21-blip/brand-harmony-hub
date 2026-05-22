@@ -130,21 +130,22 @@ function HomePage() {
             accent="Folders"
             right={<span className="text-xs font-light text-muted-foreground">16 departments</span>}
           />
-          <div className="grid grid-cols-3 gap-2.5 sm:gap-3 sm:grid-cols-4 lg:grid-cols-8">
+          <div className="grid grid-cols-3 gap-2 sm:gap-3 sm:grid-cols-4 lg:grid-cols-8">
             {departments.map((d) => (
               <div
                 key={d.label}
-                className="dept-card module-card group flex flex-col items-center gap-2 sm:gap-2.5 rounded-xl sm:rounded-2xl p-3 sm:p-3.5"
+                className="dept-card module-card group flex flex-col items-center gap-1.5 sm:gap-2.5 rounded-xl sm:rounded-2xl p-2.5 sm:p-3.5"
               >
-                <div className={`tile ${toneBg[d.tone]} h-9 w-9 sm:h-10 sm:w-10 rounded-lg sm:rounded-xl`}>
-                  <d.icon className="h-4 w-4 sm:h-[1.05rem] sm:w-[1.05rem]" strokeWidth={1.75} />
+                <div className={`tile ${toneBg[d.tone]} h-8 w-8 sm:h-10 sm:w-10 rounded-lg sm:rounded-xl`}>
+                  <d.icon className="h-3.5 w-3.5 sm:h-[1.05rem] sm:w-[1.05rem]" strokeWidth={1.75} />
                 </div>
-                <div className="text-center text-[10.5px] sm:text-[11.5px] font-medium leading-tight">
+                <div className="text-center text-[10px] sm:text-[11.5px] font-medium leading-tight">
                   {d.label}
                 </div>
               </div>
             ))}
           </div>
+
         </section>
 
         <footer className="py-6 sm:py-8 text-center text-[10px] sm:text-[11px] font-light tracking-wide text-muted-foreground">
