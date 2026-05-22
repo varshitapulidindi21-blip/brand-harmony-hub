@@ -74,9 +74,6 @@ export function SparkleFab() {
             }}
           >
             <div className="flex items-center gap-2">
-              <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-white/15">
-                <BotMessageSquare className="h-4 w-4" strokeWidth={1.6} />
-              </span>
               <span className="text-sm font-medium tracking-tight">Resolven AI</span>
             </div>
             <div className="flex items-center gap-0.5">
@@ -104,13 +101,21 @@ export function SparkleFab() {
             </div>
           </div>
 
-          <div className="flex-1 overflow-y-auto px-5 py-6">
-            <h3 className="font-display text-lg font-medium tracking-tight text-foreground">
-              How can I help you today?
-            </h3>
-            <p className="mt-1.5 text-sm font-light text-muted-foreground">
-              Ask anything, or pick up where you left off.
-            </p>
+          <div className="flex-1 overflow-y-auto px-4 py-5">
+            <div className="flex items-start gap-2.5">
+              <span
+                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl text-white shadow-soft"
+                style={{
+                  background:
+                    "linear-gradient(140deg, var(--brand-purple) 0%, var(--brand-purple-deep) 55%, var(--brand-green) 130%)",
+                }}
+              >
+                <BotMessageSquare className="h-4 w-4" strokeWidth={1.6} />
+              </span>
+              <div className="max-w-[85%] rounded-2xl rounded-tl-md border border-border/60 bg-secondary/40 px-3.5 py-2.5 text-[0.9rem] font-light leading-relaxed text-foreground">
+                Hi Samarth — how can I help you today? Ask anything, or pick up where you left off.
+              </div>
+            </div>
           </div>
 
           <div className="border-t border-border/60 p-3">
