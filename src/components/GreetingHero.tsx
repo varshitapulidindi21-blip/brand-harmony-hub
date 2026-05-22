@@ -13,21 +13,49 @@ export function GreetingHero({ name }: { name: string }) {
         }}
       />
 
-      <div className="relative grid grid-cols-[1fr_auto] gap-3 px-5 py-4 sm:gap-5 sm:px-7 sm:py-6 md:px-9 md:py-7">
+      {/* Mobile hero — compact, app-like */}
+      <div className="relative sm:hidden px-5 pt-5 pb-4">
+        <div className="flex items-center justify-between gap-3">
+          <div className="min-w-0">
+            <div className="text-[10px] font-medium uppercase tracking-[0.22em] text-muted-foreground">
+              Welcome
+            </div>
+            <h1 className="mt-1 text-[1.4rem] leading-tight">
+              <span className="text-primary dark:text-white">Good Morning,</span>
+            </h1>
+            <div className="mt-0.5 text-[1.4rem] leading-tight">
+              <span className="text-accent">{name}</span>
+            </div>
+          </div>
+          <div className="flex shrink-0 items-end gap-1.5">
+            <div
+              className="clip-diagonal h-20 w-10 bg-cover bg-center shadow-elev"
+              style={{ backgroundImage: `url(${heroTurbine})` }}
+            />
+            <div
+              className="clip-diagonal h-20 w-10 bg-cover bg-center shadow-elev"
+              style={{ backgroundImage: `url(${heroSolar})` }}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop / tablet hero */}
+      <div className="relative hidden sm:grid grid-cols-[1fr_auto] gap-5 px-7 py-6 md:px-9 md:py-7">
         <div className="self-center min-w-0">
-          <h1 className="text-[1.35rem] sm:text-[1.8rem] md:text-[2.25rem]">
+          <h1 className="text-[1.8rem] md:text-[2.25rem]">
             <span className="text-primary dark:text-white">Good Morning,</span>{" "}
             <span className="text-accent">{name}</span>
           </h1>
         </div>
 
-        <div className="flex items-end gap-2 sm:gap-4">
+        <div className="flex items-end gap-3">
           <div
-            className="clip-diagonal h-20 w-20 bg-cover bg-center shadow-elev transition-transform duration-700 hover:scale-[1.02] sm:h-28 sm:w-32 md:h-32 md:w-36"
+            className="clip-diagonal h-28 w-16 bg-cover bg-center shadow-elev transition-transform duration-700 hover:scale-[1.02] md:h-32 md:w-20"
             style={{ backgroundImage: `url(${heroTurbine})` }}
           />
           <div
-            className="clip-diagonal h-20 w-20 bg-cover bg-center shadow-elev transition-transform duration-700 hover:scale-[1.02] sm:h-28 sm:w-32 md:h-32 md:w-36"
+            className="clip-diagonal h-28 w-16 bg-cover bg-center shadow-elev transition-transform duration-700 hover:scale-[1.02] md:h-32 md:w-20"
             style={{ backgroundImage: `url(${heroSolar})` }}
           />
         </div>
