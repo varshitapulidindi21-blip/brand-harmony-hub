@@ -48,17 +48,17 @@ function AIPage() {
         className="pointer-events-none fixed inset-0 -z-10 dark:hidden"
         style={{
           background:
-            "radial-gradient(1200px 760px at 5% -8%, color-mix(in oklab, var(--brand-lavender) 95%, transparent), transparent 62%), radial-gradient(900px 620px at 95% 5%, color-mix(in oklab, var(--brand-purple) 60%, transparent), transparent 65%), radial-gradient(1100px 720px at 100% 100%, color-mix(in oklab, var(--brand-green-light) 80%, transparent), transparent 65%), radial-gradient(880px 600px at 12% 105%, color-mix(in oklab, var(--brand-green) 50%, transparent), transparent 65%), radial-gradient(900px 600px at 48% 55%, color-mix(in oklab, var(--brand-lavender) 70%, transparent), transparent 72%), linear-gradient(180deg, color-mix(in oklab, var(--brand-lavender) 35%, white) 0%, color-mix(in oklab, var(--brand-green-light) 25%, white) 100%)",
+            "radial-gradient(1300px 820px at 0% -5%, color-mix(in oklab, var(--brand-lavender) 130%, transparent), transparent 60%), radial-gradient(950px 700px at 100% 0%, color-mix(in oklab, var(--brand-purple) 85%, transparent), transparent 62%), radial-gradient(1200px 780px at 105% 100%, color-mix(in oklab, var(--brand-green-light) 110%, transparent), transparent 62%), radial-gradient(900px 640px at 5% 110%, color-mix(in oklab, var(--brand-green) 75%, transparent), transparent 62%), radial-gradient(1000px 680px at 50% 50%, color-mix(in oklab, var(--brand-lavender) 90%, transparent), transparent 72%), linear-gradient(160deg, color-mix(in oklab, var(--brand-lavender) 55%, white) 0%, color-mix(in oklab, var(--brand-purple) 18%, white) 50%, color-mix(in oklab, var(--brand-green-light) 45%, white) 100%)",
         }}
       />
-      {/* Soft cloudy overlay for dreamy blending — light mode */}
+      {/* Soft cloudy highlights — light mode */}
       <div
         aria-hidden
-        className="pointer-events-none fixed inset-0 -z-10 dark:hidden opacity-70"
+        className="pointer-events-none fixed inset-0 -z-10 dark:hidden opacity-50"
         style={{
           background:
-            "radial-gradient(600px 380px at 70% 30%, color-mix(in oklab, white 70%, transparent), transparent 70%), radial-gradient(500px 320px at 25% 75%, color-mix(in oklab, white 60%, transparent), transparent 70%)",
-          filter: "blur(20px)",
+            "radial-gradient(500px 320px at 72% 28%, color-mix(in oklab, white 55%, transparent), transparent 70%), radial-gradient(420px 280px at 22% 78%, color-mix(in oklab, white 45%, transparent), transparent 70%)",
+          filter: "blur(30px)",
         }}
       />
       {/* Ambient background — dark mode */}
