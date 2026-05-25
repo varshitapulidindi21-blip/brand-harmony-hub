@@ -48,7 +48,17 @@ function AIPage() {
         className="pointer-events-none fixed inset-0 -z-10 dark:hidden"
         style={{
           background:
-            "radial-gradient(1100px 680px at 8% -10%, color-mix(in oklab, var(--brand-lavender) 100%, transparent), transparent 60%), radial-gradient(820px 540px at 92% 8%, color-mix(in oklab, var(--brand-purple) 55%, transparent), transparent 65%), radial-gradient(960px 620px at 95% 95%, color-mix(in oklab, var(--brand-green-light) 70%, transparent), transparent 65%), radial-gradient(820px 520px at 18% 100%, color-mix(in oklab, var(--brand-green) 45%, transparent), transparent 65%), radial-gradient(720px 460px at 50% 50%, color-mix(in oklab, var(--brand-lavender) 55%, transparent), transparent 70%)",
+            "radial-gradient(1200px 760px at 5% -8%, color-mix(in oklab, var(--brand-lavender) 95%, transparent), transparent 62%), radial-gradient(900px 620px at 95% 5%, color-mix(in oklab, var(--brand-purple) 60%, transparent), transparent 65%), radial-gradient(1100px 720px at 100% 100%, color-mix(in oklab, var(--brand-green-light) 80%, transparent), transparent 65%), radial-gradient(880px 600px at 12% 105%, color-mix(in oklab, var(--brand-green) 50%, transparent), transparent 65%), radial-gradient(900px 600px at 48% 55%, color-mix(in oklab, var(--brand-lavender) 70%, transparent), transparent 72%), linear-gradient(180deg, color-mix(in oklab, var(--brand-lavender) 35%, white) 0%, color-mix(in oklab, var(--brand-green-light) 25%, white) 100%)",
+        }}
+      />
+      {/* Soft cloudy overlay for dreamy blending — light mode */}
+      <div
+        aria-hidden
+        className="pointer-events-none fixed inset-0 -z-10 dark:hidden opacity-70"
+        style={{
+          background:
+            "radial-gradient(600px 380px at 70% 30%, color-mix(in oklab, white 70%, transparent), transparent 70%), radial-gradient(500px 320px at 25% 75%, color-mix(in oklab, white 60%, transparent), transparent 70%)",
+          filter: "blur(20px)",
         }}
       />
       {/* Ambient background — dark mode */}
