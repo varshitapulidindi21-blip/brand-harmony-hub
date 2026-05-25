@@ -111,10 +111,11 @@ function AIPage() {
           }`}
         >
           {/* Hamburger at top of sidebar */}
-          <div className={`flex h-12 items-center ${sidebarExpanded ? "px-3 justify-between" : "justify-center"}`}>
+          <div className={`flex h-12 items-center ${sidebarExpanded ? "px-2 justify-end" : "justify-center"}`}>
             <RailIconButton
               label={sidebarExpanded ? "Collapse" : "Expand"}
               onClick={() => { setSidebarExpanded((v) => !v); setPopup(null); }}
+              hideTooltip={sidebarExpanded}
             >
               <Menu className="h-[1.1rem] w-[1.1rem]" strokeWidth={1.85} />
             </RailIconButton>
