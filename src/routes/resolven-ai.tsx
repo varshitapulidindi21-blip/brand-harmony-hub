@@ -176,19 +176,18 @@ function AIPage() {
                   }}
                 />
                 <BotMessageSquare className="h-7 w-7 sm:h-9 sm:w-9" strokeWidth={1.4} />
-                {/* Green sparkle accent */}
+                {/* Sparkle accent — bottom right */}
                 <span
                   aria-hidden
-                  className="absolute -right-1.5 -top-1.5 flex h-4 w-4 items-center justify-center"
+                  className="absolute -bottom-1 -right-1 flex h-3.5 w-3.5 items-center justify-center"
                 >
                   <span
-                    className="absolute inset-0 rounded-full blur-[6px] opacity-80"
+                    className="absolute inset-0 rounded-full blur-[5px] opacity-70"
                     style={{ background: "var(--brand-green)" }}
                   />
-                  <span
-                    className="relative h-2.5 w-2.5 rounded-full ring-2 ring-background"
-                    style={{ background: "var(--brand-green)" }}
-                  />
+                  <svg viewBox="0 0 24 24" className="relative h-3 w-3" fill="var(--brand-green)" aria-hidden>
+                    <path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z" />
+                  </svg>
                 </span>
               </div>
               <h1
