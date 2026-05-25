@@ -48,7 +48,7 @@ function AIPage() {
         className="pointer-events-none fixed inset-0 -z-10 dark:hidden"
         style={{
           background:
-            "radial-gradient(1300px 820px at 0% -5%, color-mix(in oklab, var(--brand-lavender) 130%, transparent), transparent 60%), radial-gradient(950px 700px at 100% 0%, color-mix(in oklab, var(--brand-purple) 85%, transparent), transparent 62%), radial-gradient(1200px 780px at 105% 100%, color-mix(in oklab, var(--brand-green-light) 110%, transparent), transparent 62%), radial-gradient(900px 640px at 5% 110%, color-mix(in oklab, var(--brand-green) 75%, transparent), transparent 62%), radial-gradient(1000px 680px at 50% 50%, color-mix(in oklab, var(--brand-lavender) 90%, transparent), transparent 72%), linear-gradient(160deg, color-mix(in oklab, var(--brand-lavender) 55%, white) 0%, color-mix(in oklab, var(--brand-purple) 18%, white) 50%, color-mix(in oklab, var(--brand-green-light) 45%, white) 100%)",
+            "radial-gradient(1400px 960px at -8% -12%, color-mix(in oklab, var(--brand-lavender) 88%, white 12%) 0%, transparent 58%), radial-gradient(980px 760px at 100% 2%, color-mix(in oklab, var(--brand-purple) 52%, white 48%) 0%, transparent 60%), radial-gradient(1100px 840px at 108% 100%, color-mix(in oklab, var(--brand-green-light) 68%, white 32%) 0%, transparent 58%), radial-gradient(940px 700px at 10% 104%, color-mix(in oklab, var(--brand-green) 34%, white 66%) 0%, transparent 60%), radial-gradient(820px 560px at 52% 38%, color-mix(in oklab, var(--brand-purple) 18%, white 82%) 0%, transparent 66%), linear-gradient(135deg, color-mix(in oklab, var(--brand-lavender) 62%, white 38%) 0%, color-mix(in oklab, var(--brand-purple) 22%, white 78%) 42%, color-mix(in oklab, var(--brand-green-light) 48%, white 52%) 100%)",
         }}
       />
       {/* Soft cloudy highlights — light mode */}
@@ -57,8 +57,8 @@ function AIPage() {
         className="pointer-events-none fixed inset-0 -z-10 dark:hidden opacity-50"
         style={{
           background:
-            "radial-gradient(500px 320px at 72% 28%, color-mix(in oklab, white 55%, transparent), transparent 70%), radial-gradient(420px 280px at 22% 78%, color-mix(in oklab, white 45%, transparent), transparent 70%)",
-          filter: "blur(30px)",
+            "radial-gradient(620px 360px at 74% 26%, color-mix(in oklab, white 72%, transparent) 0%, transparent 68%), radial-gradient(520px 320px at 26% 78%, color-mix(in oklab, white 54%, transparent) 0%, transparent 70%), radial-gradient(460px 280px at 48% 58%, color-mix(in oklab, var(--brand-lavender) 16%, white 84%) 0%, transparent 72%)",
+          filter: "blur(40px)",
         }}
       />
       {/* Ambient background — dark mode */}
