@@ -179,14 +179,14 @@ function AIPage() {
                 {/* Sparkle accent — bottom right */}
                 <span
                   aria-hidden
-                  className="absolute -bottom-1 -right-1 flex h-3.5 w-3.5 items-center justify-center"
+                  className="absolute -bottom-2.5 -right-2.5 flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center"
                 >
                   <span
-                    className="absolute inset-0 rounded-full blur-[5px] opacity-70"
+                    className="absolute inset-0 rounded-full blur-[10px] opacity-80"
                     style={{ background: "var(--brand-green)" }}
                   />
-                  <svg viewBox="0 0 24 24" className="relative h-3 w-3" fill="var(--brand-green)" aria-hidden>
-                    <path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z" />
+                  <svg viewBox="0 0 24 24" className="relative h-6 w-6 sm:h-7 sm:w-7 drop-shadow-[0_2px_6px_rgba(34,197,94,0.55)]" fill="var(--brand-green)" aria-hidden>
+                    <path d="M12 2l1.9 6.5L20 10l-6.1 1.5L12 18l-1.9-6.5L4 10l6.1-1.5z" />
                   </svg>
                 </span>
               </div>
