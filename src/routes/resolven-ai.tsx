@@ -260,8 +260,8 @@ function AIPage() {
 }
 
 function RailIconButton({
-  label, onClick, children,
-}: { label: string; onClick?: () => void; children: React.ReactNode }) {
+  label, onClick, children, hideTooltip,
+}: { label: string; onClick?: () => void; children: React.ReactNode; hideTooltip?: boolean }) {
   return (
     <div className="group/rail relative">
       <button
@@ -271,12 +271,14 @@ function RailIconButton({
       >
         {children}
       </button>
-      <span
-        role="tooltip"
-        className="pointer-events-none absolute left-full top-1/2 z-50 ml-2 -translate-y-1/2 translate-x-1 whitespace-nowrap rounded-md border border-border/60 bg-popover/95 px-2.5 py-1 text-[11px] font-medium text-popover-foreground opacity-0 shadow-elev backdrop-blur transition-all duration-200 group-hover/rail:translate-x-0 group-hover/rail:opacity-100"
-      >
-        {label}
-      </span>
+      {!hideTooltip && (
+        <span
+          role="tooltip"
+          className="pointer-events-none absolute left-full top-1/2 z-50 ml-2 -translate-y-1/2 translate-x-1 whitespace-nowrap rounded-md border border-border/60 bg-popover/95 px-2.5 py-1 text-[11px] font-medium text-popover-foreground opacity-0 shadow-elev backdrop-blur transition-all duration-200 group-hover/rail:translate-x-0 group-hover/rail:opacity-100"
+        >
+          {label}
+        </span>
+      )}
     </div>
   );
 }
