@@ -298,7 +298,7 @@ function DesktopSidebar({
   }
   return (
     <div className="relative flex flex-col items-center gap-1 py-2">
-      <RailIconButton label="New chat" onClick={() => setPopup(popup === "new" ? null : "new")}>
+      <RailIconButton label="New chat" hideTooltip onClick={() => setPopup(popup === "new" ? null : "new")}>
         <Edit3 className="h-[1.05rem] w-[1.05rem]" strokeWidth={1.7} />
       </RailIconButton>
       <RailIconButton label="Search chats" onClick={() => setPopup(popup === "search" ? null : "search")}>
