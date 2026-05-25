@@ -48,7 +48,17 @@ function AIPage() {
         className="pointer-events-none fixed inset-0 -z-10 dark:hidden"
         style={{
           background:
-            "radial-gradient(1100px 680px at 8% -10%, color-mix(in oklab, var(--brand-lavender) 100%, transparent), transparent 60%), radial-gradient(820px 540px at 92% 8%, color-mix(in oklab, var(--brand-purple) 55%, transparent), transparent 65%), radial-gradient(960px 620px at 95% 95%, color-mix(in oklab, var(--brand-green-light) 70%, transparent), transparent 65%), radial-gradient(820px 520px at 18% 100%, color-mix(in oklab, var(--brand-green) 45%, transparent), transparent 65%), radial-gradient(720px 460px at 50% 50%, color-mix(in oklab, var(--brand-lavender) 55%, transparent), transparent 70%)",
+            "radial-gradient(1200px 760px at 5% -8%, color-mix(in oklab, var(--brand-lavender) 95%, transparent), transparent 62%), radial-gradient(900px 620px at 95% 5%, color-mix(in oklab, var(--brand-purple) 60%, transparent), transparent 65%), radial-gradient(1100px 720px at 100% 100%, color-mix(in oklab, var(--brand-green-light) 80%, transparent), transparent 65%), radial-gradient(880px 600px at 12% 105%, color-mix(in oklab, var(--brand-green) 50%, transparent), transparent 65%), radial-gradient(900px 600px at 48% 55%, color-mix(in oklab, var(--brand-lavender) 70%, transparent), transparent 72%), linear-gradient(180deg, color-mix(in oklab, var(--brand-lavender) 35%, white) 0%, color-mix(in oklab, var(--brand-green-light) 25%, white) 100%)",
+        }}
+      />
+      {/* Soft cloudy overlay for dreamy blending — light mode */}
+      <div
+        aria-hidden
+        className="pointer-events-none fixed inset-0 -z-10 dark:hidden opacity-70"
+        style={{
+          background:
+            "radial-gradient(600px 380px at 70% 30%, color-mix(in oklab, white 70%, transparent), transparent 70%), radial-gradient(500px 320px at 25% 75%, color-mix(in oklab, white 60%, transparent), transparent 70%)",
+          filter: "blur(20px)",
         }}
       />
       {/* Ambient background — dark mode */}
@@ -101,10 +111,11 @@ function AIPage() {
           }`}
         >
           {/* Hamburger at top of sidebar */}
-          <div className={`flex h-12 items-center ${sidebarExpanded ? "px-3 justify-between" : "justify-center"}`}>
+          <div className={`flex h-12 items-center ${sidebarExpanded ? "px-2 justify-end" : "justify-center"}`}>
             <RailIconButton
               label={sidebarExpanded ? "Collapse" : "Expand"}
               onClick={() => { setSidebarExpanded((v) => !v); setPopup(null); }}
+              hideTooltip={sidebarExpanded}
             >
               <Menu className="h-[1.1rem] w-[1.1rem]" strokeWidth={1.85} />
             </RailIconButton>
@@ -165,19 +176,18 @@ function AIPage() {
                   }}
                 />
                 <BotMessageSquare className="h-7 w-7 sm:h-9 sm:w-9" strokeWidth={1.4} />
-                {/* Green sparkle accent */}
+                {/* Sparkle accent — bottom right */}
                 <span
                   aria-hidden
-                  className="absolute -right-1.5 -top-1.5 flex h-4 w-4 items-center justify-center"
+                  className="absolute -bottom-1 -right-1 flex h-3.5 w-3.5 items-center justify-center"
                 >
                   <span
-                    className="absolute inset-0 rounded-full blur-[6px] opacity-80"
+                    className="absolute inset-0 rounded-full blur-[5px] opacity-70"
                     style={{ background: "var(--brand-green)" }}
                   />
-                  <span
-                    className="relative h-2.5 w-2.5 rounded-full ring-2 ring-background"
-                    style={{ background: "var(--brand-green)" }}
-                  />
+                  <svg viewBox="0 0 24 24" className="relative h-3 w-3" fill="var(--brand-green)" aria-hidden>
+                    <path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z" />
+                  </svg>
                 </span>
               </div>
               <h1
@@ -249,8 +259,8 @@ function AIPage() {
 }
 
 function RailIconButton({
-  label, onClick, children,
-}: { label: string; onClick?: () => void; children: React.ReactNode }) {
+  label, onClick, children, hideTooltip,
+}: { label: string; onClick?: () => void; children: React.ReactNode; hideTooltip?: boolean }) {
   return (
     <div className="group/rail relative">
       <button
@@ -260,12 +270,14 @@ function RailIconButton({
       >
         {children}
       </button>
-      <span
-        role="tooltip"
-        className="pointer-events-none absolute left-full top-1/2 z-50 ml-2 -translate-y-1/2 translate-x-1 whitespace-nowrap rounded-md border border-border/60 bg-popover/95 px-2.5 py-1 text-[11px] font-medium text-popover-foreground opacity-0 shadow-elev backdrop-blur transition-all duration-200 group-hover/rail:translate-x-0 group-hover/rail:opacity-100"
-      >
-        {label}
-      </span>
+      {!hideTooltip && (
+        <span
+          role="tooltip"
+          className="pointer-events-none absolute left-full top-1/2 z-50 ml-2 -translate-y-1/2 translate-x-1 whitespace-nowrap rounded-md border border-border/60 bg-popover/95 px-2.5 py-1 text-[11px] font-medium text-popover-foreground opacity-0 shadow-elev backdrop-blur transition-all duration-200 group-hover/rail:translate-x-0 group-hover/rail:opacity-100"
+        >
+          {label}
+        </span>
+      )}
     </div>
   );
 }
@@ -285,7 +297,7 @@ function DesktopSidebar({
   }
   return (
     <div className="relative flex flex-col items-center gap-1 py-2">
-      <RailIconButton label="New chat" onClick={() => setPopup(popup === "new" ? null : "new")}>
+      <RailIconButton label="New chat" hideTooltip onClick={() => setPopup(popup === "new" ? null : "new")}>
         <Edit3 className="h-[1.05rem] w-[1.05rem]" strokeWidth={1.7} />
       </RailIconButton>
       <RailIconButton label="Search chats" onClick={() => setPopup(popup === "search" ? null : "search")}>
