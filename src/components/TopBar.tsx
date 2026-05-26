@@ -1,8 +1,9 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { Search, Settings, ChevronDown, User, LogOut } from "lucide-react";
 import logo from "@/assets/resolven-logo.png";
 import logoWhite from "@/assets/resolven-logo-white.png";
 import { ThemeToggle } from "./ThemeToggle";
+import { signOut } from "@/lib/auth";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,6 +14,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 export function TopBar({ showSearch = true }: { showSearch?: boolean }) {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    signOut();
+    navigate({ to: "/login", replace: true });
+  };
   return (
     <header className="sticky top-0 z-30 w-full border-b border-border/50 bg-background/70 backdrop-blur-xl supports-[backdrop-filter]:bg-background/55">
       <div className="mx-auto flex h-14 w-full max-w-[1400px] items-center gap-3 px-4 sm:gap-5 sm:px-6 md:h-[72px]">
@@ -65,9 +71,9 @@ export function TopBar({ showSearch = true }: { showSearch?: boolean }) {
                     SS
                   </span>
                   <div className="min-w-0">
-                    <p className="truncate text-sm font-semibold text-foreground">Sahil Sharma</p>
+                    <p className="truncate text-sm font-semibold text-foreground">Samarth Sachdeva</p>
                     <p className="truncate text-[11px] font-light text-muted-foreground">
-                      sahil@resolven.com
+                      samarthsachdeva@resolven.com
                     </p>
                   </div>
                 </div>
@@ -77,7 +83,10 @@ export function TopBar({ showSearch = true }: { showSearch?: boolean }) {
                 <User className="mr-2 h-4 w-4 opacity-80" />
                 View profile
               </DropdownMenuItem>
-              <DropdownMenuItem className="cursor-pointer rounded-lg px-3 py-2 text-sm font-light text-destructive focus:bg-destructive/10 focus:text-destructive">
+              <DropdownMenuItem
+                onSelect={handleLogout}
+                className="cursor-pointer rounded-lg px-3 py-2 text-sm font-light text-destructive focus:bg-destructive/10 focus:text-destructive"
+              >
                 <LogOut className="mr-2 h-4 w-4 opacity-80" />
                 Log out
               </DropdownMenuItem>
