@@ -1,10 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useRef, useEffect } from "react";
 import {
-  BotMessageSquare, Paperclip, Send, Home, MessageSquare,
+  Paperclip, Send, Home, MessageSquare,
   Search, MoreHorizontal, Edit3, Trash2, Pin, Share2, Menu, X, Clock,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import aiLogo from "@/assets/resolven-ai-logo.png";
 
 export const Route = createFileRoute("/resolven-ai")({
   head: () => ({
