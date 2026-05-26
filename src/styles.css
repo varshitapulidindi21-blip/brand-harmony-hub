@@ -318,4 +318,28 @@
     to   { opacity: 1; transform: translateY(0); }
   }
   .animate-rise { animation: rise 600ms cubic-bezier(.2,.7,.2,1) both; }
+
+  /* Cinematic AI logo intro — progressive form-up */
+  @keyframes ai-logo-form {
+    0%   { opacity: 0; transform: scale(0.55) rotate(-18deg); filter: blur(14px) saturate(140%); }
+    35%  { opacity: 0.55; transform: scale(0.85) rotate(-8deg); filter: blur(6px) saturate(130%); }
+    70%  { opacity: 0.95; transform: scale(1.04) rotate(2deg); filter: blur(1px) saturate(115%); }
+    100% { opacity: 1; transform: scale(1) rotate(0deg); filter: blur(0) saturate(100%); }
+  }
+  .ai-logo-intro { animation: ai-logo-form 2400ms cubic-bezier(.18,.7,.2,1) both; }
+
+  @keyframes ai-logo-aura {
+    0%   { opacity: 0; transform: scale(0.6); }
+    60%  { opacity: 0.55; transform: scale(1.05); }
+    100% { opacity: 0.35; transform: scale(1); }
+  }
+  .ai-logo-aura { animation: ai-logo-aura 2600ms cubic-bezier(.2,.7,.2,1) both; }
+
+  /* Header logo↔hamburger swap on hover */
+  .ai-nav-swap .ai-nav-logo { opacity: 1; transform: scale(1); transition: opacity 220ms ease, transform 220ms ease; }
+  .ai-nav-swap .ai-nav-bars { opacity: 0; transform: scale(0.85); transition: opacity 220ms ease, transform 220ms ease; }
+  .ai-nav-swap:hover .ai-nav-logo,
+  .ai-nav-swap:focus-visible .ai-nav-logo { opacity: 0; transform: scale(0.85); }
+  .ai-nav-swap:hover .ai-nav-bars,
+  .ai-nav-swap:focus-visible .ai-nav-bars { opacity: 1; transform: scale(1); }
 }

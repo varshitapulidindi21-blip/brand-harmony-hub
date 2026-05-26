@@ -1,26 +1,59 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { BotMessageSquare, X, Minus, Maximize2, Paperclip, Send } from "lucide-react";
+import { X, Minus, Maximize2, Paperclip, Send } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import aiLogo from "@/assets/resolven-ai-logo.png";
+
+// Premium dark glass tile for the colorful AI logo
+function AiLogoTile({ size = "h-12 w-12", logoSize = "h-9 w-9", rounded = "rounded-2xl" }: { size?: string; logoSize?: string; rounded?: string }) {
+  return (
+    <span
+      className={`relative inline-flex shrink-0 items-center justify-center overflow-hidden ${size} ${rounded} ring-1 ring-white/10`}
+      style={{
+        background:
+          "linear-gradient(140deg, #0e0e12 0%, #1a1a22 55%, #232331 100%)",
+        boxShadow:
+          "0 1px 0 rgba(255,255,255,0.08) inset, 0 10px 30px -12px rgba(0,0,0,0.55)",
+      }}
+    >
+      <span
+        aria-hidden
+        className="absolute inset-0 opacity-60"
+        style={{
+          background:
+            "radial-gradient(120% 80% at 50% 0%, rgba(255,255,255,0.18), transparent 60%)",
+        }}
+      />
+      <img src={aiLogo} alt="" className={`relative ${logoSize} object-contain`} />
+    </span>
+  );
+}
 
 export function SparkleFab() {
   const [open, setOpen] = useState(false);
   const [minimized, setMinimized] = useState(false);
   const isMobile = useIsMobile();
 
-  // On mobile: render a link directly to the full AI page
   if (isMobile) {
     return (
       <Link
         to="/resolven-ai"
         aria-label="Open Resolven AI"
-        className="group fixed bottom-5 right-5 z-40 flex h-[3.25rem] w-[3.25rem] items-center justify-center rounded-2xl text-white shadow-glow transition-all duration-500 active:scale-95"
+        className="group fixed bottom-5 right-5 z-40 flex h-[3.5rem] w-[3.5rem] items-center justify-center rounded-2xl shadow-glow transition-all duration-500 active:scale-95 ring-1 ring-white/10"
         style={{
           background:
-            "linear-gradient(135deg, var(--brand-purple) 0%, var(--brand-green) 100%)",
+            "linear-gradient(140deg, #0e0e12 0%, #1a1a22 55%, #232331 100%)",
         }}
       >
-        <BotMessageSquare className="h-5 w-5" strokeWidth={1.6} />
+        <span
+          aria-hidden
+          className="absolute inset-0 rounded-2xl opacity-60"
+          style={{
+            background:
+              "radial-gradient(120% 80% at 50% 0%, rgba(255,255,255,0.18), transparent 60%)",
+          }}
+        />
+        <img src={aiLogo} alt="" className="relative h-9 w-9 object-contain" />
       </Link>
     );
   }
@@ -33,23 +66,32 @@ export function SparkleFab() {
             setOpen(true);
             setMinimized(false);
           }}
-          className="group fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-2xl text-white shadow-glow transition-all duration-500 hover:scale-[1.06] hover:shadow-elev"
+          className="group fixed bottom-6 right-6 z-40 flex h-16 w-16 items-center justify-center rounded-2xl shadow-glow ring-1 ring-white/10 transition-all duration-500 hover:scale-[1.06] hover:shadow-elev"
           style={{
             background:
-              "linear-gradient(135deg, var(--brand-purple) 0%, var(--brand-green) 100%)",
+              "linear-gradient(140deg, #0e0e12 0%, #1a1a22 55%, #232331 100%)",
           }}
           aria-label="Open Resolven AI"
         >
           <span
-            className="absolute inset-0 rounded-2xl opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-60"
+            aria-hidden
+            className="absolute inset-0 rounded-2xl opacity-70"
+            style={{
+              background:
+                "radial-gradient(120% 80% at 50% 0%, rgba(255,255,255,0.22), transparent 60%)",
+            }}
+          />
+          <span
+            className="absolute -inset-1 rounded-2xl opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-70"
             style={{
               background:
                 "linear-gradient(135deg, var(--brand-purple) 0%, var(--brand-green) 100%)",
             }}
           />
-          <BotMessageSquare
-            className="relative h-6 w-6 transition-transform duration-500 group-hover:scale-110"
-            strokeWidth={1.6}
+          <img
+            src={aiLogo}
+            alt=""
+            className="relative h-11 w-11 object-contain transition-transform duration-500 group-hover:scale-110"
           />
         </button>
       )}
@@ -59,7 +101,7 @@ export function SparkleFab() {
           onClick={() => setMinimized(false)}
           className="fixed bottom-6 right-6 z-40 flex items-center gap-2 rounded-full bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground shadow-elev transition hover:scale-[1.03]"
         >
-          <BotMessageSquare className="h-4 w-4" />
+          <img src={aiLogo} alt="" className="h-5 w-5 object-contain" />
           Resolven AI
         </button>
       )}
@@ -103,15 +145,7 @@ export function SparkleFab() {
 
           <div className="flex-1 overflow-y-auto px-4 py-5">
             <div className="flex items-start gap-2.5">
-              <span
-                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl text-white shadow-soft"
-                style={{
-                  background:
-                    "linear-gradient(140deg, var(--brand-purple) 0%, var(--brand-purple-deep) 55%, var(--brand-green) 130%)",
-                }}
-              >
-                <BotMessageSquare className="h-4 w-4" strokeWidth={1.6} />
-              </span>
+              <AiLogoTile size="h-9 w-9" logoSize="h-7 w-7" rounded="rounded-xl" />
               <div className="max-w-[85%] rounded-2xl rounded-tl-md border border-border/60 bg-secondary/40 px-3.5 py-2.5 text-[0.9rem] font-light leading-relaxed text-foreground">
                 Hi Samarth — how can I help you today? Ask anything, or pick up where you left off.
               </div>

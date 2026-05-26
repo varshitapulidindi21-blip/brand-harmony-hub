@@ -9,6 +9,7 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import { AuthGuard } from "@/components/AuthGuard";
 
 function NotFoundComponent() {
   return (
@@ -113,7 +114,9 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <AuthGuard>
+        <Outlet />
+      </AuthGuard>
     </QueryClientProvider>
   );
 }

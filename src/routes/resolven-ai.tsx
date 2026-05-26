@@ -1,10 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useRef, useEffect } from "react";
 import {
-  BotMessageSquare, Paperclip, Send, Home, MessageSquare,
+  Paperclip, Send, Home, MessageSquare,
   Search, MoreHorizontal, Edit3, Trash2, Pin, Share2, Menu, X, Clock,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import aiLogo from "@/assets/resolven-ai-logo.png";
 
 export const Route = createFileRoute("/resolven-ai")({
   head: () => ({
@@ -73,23 +74,28 @@ function AIPage() {
 
       <header className="sticky top-0 z-30 w-full border-b border-border/50 bg-background/60 backdrop-blur-xl supports-[backdrop-filter]:bg-background/45">
         <div className="mx-auto flex h-14 sm:h-16 w-full max-w-[1400px] items-center px-2 sm:px-4">
-          {/* Mobile-only hamburger in header */}
+          {/* Logo ↔ hamburger swap (desktop). Tap-only on mobile triggers mobile sidebar. */}
           <button
-            onClick={() => setMobileSidebarOpen(true)}
-            aria-label="Open menu"
-            className="md:hidden flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-foreground/80 transition-all duration-200 hover:bg-secondary/70 active:scale-95"
+            onClick={() => {
+              // Mobile: open overlay. Desktop: toggle expand.
+              if (typeof window !== "undefined" && window.matchMedia("(min-width: 768px)").matches) {
+                setSidebarExpanded((v) => !v);
+                setPopup(null);
+              } else {
+                setMobileSidebarOpen(true);
+              }
+            }}
+            aria-label="Toggle menu"
+            className="ai-nav-swap relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-colors hover:bg-secondary/60"
           >
-            <Menu className="h-[1.15rem] w-[1.15rem]" strokeWidth={1.85} />
+            <img
+              src={aiLogo}
+              alt="Resolven AI"
+              className="ai-nav-logo absolute h-7 w-7 object-contain"
+            />
+            <Menu className="ai-nav-bars absolute h-[1.2rem] w-[1.2rem] text-foreground/85" strokeWidth={1.9} />
           </button>
-          <Link to="/" className="ml-2 md:ml-1 flex items-center">
-            <span
-              className="text-lg sm:text-2xl md:text-[1.65rem] font-display italic tracking-tight"
-              style={{ fontFamily: "Montserrat, system-ui, sans-serif" }}
-            >
-              <span className="text-primary dark:text-white">Resolven</span>{" "}
-              <span className="text-accent">AI</span>
-            </span>
-          </Link>
+
           <div className="ml-auto flex items-center gap-1">
             <ThemeToggle />
             <Link
@@ -110,17 +116,6 @@ function AIPage() {
             sidebarExpanded ? "w-[260px]" : "w-[64px]"
           }`}
         >
-          {/* Hamburger at top of sidebar */}
-          <div className={`flex h-12 items-center ${sidebarExpanded ? "px-2 justify-end" : "justify-center"}`}>
-            <RailIconButton
-              label={sidebarExpanded ? "Collapse" : "Expand"}
-              onClick={() => { setSidebarExpanded((v) => !v); setPopup(null); }}
-              hideTooltip={sidebarExpanded}
-            >
-              <Menu className="h-[1.1rem] w-[1.1rem]" strokeWidth={1.85} />
-            </RailIconButton>
-          </div>
-
           <DesktopSidebar
             expanded={sidebarExpanded}
             openMenu={openMenu}
@@ -158,37 +153,21 @@ function AIPage() {
           {/* Greeting */}
           <div className="flex flex-1 items-center justify-center px-5 sm:px-10 md:px-16 pt-8 sm:pt-10 pb-32 sm:pb-10">
             <div className="relative flex w-full max-w-2xl flex-col items-center text-center">
-              <div
-                className="relative flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-[1.2rem] text-white ring-1 ring-white/20"
-                style={{
-                  background:
-                    "linear-gradient(140deg, var(--brand-purple) 0%, var(--brand-purple-deep) 55%, var(--brand-green) 130%)",
-                  boxShadow:
-                    "0 1px 0 oklch(1 0 0 / 0.25) inset, 0 18px 50px -18px oklch(0.378 0.180 295 / 0.55), 0 8px 30px -10px oklch(0.682 0.180 148 / 0.30)",
-                }}
-              >
+              <div className="relative flex items-center justify-center">
+                {/* Soft aura */}
                 <span
                   aria-hidden
-                  className="absolute -inset-3 -z-10 rounded-[1.8rem] opacity-60 blur-2xl"
+                  className="ai-logo-aura absolute h-40 w-40 sm:h-52 sm:w-52 rounded-full blur-3xl"
                   style={{
                     background:
-                      "linear-gradient(135deg, var(--brand-purple), var(--brand-green))",
+                      "radial-gradient(circle, color-mix(in oklab, var(--brand-purple) 35%, transparent) 0%, color-mix(in oklab, var(--brand-green) 18%, transparent) 55%, transparent 75%)",
                   }}
                 />
-                <BotMessageSquare className="h-7 w-7 sm:h-9 sm:w-9" strokeWidth={1.4} />
-                {/* Sparkle accent — bottom right */}
-                <span
-                  aria-hidden
-                  className="absolute -bottom-2.5 -right-2.5 flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center"
-                >
-                  <span
-                    className="absolute inset-0 rounded-full blur-[10px] opacity-80"
-                    style={{ background: "var(--brand-green)" }}
-                  />
-                  <svg viewBox="0 0 24 24" className="relative h-6 w-6 sm:h-7 sm:w-7 drop-shadow-[0_2px_6px_rgba(34,197,94,0.55)]" fill="var(--brand-green)" aria-hidden>
-                    <path d="M12 2l1.9 6.5L20 10l-6.1 1.5L12 18l-1.9-6.5L4 10l6.1-1.5z" />
-                  </svg>
-                </span>
+                <img
+                  src={aiLogo}
+                  alt="Resolven AI"
+                  className="ai-logo-intro relative h-24 w-24 sm:h-32 sm:w-32 object-contain drop-shadow-[0_10px_30px_rgba(80,40,160,0.35)]"
+                />
               </div>
               <h1
                 className="mt-6 sm:mt-8 text-[2rem] sm:text-[2.6rem] md:text-[3rem] tracking-tight leading-[1.05]"
