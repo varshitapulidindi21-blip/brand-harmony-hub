@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ResolvenAiRouteImport } from './routes/resolven-ai'
 import { Route as ModulesRouteImport } from './routes/modules'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as IndexRouteImport } from './routes/index'
 
 const ResolvenAiRoute = ResolvenAiRouteImport.update({
@@ -23,6 +24,11 @@ const ModulesRoute = ModulesRouteImport.update({
   path: '/modules',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -31,30 +37,34 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
   '/modules': typeof ModulesRoute
   '/resolven-ai': typeof ResolvenAiRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
   '/modules': typeof ModulesRoute
   '/resolven-ai': typeof ResolvenAiRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
   '/modules': typeof ModulesRoute
   '/resolven-ai': typeof ResolvenAiRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/modules' | '/resolven-ai'
+  fullPaths: '/' | '/login' | '/modules' | '/resolven-ai'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/modules' | '/resolven-ai'
-  id: '__root__' | '/' | '/modules' | '/resolven-ai'
+  to: '/' | '/login' | '/modules' | '/resolven-ai'
+  id: '__root__' | '/' | '/login' | '/modules' | '/resolven-ai'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  LoginRoute: typeof LoginRoute
   ModulesRoute: typeof ModulesRoute
   ResolvenAiRoute: typeof ResolvenAiRoute
 }
@@ -75,6 +85,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ModulesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -87,6 +104,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  LoginRoute: LoginRoute,
   ModulesRoute: ModulesRoute,
   ResolvenAiRoute: ResolvenAiRoute,
 }
