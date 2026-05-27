@@ -95,7 +95,7 @@ function LoginPage() {
             className="animate-rise relative flex h-[120px] items-center bg-white pl-16 pr-20"
             style={slant}
           >
-            <img src={logo} alt="Resolven" className="h-16 w-auto" />
+            <img src={logo} alt="Resolven" className="h-24 w-auto" />
           </div>
 
           <div className="h-16" />
