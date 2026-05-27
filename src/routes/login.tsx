@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import { LogIn, Mail, ArrowRight, Lock } from "lucide-react";
+import { ArrowRightCircle, Mail, ArrowRight, Lock } from "lucide-react";
 import loginBg from "@/assets/login-bg-energy.png";
 import logo from "@/assets/resolven-logo.png";
 import { signIn } from "@/lib/auth";
