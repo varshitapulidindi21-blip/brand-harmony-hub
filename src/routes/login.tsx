@@ -107,7 +107,7 @@ function LoginPage() {
             className="animate-rise group relative flex h-[68px] w-full items-center bg-[#21c45d] pl-16 pr-20 text-white shadow-[0_10px_40px_-10px_rgba(33,196,93,0.55)] transition-all duration-300 hover:brightness-110 active:scale-[0.995] disabled:opacity-80"
             style={slant}
           >
-            <LogIn className="mr-3 h-5 w-5" strokeWidth={1.8} />
+            <ArrowRightCircle className="mr-3 h-5 w-5" strokeWidth={1.8} />
             <span className="text-[17px] font-medium tracking-wide" style={{ fontFamily: "Montserrat, system-ui, sans-serif" }}>
               Sign in with Resolven ID
             </span>
@@ -180,7 +180,7 @@ function LoginPage() {
           <button onClick={handleLogin} disabled={submitting}
             className="group relative flex h-[50px] w-full items-center bg-[#21c45d] pl-6 pr-10 text-white shadow-[0_8px_30px_-8px_rgba(33,196,93,0.55)] transition-all duration-300 active:scale-[0.995] disabled:opacity-80"
             style={slantMobile}>
-            <LogIn className="mr-2.5 h-4 w-4" strokeWidth={1.8} />
+            <ArrowRightCircle className="mr-2.5 h-4 w-4" strokeWidth={1.8} />
             <span className="text-[13px] font-medium tracking-wide" style={{ fontFamily: "Montserrat, system-ui, sans-serif" }}>
               Sign in with Resolven ID
             </span>
