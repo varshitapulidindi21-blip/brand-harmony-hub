@@ -30,7 +30,7 @@ function LoginPage() {
   };
 
   const slant = { clipPath: "polygon(0 0, 100% 0, calc(100% - 44px) 100%, 0 100%)" } as const;
-  const slantMobile = { clipPath: "polygon(0 0, 100% 0, calc(100% - 28px) 100%, 0 100%)" } as const;
+  const slantMobile = { clipPath: "polygon(28px 0, 100% 0, calc(100% - 28px) 100%, 0 100%)" } as const;
 
   return (
     <div className="relative h-screen w-full overflow-hidden bg-[#2b1654]">
