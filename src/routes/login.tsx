@@ -78,14 +78,13 @@ function LoginPage() {
         }}
       />
 
-      {/* Green slanted accent bars — top right (both desktop & mobile) */}
+      {/* Green slanted accent blocks — top right */}
       <div
         aria-hidden
-        className="absolute right-4 top-4 sm:right-10 sm:top-10 flex flex-col gap-1 sm:gap-1.5 z-10"
+        className="absolute right-4 top-4 sm:right-12 sm:top-10 flex gap-2 sm:gap-3 z-10"
       >
-        <span className="block h-1.5 w-14 sm:h-2.5 sm:w-28 -skew-x-[28deg] bg-[#21c45d] shadow-[0_0_20px_rgba(33,196,93,0.55)]" />
-        <span className="block h-1.5 w-14 sm:h-2.5 sm:w-28 -skew-x-[28deg] bg-[#21c45d] shadow-[0_0_20px_rgba(33,196,93,0.55)]" />
-        <span className="block h-1.5 w-14 sm:h-2.5 sm:w-28 -skew-x-[28deg] bg-[#21c45d] shadow-[0_0_20px_rgba(33,196,93,0.55)]" />
+        <span className="block h-10 w-7 sm:h-20 sm:w-14 -skew-x-[22deg] bg-[#21c45d] shadow-[0_0_28px_rgba(33,196,93,0.55)]" />
+        <span className="block h-10 w-7 sm:h-20 sm:w-14 -skew-x-[22deg] bg-[#21c45d] shadow-[0_0_28px_rgba(33,196,93,0.55)]" />
       </div>
 
       {/* =================== DESKTOP =================== */}
