@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import { LogIn, Mail, ArrowRight, Lock } from "lucide-react";
+import { ArrowRightCircle, Mail, ArrowRight, Lock } from "lucide-react";
 import loginBg from "@/assets/login-bg-energy.png";
 import logo from "@/assets/resolven-logo.png";
 import { signIn } from "@/lib/auth";
@@ -30,7 +30,7 @@ function LoginPage() {
   };
 
   const slant = { clipPath: "polygon(0 0, 100% 0, calc(100% - 44px) 100%, 0 100%)" } as const;
-  const slantMobile = { clipPath: "polygon(0 0, 100% 0, calc(100% - 28px) 100%, 0 100%)" } as const;
+  const slantMobile = { clipPath: "polygon(28px 0, 100% 0, calc(100% - 28px) 100%, 0 100%)" } as const;
 
   return (
     <div className="relative h-screen w-full overflow-hidden bg-[#2b1654]">
@@ -78,14 +78,13 @@ function LoginPage() {
         }}
       />
 
-      {/* Green slanted accent bars — top right (both desktop & mobile) */}
+      {/* Green slanted accent blocks — top right */}
       <div
         aria-hidden
-        className="absolute right-4 top-4 sm:right-10 sm:top-10 flex flex-col gap-1 sm:gap-1.5 z-10"
+        className="absolute right-4 top-4 sm:right-12 sm:top-10 flex gap-2 sm:gap-3 z-10"
       >
-        <span className="block h-1.5 w-14 sm:h-2.5 sm:w-28 -skew-x-[28deg] bg-[#21c45d] shadow-[0_0_20px_rgba(33,196,93,0.55)]" />
-        <span className="block h-1.5 w-14 sm:h-2.5 sm:w-28 -skew-x-[28deg] bg-[#21c45d] shadow-[0_0_20px_rgba(33,196,93,0.55)]" />
-        <span className="block h-1.5 w-14 sm:h-2.5 sm:w-28 -skew-x-[28deg] bg-[#21c45d] shadow-[0_0_20px_rgba(33,196,93,0.55)]" />
+        <span className="block h-10 w-7 sm:h-20 sm:w-14 -skew-x-[22deg] bg-[#21c45d] shadow-[0_0_28px_rgba(33,196,93,0.55)]" />
+        <span className="block h-10 w-7 sm:h-20 sm:w-14 -skew-x-[22deg] bg-[#21c45d] shadow-[0_0_28px_rgba(33,196,93,0.55)]" />
       </div>
 
       {/* =================== DESKTOP =================== */}
@@ -96,7 +95,7 @@ function LoginPage() {
             className="animate-rise relative flex h-[120px] items-center bg-white pl-16 pr-20"
             style={slant}
           >
-            <img src={logo} alt="Resolven" className="h-16 w-auto" />
+            <img src={logo} alt="Resolven" className="h-24 w-auto" />
           </div>
 
           <div className="h-16" />
@@ -107,7 +106,7 @@ function LoginPage() {
             className="animate-rise group relative flex h-[68px] w-full items-center bg-[#21c45d] pl-16 pr-20 text-white shadow-[0_10px_40px_-10px_rgba(33,196,93,0.55)] transition-all duration-300 hover:brightness-110 active:scale-[0.995] disabled:opacity-80"
             style={slant}
           >
-            <LogIn className="mr-3 h-5 w-5" strokeWidth={1.8} />
+            <ArrowRightCircle className="mr-3 h-5 w-5" strokeWidth={1.8} />
             <span className="text-[17px] font-medium tracking-wide" style={{ fontFamily: "Montserrat, system-ui, sans-serif" }}>
               Sign in with Resolven ID
             </span>
@@ -172,7 +171,7 @@ function LoginPage() {
         <div className="w-full max-w-[360px] flex flex-col items-stretch animate-rise">
           {/* Logo panel — centered, not edge-attached */}
           <div className="relative flex h-[72px] items-center justify-start bg-white pl-6 pr-10 mx-auto w-full rounded-l-[2px]" style={slantMobile}>
-            <img src={logo} alt="Resolven" className="h-9 w-auto" />
+            <img src={logo} alt="Resolven" className="h-14 w-auto" />
           </div>
 
           <div className="h-5" />
@@ -180,7 +179,7 @@ function LoginPage() {
           <button onClick={handleLogin} disabled={submitting}
             className="group relative flex h-[50px] w-full items-center bg-[#21c45d] pl-6 pr-10 text-white shadow-[0_8px_30px_-8px_rgba(33,196,93,0.55)] transition-all duration-300 active:scale-[0.995] disabled:opacity-80"
             style={slantMobile}>
-            <LogIn className="mr-2.5 h-4 w-4" strokeWidth={1.8} />
+            <ArrowRightCircle className="mr-2.5 h-4 w-4" strokeWidth={1.8} />
             <span className="text-[13px] font-medium tracking-wide" style={{ fontFamily: "Montserrat, system-ui, sans-serif" }}>
               Sign in with Resolven ID
             </span>
