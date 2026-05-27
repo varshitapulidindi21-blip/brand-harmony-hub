@@ -171,7 +171,7 @@ function LoginPage() {
         <div className="w-full max-w-[360px] flex flex-col items-stretch animate-rise">
           {/* Logo panel — centered, not edge-attached */}
           <div className="relative flex h-[72px] items-center justify-start bg-white pl-6 pr-10 mx-auto w-full rounded-l-[2px]" style={slantMobile}>
-            <img src={logo} alt="Resolven" className="h-9 w-auto" />
+            <img src={logo} alt="Resolven" className="h-14 w-auto" />
           </div>
 
           <div className="h-5" />
