@@ -170,8 +170,8 @@ function LoginPage() {
       <div className="relative z-10 sm:hidden flex h-full w-full flex-col items-center justify-center px-5">
         <div className="w-full max-w-[360px] flex flex-col items-stretch animate-rise">
           {/* Logo panel — centered, not edge-attached */}
-          <div className="relative h-[72px] bg-white pl-6 pr-10 mx-auto w-full rounded-l-[2px] flex items-center justify-start" style={slantMobile}>
-            <img src={logo} alt="Resolven" className="h-14 w-auto object-fill text-right" />
+          <div className="relative h-[96px] bg-white pl-6 pr-12 mx-auto w-full rounded-l-[2px] flex items-center justify-center" style={slantMobile}>
+            <img src={logo} alt="Resolven" className="h-20 w-auto object-contain" />
           </div>
 
           <div className="h-5" />
