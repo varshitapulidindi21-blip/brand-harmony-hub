@@ -85,7 +85,7 @@ export function SparkleFab() {
       )}
 
       {open && !minimized && (
-        <div className="animate-rise fixed bottom-6 right-6 z-40 flex h-[520px] w-[360px] flex-col overflow-hidden rounded-2xl border border-border/70 bg-card/95 shadow-elev backdrop-blur-xl">
+        <div className="animate-rise fixed bottom-6 right-6 z-40 flex h-[440px] w-[300px] flex-col overflow-hidden rounded-2xl border border-border/70 bg-card/95 shadow-elev backdrop-blur-xl">
           <div
             className="flex items-center justify-between px-4 py-3 text-white"
             style={{
