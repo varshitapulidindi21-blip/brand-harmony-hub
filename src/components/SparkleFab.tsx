@@ -39,20 +39,9 @@ export function SparkleFab() {
       <Link
         to="/resolven-ai"
         aria-label="Open Resolven AI"
-        className="group fixed bottom-5 right-5 z-40 flex h-12 w-12 items-center justify-center rounded-2xl shadow-glow transition-all duration-500 active:scale-95 ring-1 ring-white/10"
-        style={{
-          background:
-            "linear-gradient(140deg, #0e0e12 0%, #1a1a22 55%, #232331 100%)",
-        }}
+        className="group fixed bottom-5 right-5 z-40 flex h-12 w-12 items-center justify-center rounded-2xl shadow-glow transition-all duration-500 active:scale-95 ring-1 ring-black/5"
+        style={{ background: "#C8B6D8" }}
       >
-        <span
-          aria-hidden
-          className="absolute inset-0 rounded-2xl opacity-60"
-          style={{
-            background:
-              "radial-gradient(120% 80% at 50% 0%, rgba(255,255,255,0.18), transparent 60%)",
-          }}
-        />
         <img src={aiLogo} alt="" className="relative h-7 w-7 object-contain" />
       </Link>
     );
@@ -66,21 +55,10 @@ export function SparkleFab() {
             setOpen(true);
             setMinimized(false);
           }}
-          className="group fixed bottom-6 right-6 z-40 flex h-12 w-12 items-center justify-center rounded-2xl shadow-glow ring-1 ring-white/10 transition-all duration-500 hover:scale-[1.06] hover:shadow-elev"
-          style={{
-            background:
-              "linear-gradient(140deg, #0e0e12 0%, #1a1a22 55%, #232331 100%)",
-          }}
+          className="group fixed bottom-6 right-6 z-40 flex h-12 w-12 items-center justify-center rounded-2xl shadow-glow ring-1 ring-black/5 transition-all duration-500 hover:scale-[1.06] hover:shadow-elev"
+          style={{ background: "#C8B6D8" }}
           aria-label="Open Resolven AI"
         >
-          <span
-            aria-hidden
-            className="absolute inset-0 rounded-2xl opacity-70"
-            style={{
-              background:
-                "radial-gradient(120% 80% at 50% 0%, rgba(255,255,255,0.22), transparent 60%)",
-            }}
-          />
           <span
             className="absolute -inset-0.5 rounded-2xl opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-70"
             style={{
