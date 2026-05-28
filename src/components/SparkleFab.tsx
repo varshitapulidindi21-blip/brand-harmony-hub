@@ -4,14 +4,12 @@ import { X, Minus, Maximize2, Send } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import aiLogo from "@/assets/resolven-ai-logo.png";
 
-// Premium dark glass tile for the colorful AI logo
+// Premium tile for the colorful AI logo
 function AiLogoTile({ size = "h-12 w-12", logoSize = "h-9 w-9", rounded = "rounded-2xl" }: { size?: string; logoSize?: string; rounded?: string }) {
   return (
     <span
-      className={`relative inline-flex shrink-0 items-center justify-center overflow-hidden ${size} ${rounded} ring-1 ring-white/10`}
+      className={`relative inline-flex shrink-0 items-center justify-center overflow-hidden bg-[#C8B6D8] dark:bg-[oklch(0.203_0.05_290)] ${size} ${rounded} ring-1 ring-white/10`}
       style={{
-        background:
-          "linear-gradient(140deg, #0e0e12 0%, #1a1a22 55%, #232331 100%)",
         boxShadow:
           "0 1px 0 rgba(255,255,255,0.08) inset, 0 10px 30px -12px rgba(0,0,0,0.55)",
       }}
@@ -39,8 +37,7 @@ export function SparkleFab() {
       <Link
         to="/resolven-ai"
         aria-label="Open Resolven AI"
-        className="group fixed bottom-5 right-5 z-40 flex h-12 w-12 items-center justify-center rounded-2xl shadow-glow transition-all duration-500 active:scale-95 ring-1 ring-black/5"
-        style={{ background: "#C8B6D8" }}
+        className="group fixed bottom-5 right-5 z-40 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#C8B6D8] shadow-glow ring-1 ring-black/5 transition-all duration-500 active:scale-95 dark:bg-[oklch(0.203_0.05_290)]"
       >
         <img src={aiLogo} alt="" className="relative h-7 w-7 object-contain" />
       </Link>
@@ -55,8 +52,7 @@ export function SparkleFab() {
             setOpen(true);
             setMinimized(false);
           }}
-          className="group fixed bottom-6 right-6 z-40 flex h-12 w-12 items-center justify-center rounded-2xl shadow-glow ring-1 ring-black/5 transition-all duration-500 hover:scale-[1.06] hover:shadow-elev"
-          style={{ background: "#C8B6D8" }}
+          className="group fixed bottom-6 right-6 z-40 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#C8B6D8] shadow-glow ring-1 ring-black/5 transition-all duration-500 hover:scale-[1.06] hover:shadow-elev dark:bg-[oklch(0.203_0.05_290)]"
           aria-label="Open Resolven AI"
         >
           <span
