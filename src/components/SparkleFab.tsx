@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { X, Minus, Maximize2, Paperclip, Send } from "lucide-react";
+import { X, Minus, Maximize2, Send } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import aiLogo from "@/assets/resolven-ai-logo.png";
 
@@ -154,12 +154,6 @@ export function SparkleFab() {
 
           <div className="border-t border-border/60 p-3">
             <div className="flex items-center gap-1.5 rounded-full border border-border/70 bg-background/80 px-2 py-1.5 shadow-soft focus-within:border-primary/40">
-              <button
-                aria-label="Attach files"
-                className="flex h-8 w-8 items-center justify-center rounded-full text-primary transition hover:bg-secondary"
-              >
-                <Paperclip className="h-4 w-4" strokeWidth={1.6} />
-              </button>
               <input
                 className="flex-1 bg-transparent px-1 text-sm font-light text-foreground placeholder:text-muted-foreground focus:outline-none"
                 placeholder="Ask Resolven AI…"
