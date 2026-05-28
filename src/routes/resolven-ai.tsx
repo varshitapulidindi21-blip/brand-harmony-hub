@@ -74,27 +74,44 @@ function AIPage() {
 
       <header className="sticky top-0 z-30 w-full border-b border-border/50 bg-background/60 backdrop-blur-xl supports-[backdrop-filter]:bg-background/45">
         <div className="mx-auto flex h-14 sm:h-16 w-full max-w-[1400px] items-center px-2 sm:px-4">
-          {/* Logo ↔ hamburger swap (desktop). Tap-only on mobile triggers mobile sidebar. */}
-          <button
-            onClick={() => {
-              // Mobile: open overlay. Desktop: toggle expand.
-              if (typeof window !== "undefined" && window.matchMedia("(min-width: 768px)").matches) {
-                setSidebarExpanded((v) => !v);
-                setPopup(null);
-              } else {
-                setMobileSidebarOpen(true);
-              }
-            }}
-            aria-label="Toggle menu"
-            className="ai-nav-swap relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-colors hover:bg-secondary/60"
-          >
-            <img
-              src={aiLogo}
-              alt="Resolven AI"
-              className="ai-nav-logo absolute h-7 w-7 object-contain"
-            />
-            <Menu className="ai-nav-bars absolute h-[1.2rem] w-[1.2rem] text-foreground/85" strokeWidth={1.9} />
-          </button>
+          {/* Sidebar toggle: collapsed → logo with hover→hamburger swap; expanded → logo left + hamburger right */}
+          {sidebarExpanded ? (
+            <div className="flex w-[260px] shrink-0 items-center justify-between pr-2">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl">
+                <img src={aiLogo} alt="Resolven AI" className="h-7 w-7 object-contain" />
+              </span>
+              <button
+                onClick={() => {
+                  if (typeof window !== "undefined" && window.matchMedia("(min-width: 768px)").matches) {
+                    setSidebarExpanded(false);
+                    setPopup(null);
+                  } else {
+                    setMobileSidebarOpen(false);
+                  }
+                }}
+                aria-label="Collapse sidebar"
+                className="flex h-10 w-10 items-center justify-center rounded-xl text-foreground/85 transition-colors hover:bg-secondary/60"
+              >
+                <Menu className="h-[1.2rem] w-[1.2rem]" strokeWidth={1.9} />
+              </button>
+            </div>
+          ) : (
+            <button
+              onClick={() => {
+                if (typeof window !== "undefined" && window.matchMedia("(min-width: 768px)").matches) {
+                  setSidebarExpanded(true);
+                  setPopup(null);
+                } else {
+                  setMobileSidebarOpen(true);
+                }
+              }}
+              aria-label="Open sidebar"
+              className="ai-nav-swap relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-colors hover:bg-secondary/60"
+            >
+              <img src={aiLogo} alt="Resolven AI" className="ai-nav-logo absolute h-7 w-7 object-contain" />
+              <Menu className="ai-nav-bars absolute h-[1.2rem] w-[1.2rem] text-foreground/85" strokeWidth={1.9} />
+            </button>
+          )}
 
           <div className="ml-auto flex items-center gap-1">
             <ThemeToggle />
