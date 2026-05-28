@@ -39,7 +39,7 @@ export function SparkleFab() {
       <Link
         to="/resolven-ai"
         aria-label="Open Resolven AI"
-        className="group fixed bottom-5 right-5 z-40 flex h-[3.5rem] w-[3.5rem] items-center justify-center rounded-2xl shadow-glow transition-all duration-500 active:scale-95 ring-1 ring-white/10"
+        className="group fixed bottom-5 right-5 z-40 flex h-12 w-12 items-center justify-center rounded-2xl shadow-glow transition-all duration-500 active:scale-95 ring-1 ring-white/10"
         style={{
           background:
             "linear-gradient(140deg, #0e0e12 0%, #1a1a22 55%, #232331 100%)",
