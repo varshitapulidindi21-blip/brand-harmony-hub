@@ -29,7 +29,8 @@ const selfService = [
   { icon: FilePlus, title: "Raise IT Ticket", subtitle: "Report issue, request service or view history", tone: "lavender" as const },
   { icon: FileText, title: "Policies", subtitle: "Browse all published policies across departments", tone: "green-light" as const },
   { icon: HeartPulse, title: "Medical & Benefits", subtitle: "Insurance, wellness, reimbursement claims", tone: "grey" as const },
-  { icon: Plane, title: "Travel Request", subtitle: "Raise domestic + international travel", tone: "purple" as const },
+  { icon: Plane, title: "Travel Request", subtitle: "Raise domestic + international travel", tone: "purple" as const, to: "/travel-request" },
+
   { icon: Receipt, title: "Expense Claims", subtitle: "Submit + track reimbursement claims", tone: "green" as const },
   { icon: Sparkles, title: "Idea", subtitle: "Share ideas, track reviews + outcomes", tone: "lavender" as const },
 ];
