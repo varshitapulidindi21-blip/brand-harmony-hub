@@ -4,9 +4,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   LayoutDashboard, ClipboardList, PlusCircle, Inbox, ShieldCheck, ScrollText,
   Plane, Hotel, Wallet, Paperclip, FileCheck2, Trash2, Pencil, Plus,
-  Calendar, Clock, MapPin, Search, ChevronRight, Home, X, Save, Send,
+  Calendar, Clock, MapPin, Search, ArrowLeft, X, Save, Send,
 } from "lucide-react";
-import { TopBar } from "@/components/TopBar";
 import { SparkleFab } from "@/components/SparkleFab";
 import { cn } from "@/lib/utils";
 
@@ -36,9 +35,7 @@ function TravelRequestPage() {
 
   return (
     <div className="min-h-screen">
-      <TopBar />
       <main className="mx-auto w-full max-w-[1400px] space-y-5 px-4 py-5 sm:space-y-7 sm:px-6 sm:py-8">
-        <Breadcrumbs />
         <BrandedHero />
         <TabBar tab={tab} onChange={setTab} />
 
@@ -58,45 +55,28 @@ function TravelRequestPage() {
 
 /* ---------- Shared chrome ---------- */
 
-function Breadcrumbs() {
-  return (
-    <nav className="flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground">
-      <Link to="/" className="inline-flex items-center gap-1.5 hover:text-foreground transition-colors">
-        <Home className="h-3.5 w-3.5" /> Home
-      </Link>
-      <ChevronRight className="h-3 w-3 opacity-60" />
-      <span className="text-foreground">Travel Requests</span>
-    </nav>
-  );
-}
-
 function BrandedHero() {
   return (
     <section
-      className="relative overflow-hidden rounded-2xl sm:rounded-[1.4rem] border border-border/60 shadow-elev"
-      style={{
-        background:
-          "linear-gradient(120deg, oklch(0.32 0.17 295) 0%, oklch(0.38 0.18 295) 38%, oklch(0.42 0.12 240) 70%, oklch(0.55 0.16 158) 100%)",
-      }}
+      className="travel-hero relative overflow-hidden rounded-2xl border border-border/60 shadow-elev sm:rounded-[1.4rem]"
     >
-      {/* soft glass overlay */}
-      <div className="absolute inset-0 opacity-60 mix-blend-screen pointer-events-none"
-        style={{ backgroundImage: "radial-gradient(600px 220px at 12% 0%, oklch(1 0 0 / 0.18), transparent 60%), radial-gradient(500px 240px at 100% 100%, oklch(0.682 0.180 148 / 0.30), transparent 60%)" }} />
-      <div className="relative flex flex-col gap-4 px-5 py-6 sm:flex-row sm:items-center sm:justify-between sm:px-8 sm:py-8">
-        <div className="min-w-0">
-          <div className="text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.28em] text-white/75">
-            Resolven · Employee Self-Service
-          </div>
-          <h1 className="mt-1.5 text-2xl sm:text-3xl md:text-[2.1rem] text-white">
-            Travel Requests
-          </h1>
-          <p className="mt-1.5 max-w-xl text-[12px] sm:text-sm font-light text-white/80">
-            Raise, route and track domestic and international travel with policy-aware approvals.
-          </p>
-        </div>
-        <div className="flex shrink-0 items-center gap-2">
-          <div className="hidden sm:flex h-12 w-12 items-center justify-center rounded-2xl bg-white/12 ring-1 ring-white/20 backdrop-blur">
-            <Plane className="h-5 w-5 text-white" strokeWidth={1.75} />
+      <div className="travel-hero-atmosphere pointer-events-none absolute inset-0 mix-blend-screen" />
+      <div className="relative flex min-h-[168px] items-center px-5 py-8 sm:min-h-[190px] sm:px-8 sm:py-10">
+        <div className="flex min-w-0 max-w-2xl items-start gap-3 sm:gap-4">
+          <Link
+            to="/"
+            aria-label="Back to home"
+            className="mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-[1.05rem] bg-white/16 text-[#3DB769] ring-1 ring-white/20 backdrop-blur-md transition-all duration-300 hover:-translate-x-0.5 hover:bg-white/22 hover:ring-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3DB769]/70"
+          >
+            <ArrowLeft className="h-[17px] w-[17px]" strokeWidth={2.15} />
+          </Link>
+          <div className="min-w-0">
+            <h1 className="text-3xl text-white sm:text-4xl md:text-[2.7rem]">
+              Travel Requests
+            </h1>
+            <p className="mt-3 max-w-xl text-sm font-light leading-relaxed text-white/80 sm:text-base">
+              Raise, route and track domestic and international travel with policy-aware approvals.
+            </p>
           </div>
         </div>
       </div>
@@ -107,7 +87,7 @@ function BrandedHero() {
 function TabBar({ tab, onChange }: { tab: TabKey; onChange: (t: TabKey) => void }) {
   return (
     <div className="surface rounded-2xl p-1.5 sm:p-2 overflow-x-auto scrollbar-hide">
-      <div className="flex gap-1 min-w-max sm:min-w-0 sm:justify-start">
+      <div className="flex min-w-max gap-1 md:grid md:min-w-0 md:grid-cols-6">
         {TABS.map(({ key, label, icon: Icon }) => {
           const active = tab === key;
           return (
@@ -116,6 +96,7 @@ function TabBar({ tab, onChange }: { tab: TabKey; onChange: (t: TabKey) => void 
               onClick={() => onChange(key)}
               className={cn(
                 "group relative inline-flex items-center gap-2 rounded-xl px-3.5 py-2.5 text-[12.5px] sm:text-sm font-medium whitespace-nowrap transition-all duration-300",
+                "md:w-full md:justify-center",
                 active
                   ? "bg-primary text-primary-foreground shadow-soft"
                   : "text-muted-foreground hover:text-foreground hover:bg-secondary/60",
@@ -168,13 +149,16 @@ function Field({ label, hint, children, required }: { label: string; hint?: stri
 
 const inputClass =
   "w-full rounded-xl border border-border/70 bg-card/60 px-3.5 py-2.5 text-sm font-light text-foreground placeholder:text-muted-foreground/70 shadow-soft transition-all duration-200 focus:border-primary/50 focus:bg-card focus:outline-none focus:ring-2 focus:ring-primary/20 backdrop-blur";
+const selectClass = cn(inputClass, "travel-select");
+const dateClass = cn(inputClass, "travel-date pr-14");
+const timeClass = cn(inputClass, "travel-time pr-14");
 
 /* ---------- Dashboard ---------- */
 
 function DashboardTab({ onNew }: { onNew: () => void }) {
   const stats = [
     { label: "All Requests",      value: 0, icon: Plane },
-    { label: "Awaiting My Approval", value: 0, icon: Inbox, accent: true },
+    { label: "Awaiting My Approval", value: 0, icon: Inbox, accent: false },
     { label: "Pending Approval",  value: 0, icon: MapPin },
     { label: "Approved + Completed", value: 0, icon: FileCheck2 },
   ];
@@ -253,8 +237,8 @@ function MyRequestsTab() {
       </div>
 
       <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
-        <select className={inputClass}><option>All statuses</option><option>Pending</option><option>Approved</option><option>Rejected</option></select>
-        <select className={inputClass}><option>All types</option><option>Domestic</option><option>International</option></select>
+        <select className={selectClass}><option>All statuses</option><option>Pending</option><option>Approved</option><option>Rejected</option></select>
+        <select className={selectClass}><option>All types</option><option>Domestic</option><option>International</option></select>
       </div>
 
       <div className="mt-5">
@@ -309,7 +293,7 @@ function NewRequestTab({ onCancel }: { onCancel: () => void }) {
 
       {/* Inner section nav */}
       <div className="surface rounded-2xl p-1.5 overflow-x-auto scrollbar-hide">
-        <div className="flex gap-1 min-w-max">
+        <div className="flex min-w-max gap-1 lg:grid lg:min-w-0 lg:grid-cols-5">
           {sections.map(({ key, label, icon: Icon }) => {
             const active = section === key;
             return (
@@ -317,11 +301,11 @@ function NewRequestTab({ onCancel }: { onCancel: () => void }) {
                 key={key}
                 onClick={() => setSection(key)}
                 className={cn(
-                  "inline-flex items-center gap-2 rounded-xl px-3.5 py-2 text-[12.5px] font-medium whitespace-nowrap transition",
+                  "inline-flex items-center gap-2 rounded-xl px-3.5 py-2 text-[12.5px] font-medium whitespace-nowrap transition lg:w-full lg:justify-center",
                   active ? "bg-accent text-accent-foreground shadow-soft" : "text-muted-foreground hover:bg-secondary/60 hover:text-foreground",
                 )}
               >
-                <Icon className="h-4 w-4" /> {label}
+                <Icon className={cn("h-4 w-4", key === "files" && "text-primary")} /> {label}
               </button>
             );
           })}
@@ -332,10 +316,10 @@ function NewRequestTab({ onCancel }: { onCancel: () => void }) {
         <>
           <Card>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <Field label="Travel type"><select className={inputClass}><option>Domestic</option><option>International</option></select></Field>
-              <Field label="Mode"><select className={inputClass}><option>Air</option><option>Rail</option><option>Road</option></select></Field>
-              <Field label="Priority"><select className={inputClass}><option>Normal</option><option>Urgent</option><option>Emergency</option></select></Field>
-              <Field label="Air class"><select className={inputClass}><option>Economy</option><option>Premium Economy</option><option>Business</option></select></Field>
+              <Field label="Travel type"><select className={selectClass}><option>Domestic</option><option>International</option></select></Field>
+              <Field label="Mode"><select className={selectClass}><option>Air</option><option>Rail</option><option>Road</option></select></Field>
+              <Field label="Priority"><select className={selectClass}><option>Normal</option><option>Urgent</option><option>Emergency</option></select></Field>
+              <Field label="Air class"><select className={selectClass}><option>Economy</option><option>Premium Economy</option><option>Business</option></select></Field>
             </div>
             <div className="mt-4">
               <Field label="Travel purpose" required>
@@ -350,7 +334,7 @@ function NewRequestTab({ onCancel }: { onCancel: () => void }) {
                 <h3 className="text-base sm:text-lg text-foreground">Travel legs</h3>
                 <p className="mt-0.5 text-[11.5px] font-light text-muted-foreground">Multi-city trips: add a leg per hop. Returns can be entered as the last leg or via Return date.</p>
               </div>
-              <button onClick={addLeg} className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-border bg-card/80 px-3.5 py-2 text-[11.5px] font-medium uppercase tracking-[0.14em] text-foreground shadow-soft transition hover:border-primary/40 hover:shadow-elev">
+              <button onClick={addLeg} className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-primary px-3.5 py-2 text-[11.5px] font-medium uppercase tracking-[0.14em] text-white shadow-soft transition hover:bg-primary/90 hover:shadow-elev">
                 <Plus className="h-3.5 w-3.5" /> Add leg
               </button>
             </div>
@@ -359,7 +343,7 @@ function NewRequestTab({ onCancel }: { onCancel: () => void }) {
               {legs.map((leg, i) => (
                 <div key={leg.id} className="relative rounded-2xl border border-border/70 bg-card/60 p-4 sm:p-5 shadow-soft backdrop-blur">
                   <div className="mb-3 flex items-center justify-between">
-                    <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-[10.5px] font-medium uppercase tracking-[0.16em] text-primary">
+                    <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-[10.5px] font-medium uppercase tracking-[0.16em] text-white ring-1 ring-white/15">
                       <Plane className="h-3.5 w-3.5" /> Leg {i + 1}
                     </span>
                     {legs.length > 1 && (
@@ -374,26 +358,26 @@ function NewRequestTab({ onCancel }: { onCancel: () => void }) {
                     <Field label="To"><input className={inputClass} value={leg.to} onChange={(e) => updateLeg(leg.id, { to: e.target.value })} placeholder="Bengaluru" /></Field>
                     <Field label="Departure date">
                       <div className="relative">
-                        <input type="date" className={cn(inputClass, "pr-10")} value={leg.departDate} onChange={(e) => updateLeg(leg.id, { departDate: e.target.value })} />
-                        <Calendar className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                        <input type="date" className={dateClass} value={leg.departDate} onChange={(e) => updateLeg(leg.id, { departDate: e.target.value })} />
+                        <Calendar className="pointer-events-none absolute right-[1.15rem] top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground dark:text-white/85" />
                       </div>
                     </Field>
                     <Field label="Preferred departure time">
                       <div className="relative">
-                        <input type="time" className={cn(inputClass, "pr-10")} value={leg.departTime} onChange={(e) => updateLeg(leg.id, { departTime: e.target.value })} />
-                        <Clock className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                        <input type="time" className={timeClass} value={leg.departTime} onChange={(e) => updateLeg(leg.id, { departTime: e.target.value })} />
+                        <Clock className="pointer-events-none absolute right-[1.15rem] top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground dark:text-white/85" />
                       </div>
                     </Field>
                     <Field label="Return date (optional)">
                       <div className="relative">
-                        <input type="date" className={cn(inputClass, "pr-10")} value={leg.returnDate} onChange={(e) => updateLeg(leg.id, { returnDate: e.target.value })} />
-                        <Calendar className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                        <input type="date" className={dateClass} value={leg.returnDate} onChange={(e) => updateLeg(leg.id, { returnDate: e.target.value })} />
+                        <Calendar className="pointer-events-none absolute right-[1.15rem] top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground dark:text-white/85" />
                       </div>
                     </Field>
                     <Field label="Preferred return time">
                       <div className="relative">
-                        <input type="time" className={cn(inputClass, "pr-10")} value={leg.returnTime} onChange={(e) => updateLeg(leg.id, { returnTime: e.target.value })} />
-                        <Clock className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                        <input type="time" className={timeClass} value={leg.returnTime} onChange={(e) => updateLeg(leg.id, { returnTime: e.target.value })} />
+                        <Clock className="pointer-events-none absolute right-[1.15rem] top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground dark:text-white/85" />
                       </div>
                     </Field>
                     <Field label="Preferred airline"><input className={inputClass} value={leg.airline} onChange={(e) => updateLeg(leg.id, { airline: e.target.value })} placeholder="Indigo" /></Field>
@@ -410,9 +394,19 @@ function NewRequestTab({ onCancel }: { onCancel: () => void }) {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <Field label="City"><input className={inputClass} placeholder="Bengaluru" /></Field>
             <Field label="Hotel preference"><input className={inputClass} placeholder="Any 4-star" /></Field>
-            <Field label="Check-in"><input type="date" className={inputClass} /></Field>
-            <Field label="Check-out"><input type="date" className={inputClass} /></Field>
-            <Field label="Room type"><select className={inputClass}><option>Standard</option><option>Deluxe</option><option>Suite</option></select></Field>
+            <Field label="Check-in">
+              <div className="relative">
+                <input type="date" className={dateClass} />
+                <Calendar className="pointer-events-none absolute right-[1.15rem] top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground dark:text-white/85" />
+              </div>
+            </Field>
+            <Field label="Check-out">
+              <div className="relative">
+                <input type="date" className={dateClass} />
+                <Calendar className="pointer-events-none absolute right-[1.15rem] top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground dark:text-white/85" />
+              </div>
+            </Field>
+            <Field label="Room type"><select className={selectClass}><option>Standard</option><option>Deluxe</option><option>Suite</option></select></Field>
             <Field label="Nightly budget (₹)"><input type="number" className={inputClass} placeholder="6000" /></Field>
           </div>
         </Card>
@@ -423,8 +417,8 @@ function NewRequestTab({ onCancel }: { onCancel: () => void }) {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <Field label="Estimated cost (₹)"><input type="number" className={inputClass} placeholder="45000" /></Field>
             <Field label="Advance required (₹)"><input type="number" className={inputClass} placeholder="0" /></Field>
-            <Field label="Currency"><select className={inputClass}><option>INR</option><option>USD</option><option>EUR</option></select></Field>
-            <Field label="Cost category"><select className={inputClass}><option>Project travel</option><option>Training</option><option>Sales</option></select></Field>
+            <Field label="Currency"><select className={selectClass}><option>INR</option><option>USD</option><option>EUR</option></select></Field>
+            <Field label="Cost category"><select className={selectClass}><option>Project travel</option><option>Training</option><option>Sales</option></select></Field>
           </div>
         </Card>
       )}
@@ -432,7 +426,7 @@ function NewRequestTab({ onCancel }: { onCancel: () => void }) {
       {section === "files" && (
         <Card>
           <div className="rounded-2xl border border-dashed border-border/80 bg-card/50 p-8 text-center">
-            <Paperclip className="mx-auto h-6 w-6 text-muted-foreground" />
+            <Paperclip className="mx-auto h-6 w-6 text-primary" />
             <p className="mt-2 text-sm font-medium text-foreground">Drop files or click to upload</p>
             <p className="mt-0.5 text-[11.5px] font-light text-muted-foreground">Invitations, agendas, quotes — PDF, PNG, JPG up to 10MB.</p>
           </div>
@@ -545,10 +539,10 @@ function ApprovalRulesTab() {
         <p className="mt-0.5 text-[11.5px] font-light text-muted-foreground">Define an approval level with optional travel/urgency/cost gates.</p>
         <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
           <Field label="Name"><input className={inputClass} placeholder="Rule name" /></Field>
-          <Field label="Travel type"><select className={inputClass}><option>Any</option><option>Domestic</option><option>International</option></select></Field>
-          <Field label="Urgency"><select className={inputClass}><option>Any</option><option>Normal</option><option>Urgent</option><option>Emergency</option></select></Field>
+          <Field label="Travel type"><select className={selectClass}><option>Any</option><option>Domestic</option><option>International</option></select></Field>
+          <Field label="Urgency"><select className={selectClass}><option>Any</option><option>Normal</option><option>Urgent</option><option>Emergency</option></select></Field>
           <Field label="Min cost (₹)"><input className={inputClass} placeholder="—" /></Field>
-          <Field label="Approver"><select className={inputClass}><option>Select approver</option><option>TRAVEL_MANAGER</option><option>TRAVEL_FINANCE</option><option>TRAVEL_CXO</option></select></Field>
+          <Field label="Approver"><select className={selectClass}><option>Select approver</option><option>TRAVEL_MANAGER</option><option>TRAVEL_FINANCE</option><option>TRAVEL_CXO</option></select></Field>
           <Field label="Level"><input type="number" min={1} max={5} defaultValue={1} className={inputClass} /></Field>
         </div>
         <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-6">
@@ -605,7 +599,7 @@ function AuditLogTab() {
   return (
     <Card>
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <select value={type} onChange={(e) => setType(e.target.value)} className={cn(inputClass, "sm:max-w-md")}>
+        <select value={type} onChange={(e) => setType(e.target.value)} className={cn(selectClass, "sm:max-w-md")}>
           <option value="all">All event types</option>
           <option>Created</option><option>Approved</option><option>Rejected</option><option>Edited</option>
         </select>

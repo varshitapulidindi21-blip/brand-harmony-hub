@@ -210,6 +210,80 @@
   .shadow-elev { box-shadow: var(--shadow-elev); }
   .shadow-glow { box-shadow: var(--shadow-glow); }
 
+  .travel-hero {
+    background:
+      radial-gradient(900px 420px at 8% 10%,
+        oklch(0.47 0.168 296 / 0.74), transparent 58%),
+      radial-gradient(780px 360px at 54% 16%,
+        oklch(0.39 0.120 283 / 0.56), transparent 64%),
+      radial-gradient(780px 430px at 96% 82%,
+        oklch(0.55 0.132 154 / 0.40), transparent 70%),
+      linear-gradient(126deg,
+        oklch(0.30 0.136 294) 0%,
+        oklch(0.31 0.126 288) 38%,
+        oklch(0.32 0.096 276) 70%,
+        oklch(0.38 0.100 168) 100%);
+  }
+
+  .dark .travel-hero {
+    background:
+      radial-gradient(880px 420px at 10% 6%,
+        oklch(0.33 0.132 296 / 0.52), transparent 62%),
+      radial-gradient(760px 360px at 56% 18%,
+        oklch(0.27 0.088 282 / 0.48), transparent 67%),
+      radial-gradient(760px 430px at 94% 88%,
+        oklch(0.34 0.090 156 / 0.34), transparent 70%),
+      linear-gradient(126deg,
+        oklch(0.15 0.064 294) 0%,
+        oklch(0.16 0.058 288) 40%,
+        oklch(0.17 0.048 276) 72%,
+        oklch(0.19 0.052 168) 100%);
+  }
+
+  .travel-hero-atmosphere {
+    opacity: 0.68;
+    background:
+      radial-gradient(740px 280px at 14% 0%,
+        oklch(1 0 0 / 0.17), transparent 64%),
+      radial-gradient(560px 250px at 72% 18%,
+        oklch(0.56 0.110 286 / 0.18), transparent 72%),
+      radial-gradient(640px 300px at 92% 92%,
+        oklch(0.682 0.180 148 / 0.16), transparent 72%);
+  }
+
+  .dark .travel-hero-atmosphere {
+    opacity: 0.42;
+  }
+
+  .travel-select {
+    appearance: none;
+    -webkit-appearance: none;
+    padding-right: 3.25rem;
+    background-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m7 10 5 5 5-5' stroke='%236f687a' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-position: right 1.15rem center;
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .dark .travel-select {
+    background-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m7 10 5 5 5-5' stroke='%23f7f4ff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+
+  .travel-date,
+  .travel-time {
+    color-scheme: light;
+  }
+
+  .dark .travel-date,
+  .dark .travel-time {
+    color-scheme: dark;
+  }
+
+  .travel-date::-webkit-calendar-picker-indicator,
+  .travel-time::-webkit-calendar-picker-indicator {
+    opacity: 0;
+  }
+
   /* Flat tinted icon tile */
   .tile {
     display: inline-flex; align-items: center; justify-content: center;
