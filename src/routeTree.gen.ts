@@ -9,11 +9,17 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TravelRequestRouteImport } from './routes/travel-request'
 import { Route as ResolvenAiRouteImport } from './routes/resolven-ai'
 import { Route as ModulesRouteImport } from './routes/modules'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TravelRequestRoute = TravelRequestRouteImport.update({
+  id: '/travel-request',
+  path: '/travel-request',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResolvenAiRoute = ResolvenAiRouteImport.update({
   id: '/resolven-ai',
   path: '/resolven-ai',
@@ -40,12 +46,14 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/modules': typeof ModulesRoute
   '/resolven-ai': typeof ResolvenAiRoute
+  '/travel-request': typeof TravelRequestRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/modules': typeof ModulesRoute
   '/resolven-ai': typeof ResolvenAiRoute
+  '/travel-request': typeof TravelRequestRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,13 +61,20 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/modules': typeof ModulesRoute
   '/resolven-ai': typeof ResolvenAiRoute
+  '/travel-request': typeof TravelRequestRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/modules' | '/resolven-ai'
+  fullPaths: '/' | '/login' | '/modules' | '/resolven-ai' | '/travel-request'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/modules' | '/resolven-ai'
-  id: '__root__' | '/' | '/login' | '/modules' | '/resolven-ai'
+  to: '/' | '/login' | '/modules' | '/resolven-ai' | '/travel-request'
+  id:
+    | '__root__'
+    | '/'
+    | '/login'
+    | '/modules'
+    | '/resolven-ai'
+    | '/travel-request'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -67,10 +82,18 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   ModulesRoute: typeof ModulesRoute
   ResolvenAiRoute: typeof ResolvenAiRoute
+  TravelRequestRoute: typeof TravelRequestRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/travel-request': {
+      id: '/travel-request'
+      path: '/travel-request'
+      fullPath: '/travel-request'
+      preLoaderRoute: typeof TravelRequestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/resolven-ai': {
       id: '/resolven-ai'
       path: '/resolven-ai'
@@ -107,6 +130,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   ModulesRoute: ModulesRoute,
   ResolvenAiRoute: ResolvenAiRoute,
+  TravelRequestRoute: TravelRequestRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
