@@ -13,6 +13,7 @@ import { Route as TravelRequestRouteImport } from './routes/travel-request'
 import { Route as ResolvenAiRouteImport } from './routes/resolven-ai'
 import { Route as ModulesRouteImport } from './routes/modules'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as ExpenseClaimsRouteImport } from './routes/expense-claims'
 import { Route as IndexRouteImport } from './routes/index'
 
 const TravelRequestRoute = TravelRequestRouteImport.update({
@@ -35,6 +36,11 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ExpenseClaimsRoute = ExpenseClaimsRouteImport.update({
+  id: '/expense-claims',
+  path: '/expense-claims',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -43,6 +49,7 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/expense-claims': typeof ExpenseClaimsRoute
   '/login': typeof LoginRoute
   '/modules': typeof ModulesRoute
   '/resolven-ai': typeof ResolvenAiRoute
@@ -50,6 +57,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/expense-claims': typeof ExpenseClaimsRoute
   '/login': typeof LoginRoute
   '/modules': typeof ModulesRoute
   '/resolven-ai': typeof ResolvenAiRoute
@@ -58,6 +66,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/expense-claims': typeof ExpenseClaimsRoute
   '/login': typeof LoginRoute
   '/modules': typeof ModulesRoute
   '/resolven-ai': typeof ResolvenAiRoute
@@ -65,12 +74,25 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/modules' | '/resolven-ai' | '/travel-request'
+  fullPaths:
+    | '/'
+    | '/expense-claims'
+    | '/login'
+    | '/modules'
+    | '/resolven-ai'
+    | '/travel-request'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/modules' | '/resolven-ai' | '/travel-request'
+  to:
+    | '/'
+    | '/expense-claims'
+    | '/login'
+    | '/modules'
+    | '/resolven-ai'
+    | '/travel-request'
   id:
     | '__root__'
     | '/'
+    | '/expense-claims'
     | '/login'
     | '/modules'
     | '/resolven-ai'
@@ -79,6 +101,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ExpenseClaimsRoute: typeof ExpenseClaimsRoute
   LoginRoute: typeof LoginRoute
   ModulesRoute: typeof ModulesRoute
   ResolvenAiRoute: typeof ResolvenAiRoute
@@ -115,6 +138,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/expense-claims': {
+      id: '/expense-claims'
+      path: '/expense-claims'
+      fullPath: '/expense-claims'
+      preLoaderRoute: typeof ExpenseClaimsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -127,6 +157,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ExpenseClaimsRoute: ExpenseClaimsRoute,
   LoginRoute: LoginRoute,
   ModulesRoute: ModulesRoute,
   ResolvenAiRoute: ResolvenAiRoute,
@@ -135,13 +166,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
