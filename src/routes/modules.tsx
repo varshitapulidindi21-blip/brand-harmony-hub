@@ -26,7 +26,7 @@ const personal = [
   { icon: HeartPulse, title: "Medical & Benefits", subtitle: "Insurance, wellness, reimbursement claims", tone: "grey" as const },
  { icon: Plane, title: "Travel Request", subtitle: "Raise domestic + international travel requests", tone: "purple" as const, to: "/travel-request" },
 
-  { icon: Receipt, title: "Expense Claims", subtitle: "Submit + track reimbursement claims", tone: "green" as const },
+  { icon: Receipt, title: "Expense Claims", subtitle: "Submit + track reimbursement claims", tone: "green" as const, to: "/expense-claims" },
   { icon: Sparkles, title: "Idea", subtitle: "Share ideas, track reviews + outcomes", tone: "lavender" as const },
 ];
 
