@@ -4,7 +4,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   LayoutDashboard, ClipboardList, PlusCircle, Inbox, ShieldCheck, ScrollText,
   Plane, Hotel, Wallet, Paperclip, FileCheck2, Trash2, Pencil, Plus,
-  Calendar, Clock, MapPin, Search, ArrowLeft, X, Save, Send,
+  Calendar, Clock, MapPin, Search, X, Save, Send,
   Home, Moon, Sun, BadgeCheck,
 } from "lucide-react";
 import { SparkleFab } from "@/components/SparkleFab";
