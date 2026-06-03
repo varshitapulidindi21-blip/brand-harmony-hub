@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   LayoutDashboard, ClipboardList, PlusCircle, Inbox, ShieldCheck, ScrollText,
   Plane, Hotel, Wallet, Paperclip, FileCheck2, Trash2, Pencil, Plus,
-  Calendar, Clock, MapPin, Search, ArrowLeft, X, Save, Send,
+  Calendar, Clock, MapPin, Search, X, Save, Send,
+  Home, Moon, Sun, BadgeCheck,
 } from "lucide-react";
 import { SparkleFab } from "@/components/SparkleFab";
 import { cn } from "@/lib/utils";
@@ -19,15 +20,16 @@ export const Route = createFileRoute("/travel-request")({
   component: TravelRequestPage,
 });
 
-type TabKey = "dashboard" | "my" | "new" | "queue" | "rules" | "audit";
+type TabKey = "dashboard" | "my" | "new" | "queue" | "rules" | "audit" | "entitlement";
 
 const TABS: { key: TabKey; label: string; icon: React.ComponentType<{ className?: string }> }[] = [
-  { key: "dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { key: "my",        label: "My Requests", icon: ClipboardList },
-  { key: "new",       label: "New Request", icon: PlusCircle },
-  { key: "queue",     label: "Approval Queue", icon: Inbox },
-  { key: "rules",     label: "Approval Rules", icon: ShieldCheck },
-  { key: "audit",     label: "Audit Log", icon: ScrollText },
+  { key: "dashboard",   label: "Dashboard", icon: LayoutDashboard },
+  { key: "my",          label: "My Requests", icon: ClipboardList },
+  { key: "new",         label: "New Request", icon: PlusCircle },
+  { key: "queue",       label: "Approval Queue", icon: Inbox },
+  { key: "rules",       label: "Approval Rules", icon: ShieldCheck },
+  { key: "audit",       label: "Audit Log", icon: ScrollText },
+  { key: "entitlement", label: "Travel Entitlement", icon: BadgeCheck },
 ];
 
 function TravelRequestPage() {
@@ -40,12 +42,13 @@ function TravelRequestPage() {
         <TabBar tab={tab} onChange={setTab} />
 
         <div className="animate-rise">
-          {tab === "dashboard" && <DashboardTab onNew={() => setTab("new")} />}
-          {tab === "my"        && <MyRequestsTab />}
-          {tab === "new"       && <NewRequestTab onCancel={() => setTab("dashboard")} />}
-          {tab === "queue"     && <ApprovalQueueTab />}
-          {tab === "rules"     && <ApprovalRulesTab />}
-          {tab === "audit"     && <AuditLogTab />}
+          {tab === "dashboard"   && <DashboardTab onNew={() => setTab("new")} />}
+          {tab === "my"          && <MyRequestsTab />}
+          {tab === "new"         && <NewRequestTab onCancel={() => setTab("dashboard")} />}
+          {tab === "queue"       && <ApprovalQueueTab />}
+          {tab === "rules"       && <ApprovalRulesTab />}
+          {tab === "audit"       && <AuditLogTab />}
+          {tab === "entitlement" && <TravelEntitlementTab />}
         </div>
       </main>
       <SparkleFab />
@@ -55,27 +58,49 @@ function TravelRequestPage() {
 
 /* ---------- Shared chrome ---------- */
 
+function HeroThemeToggle() {
+  const [dark, setDark] = useState(false);
+  useEffect(() => {
+    const isDark = document.documentElement.classList.contains("dark");
+    setDark(isDark);
+  }, []);
+  const toggle = () => {
+    const next = !dark;
+    setDark(next);
+    document.documentElement.classList.toggle("dark", next);
+    try { localStorage.setItem("resolven-theme", next ? "dark" : "light"); } catch {}
+  };
+  return (
+    <button
+      onClick={toggle}
+      aria-label="Toggle theme"
+      className="inline-flex h-9 w-9 items-center justify-center text-white/85 transition-all duration-200 hover:text-white hover:-translate-y-0.5"
+    >
+      {dark ? <Sun className="h-[1.1rem] w-[1.1rem]" strokeWidth={1.9} /> : <Moon className="h-[1.1rem] w-[1.1rem]" strokeWidth={1.9} />}
+    </button>
+  );
+}
+
 function BrandedHero() {
   return (
     <section
       className="travel-hero relative overflow-hidden rounded-2xl border border-border/60 shadow-soft sm:rounded-[1.4rem]"
     >
       <div className="travel-hero-atmosphere pointer-events-none absolute inset-0 mix-blend-screen" />
-      <div className="relative flex min-h-[88px] items-center px-5 py-5 sm:min-h-[100px] sm:px-8">
-        <Link
-          to="/"
-          aria-label="Back to home"
-          className="group inline-flex min-w-0 max-w-2xl items-center gap-2.5 sm:gap-3"
-        >
-          <ArrowLeft
-            className="shrink-0 text-[#3DB769] transition-all duration-200 group-hover:-translate-x-0.5 group-hover:opacity-80"
-            style={{ width: "1.15rem", height: "1.15rem" }}
-            strokeWidth={2.4}
-          />
-          <h1 className="text-2xl text-white sm:text-[1.75rem] md:text-[2rem]">
-            Travel Requests
-          </h1>
-        </Link>
+      <div className="relative flex min-h-[72px] items-center justify-between gap-4 px-5 py-4 sm:min-h-[84px] sm:px-8">
+        <h1 className="font-display italic font-bold tracking-tight text-white text-[1.5rem] sm:text-[1.8rem] md:text-[2rem] leading-none">
+          Travel Request
+        </h1>
+        <div className="flex items-center gap-1 sm:gap-2">
+          <HeroThemeToggle />
+          <Link
+            to="/"
+            aria-label="Home"
+            className="inline-flex h-9 w-9 items-center justify-center text-white/85 transition-all duration-200 hover:text-white hover:-translate-y-0.5"
+          >
+            <Home className="h-[1.1rem] w-[1.1rem]" strokeWidth={1.9} />
+          </Link>
+        </div>
       </div>
     </section>
   );
@@ -84,7 +109,7 @@ function BrandedHero() {
 function TabBar({ tab, onChange }: { tab: TabKey; onChange: (t: TabKey) => void }) {
   return (
     <div className="surface rounded-2xl p-1.5 sm:p-2 overflow-x-auto scrollbar-hide">
-      <div className="flex min-w-max gap-1 md:grid md:min-w-0 md:grid-cols-6">
+      <div className="flex min-w-max gap-1 lg:grid lg:min-w-0 lg:grid-cols-7">
         {TABS.map(({ key, label, icon: Icon }) => {
           const active = tab === key;
           return (
@@ -93,7 +118,7 @@ function TabBar({ tab, onChange }: { tab: TabKey; onChange: (t: TabKey) => void 
               onClick={() => onChange(key)}
               className={cn(
                 "group relative inline-flex items-center gap-2 rounded-xl px-3.5 py-2.5 text-[12.5px] sm:text-sm font-medium whitespace-nowrap transition-all duration-300",
-                "md:w-full md:justify-center",
+                "lg:w-full lg:justify-center",
                 active
                   ? "bg-primary text-primary-foreground shadow-soft"
                   : "text-muted-foreground hover:text-foreground hover:bg-secondary/60",
@@ -644,6 +669,119 @@ function EmptyState({ title, description }: { title: string; description: string
       </div>
       <p className="mt-3 text-sm font-medium text-foreground">{title}</p>
       <p className="mt-1 text-[12px] font-light text-muted-foreground">{description}</p>
+    </div>
+  );
+}
+
+/* ---------- Travel Entitlement ---------- */
+
+type Entitlement = {
+  grade: string;
+  domesticAir: string;
+  hotelMetro: string;
+  hotelNonMetro: string;
+  localCar: string;
+  outstationCar: string;
+  dailyLimit: string;
+};
+
+const ENTITLEMENTS: Entitlement[] = [
+  { grade: "CXO",        domesticAir: "Premium Economy", hotelMetro: "₹ 25,000", hotelNonMetro: "₹ 20,000", localCar: "SUV",            outstationCar: "SUV", dailyLimit: "₹ 4,000 / On Actuals" },
+  { grade: "VP and above", domesticAir: "Economy",       hotelMetro: "₹ 15,000", hotelNonMetro: "₹ 10,000", localCar: "SUV",            outstationCar: "SUV", dailyLimit: "On Actuals" },
+  { grade: "DGM to AVP", domesticAir: "Economy",         hotelMetro: "₹ 10,000", hotelNonMetro: "₹ 7,000",  localCar: "Premium Sedan",  outstationCar: "SUV", dailyLimit: "₹ 3,000" },
+  { grade: "SM to GET",  domesticAir: "Economy",         hotelMetro: "₹ 7,000",  hotelNonMetro: "₹ 5,000",  localCar: "Sedan / H-Back", outstationCar: "SUV", dailyLimit: "₹ 2,500" },
+];
+
+function TravelEntitlementTab() {
+  return (
+    <div className="space-y-5 sm:space-y-6">
+      <Card>
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <h3 className="text-base sm:text-lg text-foreground">Travel Entitlement Matrix</h3>
+            <p className="mt-1 text-[12px] font-light text-muted-foreground">
+              Approved travel, accommodation, and per-diem ceilings by grade. Used to validate every travel request automatically.
+            </p>
+          </div>
+          <span className="inline-flex w-max items-center gap-1.5 rounded-full bg-accent/12 px-3 py-1 text-[10.5px] font-medium uppercase tracking-[0.16em] text-accent ring-1 ring-accent/20">
+            <BadgeCheck className="h-3.5 w-3.5" /> Policy v2025.1
+          </span>
+        </div>
+      </Card>
+
+      {/* Desktop / tablet table */}
+      <Card className="hidden p-0 overflow-hidden md:block">
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="bg-secondary/40 text-[10.5px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
+                {["Grade", "Domestic Air", "Hotel Metro (max/night)", "Hotel Non-Metro (max/night)", "Local Car <150km", "Outstation Car >150km", "Travel Daily Limit (self)"].map((h) => (
+                  <th key={h} className="px-5 py-3.5 text-left whitespace-nowrap">{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {ENTITLEMENTS.map((r, i) => (
+                <tr
+                  key={r.grade}
+                  className={cn(
+                    "border-t border-border/50 transition-colors hover:bg-primary/[0.04]",
+                    i % 2 && "bg-card/40",
+                  )}
+                >
+                  <td className="px-5 py-4">
+                    <span className="inline-flex items-center rounded-lg bg-primary/12 px-2.5 py-1 text-[11.5px] font-semibold uppercase tracking-[0.08em] text-primary ring-1 ring-primary/15">
+                      {r.grade}
+                    </span>
+                  </td>
+                  <td className="px-5 py-4 text-foreground font-light">{r.domesticAir}</td>
+                  <td className="px-5 py-4 font-medium text-foreground">{r.hotelMetro}</td>
+                  <td className="px-5 py-4 font-medium text-foreground">{r.hotelNonMetro}</td>
+                  <td className="px-5 py-4 text-foreground font-light">{r.localCar}</td>
+                  <td className="px-5 py-4 text-foreground font-light">{r.outstationCar}</td>
+                  <td className="px-5 py-4">
+                    <span className="inline-flex items-center rounded-full bg-accent/12 px-2.5 py-1 text-[11.5px] font-medium text-accent ring-1 ring-accent/20">
+                      {r.dailyLimit}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Card>
+
+      {/* Mobile cards */}
+      <div className="grid grid-cols-1 gap-3 md:hidden">
+        {ENTITLEMENTS.map((r) => (
+          <div key={r.grade} className="surface rounded-2xl p-4">
+            <div className="mb-3 flex items-center justify-between">
+              <span className="inline-flex items-center rounded-lg bg-primary/12 px-2.5 py-1 text-[11.5px] font-semibold uppercase tracking-[0.08em] text-primary ring-1 ring-primary/15">
+                {r.grade}
+              </span>
+              <span className="inline-flex items-center rounded-full bg-accent/12 px-2.5 py-0.5 text-[10.5px] font-medium text-accent ring-1 ring-accent/20">
+                {r.dailyLimit}
+              </span>
+            </div>
+            <dl className="grid grid-cols-2 gap-x-3 gap-y-2.5 text-[12.5px]">
+              <EntitlementMobileRow label="Domestic Air" value={r.domesticAir} />
+              <EntitlementMobileRow label="Hotel Metro" value={r.hotelMetro} />
+              <EntitlementMobileRow label="Hotel Non-Metro" value={r.hotelNonMetro} />
+              <EntitlementMobileRow label="Local Car <150km" value={r.localCar} />
+              <EntitlementMobileRow label="Outstation Car" value={r.outstationCar} />
+            </dl>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function EntitlementMobileRow({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="min-w-0">
+      <dt className="text-[10px] font-medium uppercase tracking-[0.14em] text-muted-foreground">{label}</dt>
+      <dd className="mt-0.5 truncate text-foreground font-light">{value}</dd>
     </div>
   );
 }
