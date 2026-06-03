@@ -58,27 +58,49 @@ function TravelRequestPage() {
 
 /* ---------- Shared chrome ---------- */
 
+function HeroThemeToggle() {
+  const [dark, setDark] = useState(false);
+  useEffect(() => {
+    const isDark = document.documentElement.classList.contains("dark");
+    setDark(isDark);
+  }, []);
+  const toggle = () => {
+    const next = !dark;
+    setDark(next);
+    document.documentElement.classList.toggle("dark", next);
+    try { localStorage.setItem("resolven-theme", next ? "dark" : "light"); } catch {}
+  };
+  return (
+    <button
+      onClick={toggle}
+      aria-label="Toggle theme"
+      className="inline-flex h-9 w-9 items-center justify-center text-white/85 transition-all duration-200 hover:text-white hover:-translate-y-0.5"
+    >
+      {dark ? <Sun className="h-[1.1rem] w-[1.1rem]" strokeWidth={1.9} /> : <Moon className="h-[1.1rem] w-[1.1rem]" strokeWidth={1.9} />}
+    </button>
+  );
+}
+
 function BrandedHero() {
   return (
     <section
       className="travel-hero relative overflow-hidden rounded-2xl border border-border/60 shadow-soft sm:rounded-[1.4rem]"
     >
       <div className="travel-hero-atmosphere pointer-events-none absolute inset-0 mix-blend-screen" />
-      <div className="relative flex min-h-[88px] items-center px-5 py-5 sm:min-h-[100px] sm:px-8">
-        <Link
-          to="/"
-          aria-label="Back to home"
-          className="group inline-flex min-w-0 max-w-2xl items-center gap-2.5 sm:gap-3"
-        >
-          <ArrowLeft
-            className="shrink-0 text-[#3DB769] transition-all duration-200 group-hover:-translate-x-0.5 group-hover:opacity-80"
-            style={{ width: "1.15rem", height: "1.15rem" }}
-            strokeWidth={2.4}
-          />
-          <h1 className="text-2xl text-white sm:text-[1.75rem] md:text-[2rem]">
-            Travel Requests
-          </h1>
-        </Link>
+      <div className="relative flex min-h-[72px] items-center justify-between gap-4 px-5 py-4 sm:min-h-[84px] sm:px-8">
+        <h1 className="font-display italic font-bold tracking-tight text-white text-[1.5rem] sm:text-[1.8rem] md:text-[2rem] leading-none">
+          Travel Request
+        </h1>
+        <div className="flex items-center gap-1 sm:gap-2">
+          <HeroThemeToggle />
+          <Link
+            to="/"
+            aria-label="Home"
+            className="inline-flex h-9 w-9 items-center justify-center text-white/85 transition-all duration-200 hover:text-white hover:-translate-y-0.5"
+          >
+            <Home className="h-[1.1rem] w-[1.1rem]" strokeWidth={1.9} />
+          </Link>
+        </div>
       </div>
     </section>
   );
@@ -87,7 +109,7 @@ function BrandedHero() {
 function TabBar({ tab, onChange }: { tab: TabKey; onChange: (t: TabKey) => void }) {
   return (
     <div className="surface rounded-2xl p-1.5 sm:p-2 overflow-x-auto scrollbar-hide">
-      <div className="flex min-w-max gap-1 md:grid md:min-w-0 md:grid-cols-6">
+      <div className="flex min-w-max gap-1 lg:grid lg:min-w-0 lg:grid-cols-7">
         {TABS.map(({ key, label, icon: Icon }) => {
           const active = tab === key;
           return (
@@ -96,7 +118,7 @@ function TabBar({ tab, onChange }: { tab: TabKey; onChange: (t: TabKey) => void 
               onClick={() => onChange(key)}
               className={cn(
                 "group relative inline-flex items-center gap-2 rounded-xl px-3.5 py-2.5 text-[12.5px] sm:text-sm font-medium whitespace-nowrap transition-all duration-300",
-                "md:w-full md:justify-center",
+                "lg:w-full lg:justify-center",
                 active
                   ? "bg-primary text-primary-foreground shadow-soft"
                   : "text-muted-foreground hover:text-foreground hover:bg-secondary/60",
