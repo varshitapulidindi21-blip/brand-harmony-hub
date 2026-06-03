@@ -20,15 +20,16 @@ export const Route = createFileRoute("/travel-request")({
   component: TravelRequestPage,
 });
 
-type TabKey = "dashboard" | "my" | "new" | "queue" | "rules" | "audit";
+type TabKey = "dashboard" | "my" | "new" | "queue" | "rules" | "audit" | "entitlement";
 
 const TABS: { key: TabKey; label: string; icon: React.ComponentType<{ className?: string }> }[] = [
-  { key: "dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { key: "my",        label: "My Requests", icon: ClipboardList },
-  { key: "new",       label: "New Request", icon: PlusCircle },
-  { key: "queue",     label: "Approval Queue", icon: Inbox },
-  { key: "rules",     label: "Approval Rules", icon: ShieldCheck },
-  { key: "audit",     label: "Audit Log", icon: ScrollText },
+  { key: "dashboard",   label: "Dashboard", icon: LayoutDashboard },
+  { key: "my",          label: "My Requests", icon: ClipboardList },
+  { key: "new",         label: "New Request", icon: PlusCircle },
+  { key: "queue",       label: "Approval Queue", icon: Inbox },
+  { key: "rules",       label: "Approval Rules", icon: ShieldCheck },
+  { key: "audit",       label: "Audit Log", icon: ScrollText },
+  { key: "entitlement", label: "Travel Entitlement", icon: BadgeCheck },
 ];
 
 function TravelRequestPage() {
@@ -41,12 +42,13 @@ function TravelRequestPage() {
         <TabBar tab={tab} onChange={setTab} />
 
         <div className="animate-rise">
-          {tab === "dashboard" && <DashboardTab onNew={() => setTab("new")} />}
-          {tab === "my"        && <MyRequestsTab />}
-          {tab === "new"       && <NewRequestTab onCancel={() => setTab("dashboard")} />}
-          {tab === "queue"     && <ApprovalQueueTab />}
-          {tab === "rules"     && <ApprovalRulesTab />}
-          {tab === "audit"     && <AuditLogTab />}
+          {tab === "dashboard"   && <DashboardTab onNew={() => setTab("new")} />}
+          {tab === "my"          && <MyRequestsTab />}
+          {tab === "new"         && <NewRequestTab onCancel={() => setTab("dashboard")} />}
+          {tab === "queue"       && <ApprovalQueueTab />}
+          {tab === "rules"       && <ApprovalRulesTab />}
+          {tab === "audit"       && <AuditLogTab />}
+          {tab === "entitlement" && <TravelEntitlementTab />}
         </div>
       </main>
       <SparkleFab />
