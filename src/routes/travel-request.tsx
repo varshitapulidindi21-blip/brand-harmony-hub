@@ -672,3 +672,116 @@ function EmptyState({ title, description }: { title: string; description: string
     </div>
   );
 }
+
+/* ---------- Travel Entitlement ---------- */
+
+type Entitlement = {
+  grade: string;
+  domesticAir: string;
+  hotelMetro: string;
+  hotelNonMetro: string;
+  localCar: string;
+  outstationCar: string;
+  dailyLimit: string;
+};
+
+const ENTITLEMENTS: Entitlement[] = [
+  { grade: "CXO",        domesticAir: "Premium Economy", hotelMetro: "₹ 25,000", hotelNonMetro: "₹ 20,000", localCar: "SUV",            outstationCar: "SUV", dailyLimit: "₹ 4,000 / On Actuals" },
+  { grade: "VP and above", domesticAir: "Economy",       hotelMetro: "₹ 15,000", hotelNonMetro: "₹ 10,000", localCar: "SUV",            outstationCar: "SUV", dailyLimit: "On Actuals" },
+  { grade: "DGM to AVP", domesticAir: "Economy",         hotelMetro: "₹ 10,000", hotelNonMetro: "₹ 7,000",  localCar: "Premium Sedan",  outstationCar: "SUV", dailyLimit: "₹ 3,000" },
+  { grade: "SM to GET",  domesticAir: "Economy",         hotelMetro: "₹ 7,000",  hotelNonMetro: "₹ 5,000",  localCar: "Sedan / H-Back", outstationCar: "SUV", dailyLimit: "₹ 2,500" },
+];
+
+function TravelEntitlementTab() {
+  return (
+    <div className="space-y-5 sm:space-y-6">
+      <Card>
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <h3 className="text-base sm:text-lg text-foreground">Travel Entitlement Matrix</h3>
+            <p className="mt-1 text-[12px] font-light text-muted-foreground">
+              Approved travel, accommodation, and per-diem ceilings by grade. Used to validate every travel request automatically.
+            </p>
+          </div>
+          <span className="inline-flex w-max items-center gap-1.5 rounded-full bg-accent/12 px-3 py-1 text-[10.5px] font-medium uppercase tracking-[0.16em] text-accent ring-1 ring-accent/20">
+            <BadgeCheck className="h-3.5 w-3.5" /> Policy v2025.1
+          </span>
+        </div>
+      </Card>
+
+      {/* Desktop / tablet table */}
+      <Card className="hidden p-0 overflow-hidden md:block">
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="bg-secondary/40 text-[10.5px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
+                {["Grade", "Domestic Air", "Hotel Metro (max/night)", "Hotel Non-Metro (max/night)", "Local Car <150km", "Outstation Car >150km", "Travel Daily Limit (self)"].map((h) => (
+                  <th key={h} className="px-5 py-3.5 text-left whitespace-nowrap">{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {ENTITLEMENTS.map((r, i) => (
+                <tr
+                  key={r.grade}
+                  className={cn(
+                    "border-t border-border/50 transition-colors hover:bg-primary/[0.04]",
+                    i % 2 && "bg-card/40",
+                  )}
+                >
+                  <td className="px-5 py-4">
+                    <span className="inline-flex items-center rounded-lg bg-primary/12 px-2.5 py-1 text-[11.5px] font-semibold uppercase tracking-[0.08em] text-primary ring-1 ring-primary/15">
+                      {r.grade}
+                    </span>
+                  </td>
+                  <td className="px-5 py-4 text-foreground font-light">{r.domesticAir}</td>
+                  <td className="px-5 py-4 font-medium text-foreground">{r.hotelMetro}</td>
+                  <td className="px-5 py-4 font-medium text-foreground">{r.hotelNonMetro}</td>
+                  <td className="px-5 py-4 text-foreground font-light">{r.localCar}</td>
+                  <td className="px-5 py-4 text-foreground font-light">{r.outstationCar}</td>
+                  <td className="px-5 py-4">
+                    <span className="inline-flex items-center rounded-full bg-accent/12 px-2.5 py-1 text-[11.5px] font-medium text-accent ring-1 ring-accent/20">
+                      {r.dailyLimit}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Card>
+
+      {/* Mobile cards */}
+      <div className="grid grid-cols-1 gap-3 md:hidden">
+        {ENTITLEMENTS.map((r) => (
+          <div key={r.grade} className="surface rounded-2xl p-4">
+            <div className="mb-3 flex items-center justify-between">
+              <span className="inline-flex items-center rounded-lg bg-primary/12 px-2.5 py-1 text-[11.5px] font-semibold uppercase tracking-[0.08em] text-primary ring-1 ring-primary/15">
+                {r.grade}
+              </span>
+              <span className="inline-flex items-center rounded-full bg-accent/12 px-2.5 py-0.5 text-[10.5px] font-medium text-accent ring-1 ring-accent/20">
+                {r.dailyLimit}
+              </span>
+            </div>
+            <dl className="grid grid-cols-2 gap-x-3 gap-y-2.5 text-[12.5px]">
+              <EntitlementMobileRow label="Domestic Air" value={r.domesticAir} />
+              <EntitlementMobileRow label="Hotel Metro" value={r.hotelMetro} />
+              <EntitlementMobileRow label="Hotel Non-Metro" value={r.hotelNonMetro} />
+              <EntitlementMobileRow label="Local Car <150km" value={r.localCar} />
+              <EntitlementMobileRow label="Outstation Car" value={r.outstationCar} />
+            </dl>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function EntitlementMobileRow({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="min-w-0">
+      <dt className="text-[10px] font-medium uppercase tracking-[0.14em] text-muted-foreground">{label}</dt>
+      <dd className="mt-0.5 truncate text-foreground font-light">{value}</dd>
+    </div>
+  );
+}
