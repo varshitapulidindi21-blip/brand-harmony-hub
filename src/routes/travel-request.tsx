@@ -58,27 +58,24 @@ function TravelRequestPage() {
 function BrandedHero() {
   return (
     <section
-      className="travel-hero relative overflow-hidden rounded-2xl border border-border/60 shadow-elev sm:rounded-[1.4rem]"
+      className="travel-hero relative overflow-hidden rounded-2xl border border-border/60 shadow-soft sm:rounded-[1.4rem]"
     >
       <div className="travel-hero-atmosphere pointer-events-none absolute inset-0 mix-blend-screen" />
-      <div className="relative flex min-h-[168px] items-center px-5 py-8 sm:min-h-[190px] sm:px-8 sm:py-10">
-        <div className="flex min-w-0 max-w-2xl items-start gap-3 sm:gap-4">
-          <Link
-            to="/"
-            aria-label="Back to home"
-            className="mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-[1.05rem] bg-white/16 text-[#3DB769] ring-1 ring-white/20 backdrop-blur-md transition-all duration-300 hover:-translate-x-0.5 hover:bg-white/22 hover:ring-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3DB769]/70"
-          >
-            <ArrowLeft className="h-[17px] w-[17px]" strokeWidth={2.15} />
-          </Link>
-          <div className="min-w-0">
-            <h1 className="text-3xl text-white sm:text-4xl md:text-[2.7rem]">
-              Travel Requests
-            </h1>
-            <p className="mt-3 max-w-xl text-sm font-light leading-relaxed text-white/80 sm:text-base">
-              Raise, route and track domestic and international travel with policy-aware approvals.
-            </p>
-          </div>
-        </div>
+      <div className="relative flex min-h-[88px] items-center px-5 py-5 sm:min-h-[100px] sm:px-8">
+        <Link
+          to="/"
+          aria-label="Back to home"
+          className="group inline-flex min-w-0 max-w-2xl items-center gap-2.5 sm:gap-3"
+        >
+          <ArrowLeft
+            className="shrink-0 text-[#3DB769] transition-all duration-200 group-hover:-translate-x-0.5 group-hover:opacity-80"
+            style={{ width: "1.15rem", height: "1.15rem" }}
+            strokeWidth={2.4}
+          />
+          <h1 className="text-2xl text-white sm:text-[1.75rem] md:text-[2rem]">
+            Travel Requests
+          </h1>
+        </Link>
       </div>
     </section>
   );
