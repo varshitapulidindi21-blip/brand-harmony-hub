@@ -70,7 +70,7 @@ function BrandedHero() {
           className="group inline-flex min-w-0 max-w-2xl items-center gap-2.5 sm:gap-3"
         >
           <ArrowLeft
-            className="shrink-0 text-[#3DB769] transition-all duration-250 group-hover:-translate-x-0.5 group-hover:opacity-80"
+            className="shrink-0 text-[#3DB769] transition-all duration-200 group-hover:-translate-x-0.5 group-hover:opacity-80"
             style={{ width: "1.15rem", height: "1.15rem" }}
             strokeWidth={2.4}
           />
